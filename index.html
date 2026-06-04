@@ -4,183 +4,240 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>adrshitdesign</title>
+<!-- Firebase Analytics -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAnalytics, logEvent } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+  const app = initializeApp({apiKey:"AIzaSyBTtQO3RHHv1J01fngjeR63qWwECiuFV80",authDomain:"adrshitdesign-ccc65.firebaseapp.com",projectId:"adrshitdesign-ccc65",storageBucket:"adrshitdesign-ccc65.firebasestorage.app",messagingSenderId:"979698259215",appId:"1:979698259215:web:99c9e02d8d955d99915a7a",measurementId:"G-M0F4PREVYQ"});
+  getAnalytics(app);
+</script>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700;900&family=Space+Mono:wght@400;700&display=swap');
-  @font-face {
-    font-family:'ADRSHITTypo';
-    src:url('data:font/woff2;base64,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') format('woff2');
-  }
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700;900&family=Space+Mono:wght@400;700&display=swap');
+@font-face{font-family:'ADRSHITTypo';src:url('data:font/woff2;base64,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') format('woff2');}
 
-  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-  :root{--black:#0a0a0a;--white:#f5f5f0}
-  html{scroll-behavior:smooth}
-  body{background:var(--black);color:var(--white);font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--black:#0a0a0a;--white:#f5f5f0;--gray:#888;--light:#ccc}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--white);font-family:'Space Grotesk',sans-serif;overflow-x:hidden}
 
-  /* NAV */
-  nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid #141414}
-  .nav-logo svg{height:26px;width:auto;display:block}
-  .nav-links{display:flex;gap:2rem;list-style:none}
-  .nav-links a{text-decoration:none;color:#444;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;font-family:'Space Mono',monospace}
-  .nav-links a:hover{color:var(--white)}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid #1e1e1e}
+.nav-logo svg{height:26px;width:auto;display:block}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{text-decoration:none;color:var(--gray);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;font-family:'Space Mono',monospace}
+.nav-links a:hover{color:var(--white)}
 
-  /* HERO */
-  #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 2.5rem 5rem;position:relative;overflow:hidden}
-  .hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 70% 50% at 70% 30%,rgba(255,255,255,.03) 0%,transparent 60%)}
-  .grid-overlay{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:55px 55px}
-  .hero-content{position:relative;z-index:1}
-  .hero-logo-wrap{margin-bottom:2.5rem}
-  .hero-logo-wrap svg{width:min(500px,78vw);height:auto;display:block}
-  .hero-tag{font-family:'Space Mono',monospace;font-size:.63rem;letter-spacing:.3em;text-transform:uppercase;color:#3a3a3a;margin-bottom:1rem;display:flex;align-items:center;gap:.8rem}
-  .hero-tag::before{content:'';display:block;width:22px;height:1px;background:#2a2a2a}
-  .hero-sub{font-size:clamp(.85rem,1.6vw,1rem);color:#444;max-width:400px;line-height:1.85;margin-bottom:2.5rem}
-  .hero-ctas{display:flex;gap:.8rem;flex-wrap:wrap}
-  .hero-scroll{position:absolute;bottom:2.5rem;right:2.5rem;z-index:1;font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:#222;writing-mode:vertical-rl;display:flex;align-items:center;gap:1rem}
-  .hero-scroll::after{content:'';display:block;width:1px;height:40px;background:#1a1a1a}
+/* HERO */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 2.5rem 5rem;position:relative;overflow:hidden}
+canvas#hero-canvas{position:absolute;inset:0;z-index:0;opacity:.6}
+.hero-content{position:relative;z-index:1}
+.hero-logo-wrap{margin-bottom:2.5rem;position:relative;display:inline-block}
+.hero-logo-wrap svg{width:min(500px,78vw);height:auto;display:block;filter:drop-shadow(0 0 40px rgba(255,255,255,.08))}
+.hero-logo-glow{position:absolute;inset:-20px;background:radial-gradient(ellipse 60% 40% at 50% 50%,rgba(255,255,255,.06) 0%,transparent 70%);pointer-events:none;animation:glowPulse 3s ease-in-out infinite}
+@keyframes glowPulse{0%,100%{opacity:.5}50%{opacity:1}}
+.hero-tag{font-family:'Space Mono',monospace;font-size:.63rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gray);margin-bottom:1rem;display:flex;align-items:center;gap:.8rem;animation:fadeUp .8s .3s both}
+.hero-tag::before{content:'';display:block;width:22px;height:1px;background:#444}
+.hero-sub{font-size:clamp(.9rem,1.6vw,1.05rem);color:var(--light);max-width:400px;line-height:1.85;margin-bottom:2.5rem;animation:fadeUp .8s .5s both}
+.hero-ctas{display:flex;gap:.8rem;flex-wrap:wrap;animation:fadeUp .8s .7s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-scroll{position:absolute;bottom:2.5rem;right:2.5rem;z-index:1;font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:#444;writing-mode:vertical-rl;display:flex;align-items:center;gap:1rem}
+.hero-scroll::after{content:'';display:block;width:1px;height:40px;background:#222;animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{0%,100%{opacity:.3}50%{opacity:1}}
 
-  .btn{display:inline-block;padding:.85rem 1.8rem;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all .2s}
-  .btn-primary{background:var(--white);color:var(--black)}.btn-primary:hover{background:#ccc}
-  .btn-outline{background:transparent;color:var(--white);border:1px solid #252525}.btn-outline:hover{border-color:#555}
-  .btn-dark{background:var(--black);color:var(--white);border:none}.btn-dark:hover{background:#111}
+.btn{display:inline-block;padding:.85rem 1.8rem;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all .2s}
+.btn-primary{background:var(--white);color:var(--black)}.btn-primary:hover{background:#ddd}
+.btn-outline{background:transparent;color:var(--white);border:1px solid #333}.btn-outline:hover{border-color:#888}
+.btn-dark{background:var(--black);color:var(--white);border:1px solid #222}.btn-dark:hover{border-color:#555}
 
-  section{padding:6rem 2.5rem}
-  .section-tag{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:#272727;margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem}
-  .section-tag::before{content:attr(data-num)}
-  .section-tag::after{content:'';flex:0 0 32px;height:1px;background:#1a1a1a}
-  h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:normal;letter-spacing:.03em;line-height:.95;text-transform:uppercase;margin-bottom:1rem}
-  .divider{width:100%;height:1px;background:#0f0f0f}
+section{padding:6rem 2.5rem}
+.section-tag{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gray);margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem}
+.section-tag::before{content:attr(data-num)}
+.section-tag::after{content:'';flex:0 0 32px;height:1px;background:#333}
+h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:normal;letter-spacing:.03em;line-height:.95;text-transform:uppercase;margin-bottom:1rem}
+.divider{width:100%;height:1px;background:#1a1a1a}
 
-  /* PORTFOLIO */
-  #portfolio{background:var(--black)}
-  .portfolio-intro{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem}
-  .portfolio-sub{color:#333;font-size:.83rem;max-width:280px;line-height:1.7}
-  .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-  .portfolio-item{background:#0b0b0b;aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer;border:1px solid #101010;transition:border-color .3s}
-  .portfolio-item:hover{border-color:#252525}
-  .portfolio-item:nth-child(1){grid-column:span 2;aspect-ratio:2/1}
-  .portfolio-item:nth-child(4){grid-column:span 2;aspect-ratio:2/1}
-  .portfolio-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7;transition:opacity .4s,transform .5s;filter:contrast(1.1) brightness(.9)}
-  .portfolio-item:hover img{opacity:.3;transform:scale(1.04)}
-  .p-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem}
-  .p-label{font-family:'ADRSHITTypo',sans-serif;font-size:1.5rem;letter-spacing:.05em;text-transform:uppercase;color:#151515;transition:color .3s;margin-bottom:.25rem}
-  .portfolio-item:hover .p-label{color:#2a2a2a}
-  .p-info{transform:translateY(6px);opacity:0;transition:all .3s}
-  .portfolio-item:hover .p-info{transform:translateY(0);opacity:1}
-  .p-info h3{font-size:.76rem;font-weight:600;margin-bottom:.12rem}
-  .p-info p{font-size:.63rem;color:#444;font-family:'Space Mono',monospace}
+/* PORTFOLIO */
+#portfolio{background:var(--black)}
+.portfolio-intro{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem}
+.portfolio-sub{color:var(--light);font-size:.85rem;max-width:280px;line-height:1.7}
+.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.portfolio-item{background:#0b0b0b;aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer;border:1px solid #1a1a1a;transition:border-color .3s}
+.portfolio-item:hover{border-color:#333}
+.portfolio-item:nth-child(1){grid-column:span 2;aspect-ratio:2/1}
+.portfolio-item:nth-child(4){grid-column:span 2;aspect-ratio:2/1}
+.portfolio-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7;transition:opacity .4s,transform .5s;filter:contrast(1.1)}
+.portfolio-item:hover img{opacity:.3;transform:scale(1.04)}
+.p-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem}
+.p-label{font-family:'ADRSHITTypo',sans-serif;font-size:1.5rem;letter-spacing:.05em;text-transform:uppercase;color:#1e1e1e;transition:color .3s;margin-bottom:.25rem}
+.portfolio-item:hover .p-label{color:#333}
+.p-info{transform:translateY(6px);opacity:0;transition:all .3s}
+.portfolio-item:hover .p-info{transform:translateY(0);opacity:1}
+.p-info h3{font-size:.78rem;font-weight:600;margin-bottom:.12rem;color:var(--white)}
+.p-info p{font-size:.63rem;color:var(--light);font-family:'Space Mono',monospace}
 
-  /* SHIRTS */
-  #shirts{background:var(--white);color:var(--black)}
-  #shirts .section-tag{color:#bbb}
-  #shirts .section-tag::after{background:#e0e0e0}
-  #shirts h2{color:var(--black)}
-  .shirts-logo-wrap{margin-bottom:2rem}
-  .shirts-logo-wrap svg{width:min(360px,65vw);height:auto;display:block}
-  .shirts-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:2.5rem}
-  .shirts-text p{font-size:.88rem;line-height:1.85;color:#555;margin-bottom:1.4rem}
-  .shirts-tag-list{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.8rem}
-  .tag{display:inline-block;padding:.3rem .7rem;border:1px solid #ddd;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:#aaa}
-  .shirts-gallery{display:grid;grid-template-columns:1fr 1fr;gap:3px}
-  .shirt-card{background:#0e0e0e;aspect-ratio:3/4;display:block;position:relative;overflow:hidden;text-decoration:none}
-  .shirt-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-  .shirt-card:hover img{transform:scale(1.04)}
-  .shirt-card .s-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;background:transparent;transition:background .3s}
-  .shirt-card:hover .s-overlay{background:rgba(0,0,0,.3)}
-  .shirt-card .s-label{width:100%;padding:.7rem;font-family:'ADRSHITTypo',sans-serif;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.85));transform:translateY(100%);transition:transform .3s}
-  .shirt-card:hover .s-label{transform:translateY(0)}
-  .shirt-ph{font-family:'ADRSHITTypo',sans-serif;font-size:2rem;color:#1a1a1a;letter-spacing:.1em;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+/* PROJECT MODAL */
+#project-modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.95);backdrop-filter:blur(8px);overflow-y:auto}
+#project-modal.open{display:block}
+.pm-wrap{max-width:900px;margin:0 auto;padding:5rem 2rem 4rem}
+.pm-close{position:fixed;top:1.5rem;right:2rem;background:none;border:1px solid #333;color:var(--gray);font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;cursor:pointer;transition:all .2s;z-index:201}
+.pm-close:hover{border-color:#888;color:var(--white)}
+.pm-tag{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gray);margin-bottom:1rem}
+.pm-title{font-family:'ADRSHITTypo',sans-serif;font-size:clamp(2.5rem,7vw,5rem);text-transform:uppercase;line-height:.95;margin-bottom:2rem;color:var(--white)}
+.pm-desc{font-size:.95rem;line-height:1.9;color:var(--light);margin-bottom:2.5rem;max-width:650px}
+.pm-gallery{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:2.5rem}
+.pm-gallery img{width:100%;aspect-ratio:16/9;object-fit:cover;opacity:.85}
+.pm-gallery img:first-child:only-child{grid-column:span 2}
+.pm-meta{display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:2rem}
+.pm-meta-block label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gray);display:block;margin-bottom:.3rem}
+.pm-meta-block span{font-size:.85rem;color:var(--light)}
+.pm-link{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.4rem;border:1px solid #333;text-decoration:none;color:var(--light);font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s}
+.pm-link:hover{border-color:#888;color:var(--white)}
 
-  /* ABOUT */
-  #about{background:var(--black)}
-  .about-layout{display:grid;grid-template-columns:250px 1fr;gap:5rem;align-items:start;margin-top:3rem}
-  .about-logo-wrap svg{width:100px;height:auto;display:block;opacity:.12;margin-bottom:1.2rem}
-  .about-name{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#252525;margin-bottom:.5rem}
-  .about-title{font-family:'ADRSHITTypo',sans-serif;font-size:1.5rem;text-transform:uppercase;line-height:1.1;color:#1a1a1a;-webkit-text-stroke:1px #252525}
-  .about-body p{font-size:.9rem;line-height:1.9;color:#444;margin-bottom:1.3rem}
-  .skills{display:flex;flex-wrap:wrap;gap:.32rem;margin-top:1.5rem}
-  .skill{padding:.28rem .68rem;background:#0b0b0b;border:1px solid #181818;font-size:.6rem;color:#333;font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
+/* SHIRTS */
+#shirts{background:var(--white);color:var(--black)}
+#shirts .section-tag{color:#888}
+#shirts .section-tag::after{background:#ccc}
+#shirts h2{color:var(--black)}
+.shirts-logo-wrap{margin-bottom:2rem}
+.shirts-logo-wrap svg{width:min(360px,65vw);height:auto;display:block}
+.shirts-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:2.5rem}
+.shirts-text p{font-size:.9rem;line-height:1.85;color:#444;margin-bottom:1.4rem}
+.shirts-tag-list{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.8rem}
+.tag{display:inline-block;padding:.3rem .7rem;border:1px solid #ccc;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:#666}
+.shirts-gallery{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.shirt-card{background:#0e0e0e;aspect-ratio:3/4;display:block;position:relative;overflow:hidden;text-decoration:none}
+.shirt-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.shirt-card:hover img{transform:scale(1.04)}
+.shirt-card .s-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;background:transparent;transition:background .3s}
+.shirt-card:hover .s-overlay{background:rgba(0,0,0,.3)}
+.shirt-card .s-label{width:100%;padding:.7rem;font-family:'ADRSHITTypo',sans-serif;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.85));transform:translateY(100%);transition:transform .3s}
+.shirt-card:hover .s-label{transform:translateY(0)}
+.shirt-ph{font-family:'ADRSHITTypo',sans-serif;font-size:2rem;color:#1a1a1a;letter-spacing:.1em;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
 
-  /* CONTACT */
-  #contact{background:var(--white);color:var(--black);text-align:center}
-  #contact h2{color:var(--black);margin-bottom:.8rem}
-  #contact .section-tag{justify-content:center;color:#bbb}
-  #contact .section-tag::after{background:#e0e0e0}
-  .contact-sub{color:#999;font-size:.88rem;margin-bottom:2.5rem;max-width:360px;margin-left:auto;margin-right:auto;line-height:1.7}
-  .contact-links{display:flex;justify-content:center;gap:.7rem;flex-wrap:wrap}
-  .contact-link{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.5rem;border:1px solid #e0e0e0;text-decoration:none;color:#555;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s}
-  .contact-link:hover{background:var(--black);color:var(--white);border-color:var(--black)}
+/* ABOUT */
+#about{background:var(--black)}
+.about-layout{display:grid;grid-template-columns:250px 1fr;gap:5rem;align-items:start;margin-top:3rem}
+.about-logo-wrap svg{width:100px;height:auto;display:block;opacity:.12;margin-bottom:1.2rem}
+.about-name{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#555;margin-bottom:.5rem}
+.about-title{font-family:'ADRSHITTypo',sans-serif;font-size:1.5rem;text-transform:uppercase;line-height:1.1;color:#222;-webkit-text-stroke:1px #333}
+.about-body p{font-size:.92rem;line-height:1.9;color:var(--light);margin-bottom:1.3rem}
+.skills{display:flex;flex-wrap:wrap;gap:.32rem;margin-top:1.5rem}
+.skill{padding:.28rem .68rem;background:#0b0b0b;border:1px solid #222;font-size:.62rem;color:var(--light);font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.05em}
 
-  footer{background:var(--black);padding:1.8rem 2.5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #0f0f0f;flex-wrap:wrap;gap:1rem}
-  .footer-logo svg{height:20px;width:auto;display:block;opacity:.2}
-  .footer-copy{font-size:.6rem;color:#1e1e1e;font-family:'Space Mono',monospace}
+/* CONTACT */
+#contact{background:var(--white);color:var(--black);text-align:center}
+#contact h2{color:var(--black);margin-bottom:.8rem}
+#contact .section-tag{justify-content:center;color:#888}
+#contact .section-tag::after{background:#ccc}
+.contact-sub{color:#555;font-size:.9rem;margin-bottom:2.5rem;max-width:360px;margin-left:auto;margin-right:auto;line-height:1.7}
+.contact-links{display:flex;justify-content:center;gap:.7rem;flex-wrap:wrap}
+.contact-link{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.5rem;border:1px solid #ccc;text-decoration:none;color:#333;font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s}
+.contact-link:hover{background:var(--black);color:var(--white);border-color:var(--black)}
 
-  .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
-  .reveal.visible{opacity:1;transform:translateY(0)}
-  .reveal-d1{transition-delay:.12s}
+footer{background:var(--black);padding:1.8rem 2.5rem;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #1a1a1a;flex-wrap:wrap;gap:1rem}
+.footer-logo svg{height:20px;width:auto;display:block;opacity:.25}
+.footer-copy{font-size:.6rem;color:#555;font-family:'Space Mono',monospace}
 
-  /* ======== EDIT MODE ======== */
-  body.edit-mode .editable{outline:1px dashed rgba(99,179,237,.35);cursor:pointer;position:relative;transition:outline .2s}
-  body.edit-mode .editable:hover{outline:2px solid rgba(99,179,237,.8);background:rgba(99,179,237,.04)}
-  body.edit-mode .edit-img-zone{outline:2px dashed rgba(99,179,237,.4);cursor:pointer}
-  body.edit-mode .edit-img-zone:hover{outline:2px solid rgba(99,179,237,.9)}
-  body.edit-mode .edit-img-zone::after{content:'📷 Changer l\'image';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,.8);color:#63b3ed;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.08em;padding:.4rem .8rem;pointer-events:none;white-space:nowrap;z-index:10}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-d1{transition-delay:.12s}
 
-  /* EDIT BAR */
-  #edit-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(10,10,10,.97);border-top:1px solid #1e1e1e;padding:.8rem 2rem;align-items:center;justify-content:space-between;gap:1rem;backdrop-filter:blur(10px)}
-  #edit-bar.visible{display:flex}
-  .edit-bar-left{display:flex;align-items:center;gap:1.2rem}
-  .edit-bar-dot{width:8px;height:8px;border-radius:50%;background:#63b3ed;animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-  .edit-bar-label{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#555}
-  .edit-bar-label span{color:#63b3ed}
-  .edit-bar-right{display:flex;gap:.6rem}
-  .eb-btn{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.2rem;cursor:pointer;border:none;transition:all .2s}
-  .eb-save{background:var(--white);color:var(--black)}.eb-save:hover{background:#ccc}
-  .eb-exit{background:transparent;color:#444;border:1px solid #222}.eb-exit:hover{color:#666;border-color:#444}
+/* ======== EDIT MODE ======== */
+body.edit-mode .editable{outline:1px dashed rgba(99,179,237,.4);cursor:pointer}
+body.edit-mode .editable:hover{outline:2px solid rgba(99,179,237,.9);background:rgba(99,179,237,.05)}
+body.edit-mode .edit-img-zone{outline:2px dashed rgba(99,179,237,.4);cursor:pointer;position:relative}
+body.edit-mode .edit-img-zone:hover{outline:2px solid #63b3ed}
+body.edit-mode .edit-img-zone::after{content:'📷';position:absolute;top:8px;right:8px;background:rgba(0,0,0,.8);color:#63b3ed;font-size:.8rem;padding:.3rem .5rem;z-index:10;pointer-events:none}
 
-  /* INLINE EDITOR POPUP */
-  #inline-editor{display:none;position:fixed;z-index:1000;background:#0e0e0e;border:1px solid #2a2a2a;padding:1.2rem;min-width:280px;max-width:420px;box-shadow:0 8px 40px rgba(0,0,0,.8)}
-  #inline-editor.visible{display:block}
-  .ie-label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:#444;margin-bottom:.5rem}
-  #ie-input{width:100%;background:#080808;border:1px solid #1e1e1e;color:var(--white);font-family:'Space Grotesk',sans-serif;font-size:.88rem;padding:.6rem .8rem;outline:none;resize:vertical;min-height:42px}
-  #ie-input:focus{border-color:#333}
-  .ie-actions{display:flex;gap:.5rem;margin-top:.7rem;justify-content:flex-end}
-  .ie-btn{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .9rem;cursor:pointer;border:none}
-  .ie-ok{background:var(--white);color:var(--black)}.ie-ok:hover{background:#ccc}
-  .ie-cancel{background:transparent;color:#444;border:1px solid #1e1e1e}.ie-cancel:hover{color:#666}
+#edit-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:999;background:rgba(8,8,8,.97);border-top:1px solid #1e1e1e;padding:.8rem 2rem;align-items:center;justify-content:space-between;gap:1rem;backdrop-filter:blur(10px)}
+#edit-bar.visible{display:flex}
+.edit-bar-left{display:flex;align-items:center;gap:1rem}
+.edit-dot{width:7px;height:7px;border-radius:50%;background:#63b3ed;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+.edit-label{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#555}
+.edit-label span{color:#63b3ed}
+.edit-bar-right{display:flex;gap:.5rem}
+.eb-btn{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.1rem;cursor:pointer;border:none;transition:all .2s}
+.eb-save{background:var(--white);color:var(--black)}.eb-save:hover{background:#ddd}
+.eb-exit{background:transparent;color:#555;border:1px solid #222}.eb-exit:hover{color:#888;border-color:#444}
 
-  /* LOGIN MODAL */
-  #login-modal{display:none;position:fixed;inset:0;z-index:998;background:rgba(0,0,0,.96);backdrop-filter:blur(8px);align-items:center;justify-content:center;flex-direction:column;gap:1.5rem}
-  #login-modal.visible{display:flex}
-  #login-modal h2{font-family:'ADRSHITTypo',sans-serif;font-size:2.5rem;letter-spacing:.05em}
-  #login-modal input{background:#0e0e0e;border:1px solid #222;color:var(--white);font-family:'Space Mono',monospace;font-size:.85rem;padding:.8rem 1.2rem;outline:none;width:260px;text-align:center;letter-spacing:.2em}
-  #login-modal input:focus{border-color:#444}
-  #login-err{font-family:'Space Mono',monospace;font-size:.62rem;color:#fc8181;letter-spacing:.1em;display:none}
+/* INLINE EDITOR */
+#inline-ed{display:none;position:fixed;z-index:1000;background:#0c0c0c;border:1px solid #2a2a2a;padding:1.2rem;min-width:300px;max-width:440px;box-shadow:0 8px 40px rgba(0,0,0,.9)}
+#inline-ed.open{display:block}
+.ie-lbl{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:#555;margin-bottom:.5rem}
+#ie-inp{width:100%;background:#080808;border:1px solid #222;color:var(--white);font-family:'Space Grotesk',sans-serif;font-size:.88rem;padding:.6rem .8rem;outline:none;resize:vertical;min-height:42px}
+#ie-inp:focus{border-color:#444}
+.ie-acts{display:flex;gap:.4rem;margin-top:.6rem;justify-content:flex-end}
+.ie-btn{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;padding:.4rem .8rem;cursor:pointer;border:none}
+.ie-ok{background:var(--white);color:var(--black)}.ie-cancel{background:transparent;color:#555;border:1px solid #222}
 
-  @media(max-width:768px){
-    nav{padding:.9rem 1.5rem}.nav-links{display:none}
-    section{padding:4rem 1.5rem}#hero{padding:5rem 1.5rem 4rem}
-    .portfolio-grid{grid-template-columns:1fr 1fr}
-    .portfolio-item:nth-child(1),.portfolio-item:nth-child(4){grid-column:span 2}
-    .shirts-layout,.about-layout{grid-template-columns:1fr;gap:2rem}
-    footer{flex-direction:column;text-align:center}
-    #edit-bar{padding:.7rem 1rem;flex-wrap:wrap}
-  }
+/* ADMIN PANEL (full) */
+#admin-panel{display:none;position:fixed;inset:0;z-index:500;background:rgba(5,5,5,.98);backdrop-filter:blur(10px);overflow-y:auto}
+#admin-panel.open{display:block}
+.ap-wrap{max-width:860px;margin:0 auto;padding:3rem 2rem 6rem}
+.ap-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:3rem;border-bottom:1px solid #1a1a1a;padding-bottom:1.5rem}
+.ap-title{font-family:'ADRSHITTypo',sans-serif;font-size:2rem;letter-spacing:.05em}
+.ap-close{background:none;border:1px solid #2a2a2a;color:#555;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;cursor:pointer;transition:all .2s}
+.ap-close:hover{border-color:#666;color:var(--white)}
+.ap-section{margin-bottom:2.5rem}
+.ap-stitle{font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:#444;margin-bottom:1.2rem;padding-bottom:.6rem;border-bottom:1px solid #141414}
+.ap-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
+.ap-field{display:flex;flex-direction:column;gap:.35rem}
+.ap-field label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:#555}
+.ap-field input,.ap-field textarea{background:#0c0c0c;border:1px solid #1e1e1e;color:var(--white);font-family:'Space Grotesk',sans-serif;font-size:.82rem;padding:.6rem .8rem;outline:none;width:100%;transition:border-color .2s}
+.ap-field input:focus,.ap-field textarea:focus{border-color:#333}
+.ap-field textarea{resize:vertical;min-height:65px}
+.ap-full{grid-column:span 2}
+.ap-card{background:#0c0c0c;border:1px solid #161616;padding:1rem;margin-bottom:.7rem}
+.ap-card-title{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#333;margin-bottom:.8rem}
+/* Drop zone */
+.drop-zone{border:1px dashed #222;background:#080808;min-height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4rem;cursor:pointer;transition:border-color .2s,background .2s;position:relative;overflow:hidden;padding:.7rem}
+.drop-zone:hover,.drop-zone.over{border-color:#555;background:#0f0f0f}
+.drop-icon{font-size:1.5rem;color:#2a2a2a}
+.drop-hint{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.08em;color:#444;text-align:center;line-height:1.5}
+.drop-preview{width:100%;max-height:110px;object-fit:cover;opacity:.7}
+.ap-save-btn{background:var(--white);color:var(--black);font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 2rem;border:none;cursor:pointer;transition:all .2s;margin-top:1rem}
+.ap-save-btn:hover{background:#ccc}
+
+/* LOGIN */
+#login-modal{display:none;position:fixed;inset:0;z-index:998;background:rgba(0,0,0,.97);backdrop-filter:blur(8px);align-items:center;justify-content:center;flex-direction:column;gap:1.5rem}
+#login-modal.open{display:flex}
+#login-modal h2{font-family:'ADRSHITTypo',sans-serif;font-size:2.5rem}
+#lpwd{background:#0e0e0e;border:1px solid #222;color:var(--white);font-family:'Space Mono',monospace;font-size:.85rem;padding:.8rem 1.2rem;outline:none;width:260px;text-align:center;letter-spacing:.2em}
+#lpwd:focus{border-color:#444}
+#lerr{font-family:'Space Mono',monospace;font-size:.62rem;color:#fc8181;letter-spacing:.1em;display:none}
+
+/* FILE INPUT */
+#img-pick{display:none}
+
+@media(max-width:768px){
+  nav{padding:.9rem 1.5rem}.nav-links{display:none}
+  section{padding:4rem 1.5rem}#hero{padding:5rem 1.5rem 4rem}
+  .portfolio-grid{grid-template-columns:1fr 1fr}
+  .portfolio-item:nth-child(1),.portfolio-item:nth-child(4){grid-column:span 2}
+  .shirts-layout,.about-layout{grid-template-columns:1fr;gap:2rem}
+  .ap-grid{grid-template-columns:1fr}.ap-full{grid-column:span 1}
+  .pm-gallery{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center}
+  #edit-bar{padding:.7rem 1rem;flex-wrap:wrap}
+}
 </style>
 </head>
 <body>
 <script>
-const PWD = 'adrshit2026';
-const SVG_SQ_W = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141.73 141.73" fill="white"><path d="M50.38,52.65c-.6.83-1.5,1.28-2.48,1.28h-6.76c-1.35,0-2.48-.83-2.93-2.03l-3.16-9.17h-12.1l-3.23,9.17c-.38,1.2-1.58,2.03-2.86,2.03h-6.76c-.98,0-1.88-.45-2.48-1.28-.6-.83-.68-1.88-.38-2.78L22.44,7.64c.45-1.2,1.58-2.03,2.85-2.03h7.36c1.28,0,2.48.83,2.86,2.03l15.25,42.23c.3.9.15,1.95-.38,2.78M29.05,25.15l-2.18,6.16h4.28l-2.1-6.16Z"/><path d="M94.16,29.51c0,4.88-.98,9.17-2.78,12.77-1.8,3.68-4.58,6.54-8.11,8.56-3.53,1.95-7.66,2.93-12.47,2.93h-13.67c-1.65,0-3.08-1.35-3.08-3.08V8.47c0-1.65,1.43-3,3.08-3h14.12c4.66,0,8.72.98,12.17,2.93,3.46,1.95,6.16,4.81,8.04,8.49,1.73,3.53,2.7,7.81,2.7,12.62M78.99,20.04c-1.73-1.95-4.43-2.93-8.19-2.93h-4.28v25.02h3.91c3.98,0,6.76-.98,8.57-3.08,1.88-2.1,2.78-5.33,2.78-9.54s-.9-7.36-2.78-9.47"/><path d="M134.18,52.27c-.53.9-1.5,1.43-2.63,1.43h-7.21c-1.13,0-2.18-.6-2.7-1.58l-7.66-14.35h-4.28v12.92c0,1.65-1.35,3.01-3.01,3.01h-6.39c-1.65,0-3.01-1.35-3.01-3.01V8.47c0-1.65,1.35-3,3.01-3h15.1c3.68,0,6.91.68,9.54,2.03,2.63,1.35,4.73,3.38,6.09,5.86,1.35,2.48,1.95,5.26,1.95,8.34,0,3.38-.75,6.39-2.33,8.94-1.05,1.73-2.48,3.16-4.21,4.28l7.81,14.35c.53.9.53,2.03-.07,3.01M120.51,21.69c0-1.58-.38-2.7-1.2-3.53-.75-.75-2.33-1.2-4.66-1.2h-4.96v9.24h5.11c2.18,0,3.83-.38,4.58-1.13.3-.3,1.13-1.13,1.13-3.38"/><path d="M30.2,121.94c0,2.81-.56,5.28-1.6,7.36-1.04,2.12-2.64,3.77-4.67,4.93-2.03,1.13-4.41,1.69-7.18,1.69h-7.88c-.95,0-1.77-.78-1.77-1.77v-24.32c0-.95.82-1.73,1.77-1.73h8.14c2.68,0,5.02.56,7.01,1.69,1.99,1.13,3.55,2.77,4.63,4.89,1,2.03,1.56,4.5,1.56,7.27M21.45,116.49c-1-1.13-2.55-1.69-4.72-1.69h-2.47v14.41h2.25c2.29,0,3.9-.56,4.93-1.77,1.08-1.21,1.6-3.07,1.6-5.5s-.52-4.24-1.6-5.45"/><path d="M50.87,130.99v3.16c0,.95-.78,1.73-1.73,1.73h-15.41c-.95,0-1.73-.78-1.73-1.73v-24.32c0-.95.78-1.73,1.73-1.73h15.23c1,0,1.77.78,1.77,1.73v3.16c0,.95-.78,1.73-1.77,1.73h-9.82v3.94h9.05c.95,0,1.73.78,1.73,1.73v3.16c0,.95-.78,1.73-1.73,1.73h-9.05v3.98h10c.95,0,1.73.78,1.73,1.73"/><path d="M74.27,127.4c0,1.69-.48,3.25-1.34,4.63-.91,1.34-2.16,2.42-3.81,3.16-1.56.74-3.46,1.08-5.58,1.08-3.12,0-5.71-.78-7.62-2.29-1.99-1.6-3.12-3.77-3.25-6.49-.04-.48.13-.95.48-1.3.35-.35.78-.56,1.25-.56h3.68c.91,0,1.69.74,1.77,1.6.04.78.3,1.26.87,1.64.78.43,1.69.69,2.77.69,1.21,0,2.12-.26,2.86-.78.56-.39.78-.82.78-1.43,0-.43-.13-.56-.17-.61-.22-.26-.56-.52-1.04-.69-.61-.26-1.3-.52-2.08-.74h-.04l-2.86-.78c-2.21-.61-4.02-1.51-5.37-2.73-1.47-1.39-2.25-3.16-2.25-5.37,0-1.77.48-3.38,1.47-4.72.95-1.3,2.21-2.29,3.81-2.99,1.51-.69,3.25-1.04,5.11-1.04s3.59.35,5.06,1.04c1.56.69,2.77,1.69,3.68,2.94.95,1.3,1.43,2.81,1.47,4.46.04.48-.17.91-.48,1.26-.35.35-.78.52-1.26.52h-3.55c-.87,0-1.64-.65-1.73-1.56-.09-.61-.3-1.04-.82-1.34-.61-.43-1.47-.65-2.47-.65-1.13,0-1.95.22-2.51.65-.56.43-.65.87-.65,1.21,0,.43.17.61.22.69.3.3.69.52,1.13.74.65.22,1.21.43,1.77.56l2.38.65c.82.17,1.73.48,2.6.82.95.39,1.86.91,2.68,1.51.87.69,1.6,1.52,2.16,2.51.56,1.04.87,2.29.87,3.68"/><path d="M83.26,109.82v24.32c0,.95-.78,1.73-1.77,1.73h-3.64c-1,0-1.77-.78-1.77-1.73v-24.32c0-.95.78-1.73,1.77-1.73h3.64c1,0,1.77.78,1.77,1.73"/><path d="M109.73,121.68v2.77c0,2.38-.48,4.46-1.51,6.19-1.04,1.77-2.47,3.2-4.28,4.15-1.77.95-3.81,1.43-6.06,1.43-2.51,0-4.76-.61-6.66-1.77-1.95-1.17-3.51-2.86-4.54-5.02-1.08-2.12-1.6-4.59-1.6-7.44s.56-5.37,1.6-7.44c1.08-2.16,2.6-3.85,4.54-5.02,1.9-1.17,4.11-1.77,6.49-1.77,2.03,0,3.9.39,5.54,1.17,1.64.82,3.07,1.9,4.15,3.33,1.13,1.43,1.86,3.12,2.16,4.98.09.48-.04,1-.39,1.43-.35.39-.82.61-1.34.61h-3.77c-.74,0-1.43-.48-1.64-1.21-.35-1.13-.91-1.95-1.73-2.55-.74-.61-1.73-.91-2.94-.91-1.04,0-1.95.26-2.77.78-.82.52-1.47,1.3-1.95,2.38-.52,1.13-.82,2.55-.82,4.24s.3,3.12.82,4.24c.48,1.08,1.13,1.82,1.99,2.38.82.52,1.77.78,2.86.78,1.51,0,2.64-.39,3.51-1.25.48-.43.82-1,1.04-1.64h-3.98c-.95,0-1.73-.78-1.73-1.77v-3.03c0-.95.78-1.73,1.73-1.73h9.56c.95,0,1.73.78,1.73,1.73"/><path d="M134.65,109.82v24.32c0,.95-.78,1.73-1.73,1.73h-3.38c-.56,0-1.13-.26-1.43-.74l-9.43-13.55v12.55c0,.95-.78,1.73-1.73,1.73h-3.68c-.95,0-1.73-.78-1.73-1.73v-24.32c0-.95.78-1.73,1.73-1.73h3.42c.56,0,1.08.26,1.43.74l9.39,13.59v-12.59c0-.95.78-1.73,1.77-1.73h3.64c.95,0,1.73.78,1.73,1.73"/><path d="M44.55,89.25c0,2.63-.74,5.05-2.09,7.21-1.41,2.09-3.37,3.77-5.93,4.92-2.42,1.14-5.39,1.68-8.69,1.68-4.85,0-8.89-1.21-11.85-3.57-3.1-2.49-4.85-5.86-5.05-10.1-.07-.74.2-1.48.74-2.02.54-.54,1.21-.88,1.95-.88h5.72c1.41,0,2.63,1.15,2.76,2.49.07,1.21.47,1.95,1.35,2.56,1.21.67,2.63,1.08,4.31,1.08,1.89,0,3.3-.4,4.44-1.21.88-.61,1.21-1.28,1.21-2.22,0-.67-.2-.88-.27-.94-.34-.4-.88-.81-1.62-1.08-.94-.4-2.02-.81-3.23-1.15h-.07l-4.44-1.21c-3.43-.94-6.26-2.36-8.35-4.24-2.29-2.16-3.5-4.92-3.5-8.35,0-2.76.74-5.25,2.29-7.34,1.48-2.02,3.43-3.57,5.93-4.65,2.36-1.08,5.05-1.62,7.95-1.62s5.59.54,7.88,1.62c2.42,1.08,4.31,2.63,5.72,4.58,1.48,2.02,2.22,4.38,2.29,6.93.07.74-.27,1.41-.74,1.95-.54.54-1.21.81-1.95.81h-5.52c-1.35,0-2.56-1.01-2.69-2.42-.13-.94-.47-1.62-1.28-2.09-.94-.67-2.29-1.01-3.84-1.01-1.75,0-3.03.34-3.91,1.01-.88.67-1.01,1.35-1.01,1.89,0,.67.27.94.34,1.08.47.47,1.08.81,1.75,1.14,1.01.34,1.89.67,2.76.88l3.7,1.01c1.28.27,2.69.74,4.04,1.28,1.48.61,2.9,1.41,4.17,2.36,1.35,1.08,2.49,2.36,3.37,3.91.88,1.62,1.35,3.57,1.35,5.72"/><path d="M83.11,61.92v37.84c0,1.48-1.21,2.69-2.76,2.69h-5.72c-1.48,0-2.69-1.21-2.69-2.69v-13.8h-13.47v13.8c0,1.48-1.21,2.69-2.69,2.69h-5.72c-1.48,0-2.69-1.21-2.69-2.69v-37.84c0-1.48,1.21-2.69,2.69-2.69h5.72c1.48,0,2.69,1.21,2.69,2.69v13.74h13.47v-13.74c0-1.48,1.21-2.69,2.69-2.69h5.72c1.55,0,2.76,1.21,2.76,2.69"/><path d="M97.1,61.92v37.84c0,1.48-1.21,2.69-2.76,2.69h-5.66c-1.55,0-2.76-1.21-2.76-2.69v-37.84c0-1.48,1.21-2.69,2.76-2.69h5.66c1.55,0,2.76,1.21,2.76,2.69"/><path d="M134.65,61.92v4.92c0,1.48-1.21,2.69-2.69,2.69h-9.09v30.23c0,1.48-1.21,2.69-2.76,2.69h-5.66c-1.55,0-2.76-1.21-2.76-2.69v-30.23h-9.02c-1.55,0-2.76-1.21-2.76-2.69v-4.92c0-1.48,1.21-2.69,2.76-2.69h29.29c1.48,0,2.69,1.21,2.69,2.69"/><path d="M133.15,97.47l-1.39,4.62c-.42,1.41-1.86,2.23-3.19,1.83L8.86,67.82c-1.34-.4-2.07-1.89-1.65-3.29l1.39-4.62c.42-1.41,1.86-2.23,3.19-1.83l119.71,36.1c1.34.4,2.07,1.89,1.65,3.29"/></svg>`;
-const SVG_HZ_W = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 568.8 94.55" fill="white"><path d="M67.46,72.48c-.66.91-1.65,1.4-2.72,1.4h-7.41c-1.48,0-2.72-.91-3.21-2.22l-3.46-10.05h-13.26l-3.54,10.05c-.41,1.32-1.73,2.22-3.13,2.22h-7.41c-1.07,0-2.06-.49-2.72-1.4-.66-.91-.74-2.06-.41-3.05l16.64-46.28c.49-1.32,1.73-2.22,3.13-2.22h8.07c1.4,0,2.72.91,3.13,2.22l16.72,46.28c.33.99.16,2.14-.41,3.05M44.07,42.33l-2.39,6.75h4.69l-2.31-6.75Z"/><path d="M115.45,47.11c0,5.35-1.07,10.05-3.05,14-1.98,4.04-5.02,7.16-8.89,9.39-3.87,2.14-8.4,3.21-13.67,3.21h-14.99c-1.81,0-3.38-1.48-3.38-3.38V24.05c0-1.81,1.56-3.29,3.38-3.29h15.48c5.11,0,9.55,1.07,13.34,3.21,3.79,2.14,6.75,5.27,8.81,9.31,1.89,3.87,2.96,8.57,2.96,13.84M98.82,36.73c-1.89-2.14-4.86-3.21-8.98-3.21h-4.69v27.42h4.28c4.37,0,7.41-1.07,9.39-3.38,2.06-2.31,3.05-5.85,3.05-10.46s-.99-8.07-3.05-10.38"/><path d="M159.32,72.06c-.58.99-1.65,1.56-2.88,1.56h-7.91c-1.24,0-2.39-.66-2.96-1.73l-8.4-15.73h-4.69v14.16c0,1.81-1.48,3.29-3.29,3.29h-7c-1.81,0-3.29-1.48-3.29-3.29V24.05c0-1.81,1.48-3.29,3.29-3.29h16.55c4.04,0,7.58.74,10.46,2.22,2.88,1.48,5.19,3.71,6.67,6.42,1.48,2.72,2.14,5.76,2.14,9.14,0,3.71-.82,7-2.55,9.8-1.15,1.89-2.72,3.46-4.61,4.69l8.56,15.73c.58.99.58,2.22-.08,3.29M144.33,38.54c0-1.73-.41-2.96-1.32-3.87-.82-.82-2.55-1.32-5.11-1.32h-5.44v10.13h5.6c2.39,0,4.2-.41,5.02-1.24.33-.33,1.24-1.24,1.24-3.71"/><path d="M352.96,47.15c0,5.23-1.05,9.82-2.98,13.68-1.93,3.94-4.91,7-8.69,9.17-3.78,2.09-8.21,3.14-13.36,3.14h-14.65c-1.77,0-3.3-1.45-3.3-3.3V24.62c0-1.77,1.53-3.22,3.3-3.22h15.13c4.99,0,9.34,1.05,13.04,3.14,3.7,2.09,6.6,5.15,8.61,9.09,1.85,3.78,2.9,8.37,2.9,13.52M336.71,37.01c-1.85-2.09-4.75-3.14-8.77-3.14h-4.59v26.8h4.18c4.27,0,7.24-1.05,9.18-3.3,2.01-2.25,2.98-5.71,2.98-10.22s-.97-7.89-2.98-10.14"/><path d="M391.41,63.97v5.88c0,1.77-1.45,3.22-3.22,3.22h-28.65c-1.77,0-3.22-1.45-3.22-3.22V24.62c0-1.77,1.45-3.22,3.22-3.22h28.33c1.85,0,3.3,1.45,3.3,3.22v5.88c0,1.77-1.45,3.22-3.3,3.22h-18.27v7.32h16.82c1.77,0,3.22,1.45,3.22,3.22v5.88c0,1.77-1.45,3.22-3.22,3.22h-16.82v7.41h18.59c1.77,0,3.22,1.45,3.22,3.22"/><path d="M434.94,57.29c0,3.14-.89,6.04-2.5,8.61-1.69,2.5-4.02,4.51-7.08,5.88-2.9,1.37-6.44,2.01-10.38,2.01-5.79,0-10.62-1.45-14.16-4.27-3.7-2.98-5.79-7-6.04-12.07-.08-.88.24-1.77.89-2.41.64-.64,1.45-1.05,2.33-1.05h6.84c1.69,0,3.14,1.37,3.3,2.98.08,1.45.56,2.33,1.61,3.06,1.45.81,3.14,1.29,5.15,1.29,2.25,0,3.94-.48,5.31-1.45,1.05-.72,1.45-1.53,1.45-2.66,0-.81-.24-1.05-.32-1.13-.4-.48-1.05-.97-1.93-1.29-1.13-.48-2.41-.97-3.86-1.37h-.08l-5.31-1.45c-4.1-1.13-7.48-2.82-9.98-5.07-2.74-2.58-4.19-5.88-4.19-9.98,0-3.3.89-6.28,2.74-8.77,1.77-2.42,4.1-4.27,7.08-5.55,2.82-1.29,6.04-1.93,9.5-1.93s6.68.64,9.42,1.93c2.9,1.29,5.15,3.14,6.84,5.47,1.77,2.41,2.66,5.23,2.74,8.29.08.89-.32,1.69-.88,2.34-.64.64-1.45.97-2.33.97h-6.6c-1.61,0-3.06-1.21-3.22-2.9-.16-1.13-.56-1.93-1.53-2.5-1.13-.8-2.74-1.21-4.59-1.21-2.09,0-3.62.4-4.67,1.21-1.05.81-1.21,1.61-1.21,2.25,0,.8.32,1.13.4,1.29.56.56,1.29.96,2.09,1.37,1.21.4,2.25.8,3.3,1.05l4.43,1.21c1.53.32,3.22.89,4.83,1.53,1.77.72,3.46,1.69,4.99,2.82,1.61,1.29,2.98,2.82,4.02,4.67,1.05,1.93,1.61,4.27,1.61,6.84"/><path d="M451.65,24.62v45.23c0,1.77-1.45,3.22-3.3,3.22h-6.76c-1.85,0-3.3-1.45-3.3-3.22V24.62c0-1.77,1.45-3.22,3.3-3.22h6.76c1.85,0,3.3,1.45,3.3,3.22"/><path d="M500.88,46.67v5.15c0,4.43-.88,8.29-2.82,11.51-1.93,3.3-4.59,5.96-7.97,7.73-3.3,1.77-7.08,2.66-11.27,2.66-4.67,0-8.85-1.13-12.39-3.3-3.62-2.17-6.52-5.31-8.45-9.34-2.01-3.94-2.98-8.53-2.98-13.84s1.05-9.98,2.98-13.84c2.01-4.02,4.83-7.16,8.45-9.34,3.54-2.17,7.65-3.3,12.07-3.3,3.78,0,7.24.72,10.3,2.17,3.06,1.53,5.71,3.54,7.73,6.2,2.09,2.66,3.46,5.79,4.02,9.26.16.88-.08,1.85-.72,2.66-.64.72-1.53,1.13-2.49,1.13h-7c-1.37,0-2.66-.89-3.06-2.25-.64-2.09-1.69-3.62-3.22-4.75-1.37-1.13-3.22-1.69-5.47-1.69-1.93,0-3.62.48-5.15,1.45-1.53.97-2.74,2.41-3.62,4.43-.97,2.09-1.53,4.75-1.53,7.89s.56,5.79,1.53,7.89c.89,2.01,2.09,3.38,3.7,4.43,1.53.97,3.3,1.45,5.31,1.45,2.82,0,4.91-.72,6.52-2.33.88-.8,1.53-1.85,1.93-3.06h-7.4c-1.77,0-3.22-1.45-3.22-3.3v-5.63c0-1.77,1.45-3.22,3.22-3.22h17.79c1.77,0,3.22,1.45,3.22,3.22"/><path d="M547.21,24.62v45.23c0,1.77-1.45,3.22-3.22,3.22h-6.28c-1.05,0-2.09-.48-2.66-1.37l-17.55-25.19v23.34c0,1.77-1.45,3.22-3.22,3.22h-6.84c-1.77,0-3.22-1.45-3.22-3.22V24.62c0-1.77,1.45-3.22,3.22-3.22h6.36c1.05,0,2.01.48,2.66,1.37l17.46,25.27v-23.42c0-1.77,1.45-3.22,3.3-3.22h6.76c1.77,0,3.22,1.45,3.22,3.22"/><path d="M202.96,56.84c0,3.03-.85,5.83-2.41,8.31-1.63,2.41-3.88,4.35-6.84,5.67-2.8,1.32-6.21,1.94-10.02,1.94-5.59,0-10.25-1.4-13.67-4.12-3.57-2.87-5.59-6.76-5.83-11.65-.08-.85.23-1.71.85-2.33.62-.62,1.4-1.01,2.25-1.01h6.6c1.63,0,3.03,1.32,3.19,2.87.08,1.4.54,2.25,1.55,2.95,1.4.78,3.03,1.24,4.97,1.24,2.17,0,3.81-.47,5.13-1.4,1.01-.7,1.4-1.48,1.4-2.56,0-.78-.23-1.01-.31-1.09-.39-.47-1.01-.93-1.86-1.24-1.09-.47-2.33-.93-3.73-1.32h-.08l-5.13-1.4c-3.96-1.09-7.22-2.72-9.63-4.89-2.64-2.49-4.04-5.67-4.04-9.63,0-3.19.85-6.06,2.64-8.47,1.71-2.33,3.96-4.12,6.84-5.36,2.72-1.24,5.83-1.86,9.17-1.86s6.45.62,9.09,1.86c2.8,1.24,4.97,3.03,6.6,5.28,1.71,2.33,2.56,5.05,2.64,8,.08.86-.31,1.63-.85,2.25-.62.62-1.4.93-2.25.93h-6.37c-1.55,0-2.95-1.17-3.11-2.8-.16-1.09-.54-1.86-1.48-2.41-1.09-.78-2.64-1.17-4.43-1.17-2.02,0-3.5.39-4.51,1.17-1.01.78-1.17,1.55-1.17,2.18,0,.78.31,1.09.39,1.24.54.54,1.24.93,2.02,1.32,1.17.39,2.17.78,3.18,1.01l4.27,1.17c1.48.31,3.11.85,4.66,1.48,1.71.7,3.34,1.63,4.82,2.72,1.55,1.24,2.87,2.72,3.88,4.51,1.01,1.86,1.55,4.12,1.55,6.6"/><path d="M247.44,25.3v43.66c0,1.71-1.4,3.11-3.19,3.11h-6.6c-1.71,0-3.11-1.4-3.11-3.11v-15.92h-15.54v15.92c0,1.71-1.4,3.11-3.11,3.11h-6.6c-1.71,0-3.11-1.4-3.11-3.11V25.3c0-1.71,1.4-3.11,3.11-3.11h6.6c1.71,0,3.11,1.4,3.11,3.11v15.85h15.54v-15.85c0-1.71,1.4-3.11,3.11-3.11h6.6c1.79,0,3.19,1.4,3.19,3.11"/><path d="M263.57,25.3v43.66c0,1.71-1.4,3.11-3.18,3.11h-6.52c-1.79,0-3.19-1.4-3.19-3.11V25.3c0-1.71,1.4-3.11,3.19-3.11h6.52c1.79,0,3.18,1.4,3.18,3.11"/><path d="M306.89,25.3v5.67c0,1.71-1.4,3.11-3.11,3.11h-10.49v34.88c0,1.71-1.4,3.11-3.18,3.11h-6.53c-1.79,0-3.18-1.4-3.18-3.11v-34.88h-10.41c-1.79,0-3.18-1.4-3.18-3.11v-5.67c0-1.71,1.4-3.11,3.18-3.11h33.79c1.71,0,3.11,1.4,3.11,3.11"/><path d="M305.17,66.32l-1.61,5.33c-.49,1.62-2.14,2.58-3.69,2.11l-138.1-41.65c-1.54-.47-2.39-2.18-1.9-3.8l1.61-5.33c.49-1.62,2.14-2.58,3.69-2.11l138.1,41.65c1.54.47,2.39,2.18,1.9,3.8"/></svg>`;
-const SVG_HZ_B = SVG_HZ_W.replace('fill="white"','fill="black"');
+const PWD='adrshit2026';
+const SVG_SQ_W=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141.73 141.73" fill="white"><path d="M50.38,52.65c-.6.83-1.5,1.28-2.48,1.28h-6.76c-1.35,0-2.48-.83-2.93-2.03l-3.16-9.17h-12.1l-3.23,9.17c-.38,1.2-1.58,2.03-2.86,2.03h-6.76c-.98,0-1.88-.45-2.48-1.28-.6-.83-.68-1.88-.38-2.78L22.44,7.64c.45-1.2,1.58-2.03,2.85-2.03h7.36c1.28,0,2.48.83,2.86,2.03l15.25,42.23c.3.9.15,1.95-.38,2.78M29.05,25.15l-2.18,6.16h4.28l-2.1-6.16Z"/><path d="M94.16,29.51c0,4.88-.98,9.17-2.78,12.77-1.8,3.68-4.58,6.54-8.11,8.56-3.53,1.95-7.66,2.93-12.47,2.93h-13.67c-1.65,0-3.08-1.35-3.08-3.08V8.47c0-1.65,1.43-3,3.08-3h14.12c4.66,0,8.72.98,12.17,2.93,3.46,1.95,6.16,4.81,8.04,8.49,1.73,3.53,2.7,7.81,2.7,12.62M78.99,20.04c-1.73-1.95-4.43-2.93-8.19-2.93h-4.28v25.02h3.91c3.98,0,6.76-.98,8.57-3.08,1.88-2.1,2.78-5.33,2.78-9.54s-.9-7.36-2.78-9.47"/><path d="M134.18,52.27c-.53.9-1.5,1.43-2.63,1.43h-7.21c-1.13,0-2.18-.6-2.7-1.58l-7.66-14.35h-4.28v12.92c0,1.65-1.35,3.01-3.01,3.01h-6.39c-1.65,0-3.01-1.35-3.01-3.01V8.47c0-1.65,1.35-3,3.01-3h15.1c3.68,0,6.91.68,9.54,2.03,2.63,1.35,4.73,3.38,6.09,5.86,1.35,2.48,1.95,5.26,1.95,8.34,0,3.38-.75,6.39-2.33,8.94-1.05,1.73-2.48,3.16-4.21,4.28l7.81,14.35c.53.9.53,2.03-.07,3.01M120.51,21.69c0-1.58-.38-2.7-1.2-3.53-.75-.75-2.33-1.2-4.66-1.2h-4.96v9.24h5.11c2.18,0,3.83-.38,4.58-1.13.3-.3,1.13-1.13,1.13-3.38"/><path d="M30.2,121.94c0,2.81-.56,5.28-1.6,7.36-1.04,2.12-2.64,3.77-4.67,4.93-2.03,1.13-4.41,1.69-7.18,1.69h-7.88c-.95,0-1.77-.78-1.77-1.77v-24.32c0-.95.82-1.73,1.77-1.73h8.14c2.68,0,5.02.56,7.01,1.69,1.99,1.13,3.55,2.77,4.63,4.89,1,2.03,1.56,4.5,1.56,7.27M21.45,116.49c-1-1.13-2.55-1.69-4.72-1.69h-2.47v14.41h2.25c2.29,0,3.9-.56,4.93-1.77,1.08-1.21,1.6-3.07,1.6-5.5s-.52-4.24-1.6-5.45"/><path d="M50.87,130.99v3.16c0,.95-.78,1.73-1.73,1.73h-15.41c-.95,0-1.73-.78-1.73-1.73v-24.32c0-.95.78-1.73,1.73-1.73h15.23c1,0,1.77.78,1.77,1.73v3.16c0,.95-.78,1.73-1.77,1.73h-9.82v3.94h9.05c.95,0,1.73.78,1.73,1.73v3.16c0,.95-.78,1.73-1.73,1.73h-9.05v3.98h10c.95,0,1.73.78,1.73,1.73"/><path d="M74.27,127.4c0,1.69-.48,3.25-1.34,4.63-.91,1.34-2.16,2.42-3.81,3.16-1.56.74-3.46,1.08-5.58,1.08-3.12,0-5.71-.78-7.62-2.29-1.99-1.6-3.12-3.77-3.25-6.49-.04-.48.13-.95.48-1.3.35-.35.78-.56,1.25-.56h3.68c.91,0,1.69.74,1.77,1.6.04.78.3,1.26.87,1.64.78.43,1.69.69,2.77.69,1.21,0,2.12-.26,2.86-.78.56-.39.78-.82.78-1.43,0-.43-.13-.56-.17-.61-.22-.26-.56-.52-1.04-.69-.61-.26-1.3-.52-2.08-.74h-.04l-2.86-.78c-2.21-.61-4.02-1.51-5.37-2.73-1.47-1.39-2.25-3.16-2.25-5.37,0-1.77.48-3.38,1.47-4.72.95-1.3,2.21-2.29,3.81-2.99,1.51-.69,3.25-1.04,5.11-1.04s3.59.35,5.06,1.04c1.56.69,2.77,1.69,3.68,2.94.95,1.3,1.43,2.81,1.47,4.46.04.48-.17.91-.48,1.26-.35.35-.78.52-1.26.52h-3.55c-.87,0-1.64-.65-1.73-1.56-.09-.61-.3-1.04-.82-1.34-.61-.43-1.47-.65-2.47-.65-1.13,0-1.95.22-2.51.65-.56.43-.65.87-.65,1.21,0,.43.17.61.22.69.3.3.69.52,1.13.74.65.22,1.21.43,1.77.56l2.38.65c.82.17,1.73.48,2.6.82.95.39,1.86.91,2.68,1.51.87.69,1.6,1.52,2.16,2.51.56,1.04.87,2.29.87,3.68"/><path d="M83.26,109.82v24.32c0,.95-.78,1.73-1.77,1.73h-3.64c-1,0-1.77-.78-1.77-1.73v-24.32c0-.95.78-1.73,1.77-1.73h3.64c1,0,1.77.78,1.77,1.73"/><path d="M109.73,121.68v2.77c0,2.38-.48,4.46-1.51,6.19-1.04,1.77-2.47,3.2-4.28,4.15-1.77.95-3.81,1.43-6.06,1.43-2.51,0-4.76-.61-6.66-1.77-1.95-1.17-3.51-2.86-4.54-5.02-1.08-2.12-1.6-4.59-1.6-7.44s.56-5.37,1.6-7.44c1.08-2.16,2.6-3.85,4.54-5.02,1.9-1.17,4.11-1.77,6.49-1.77,2.03,0,3.9.39,5.54,1.17,1.64.82,3.07,1.9,4.15,3.33,1.13,1.43,1.86,3.12,2.16,4.98.09.48-.04,1-.39,1.43-.35.39-.82.61-1.34.61h-3.77c-.74,0-1.43-.48-1.64-1.21-.35-1.13-.91-1.95-1.73-2.55-.74-.61-1.73-.91-2.94-.91-1.04,0-1.95.26-2.77.78-.82.52-1.47,1.3-1.95,2.38-.52,1.13-.82,2.55-.82,4.24s.3,3.12.82,4.24c.48,1.08,1.13,1.82,1.99,2.38.82.52,1.77.78,2.86.78,1.51,0,2.64-.39,3.51-1.25.48-.43.82-1,1.04-1.64h-3.98c-.95,0-1.73-.78-1.73-1.77v-3.03c0-.95.78-1.73,1.73-1.73h9.56c.95,0,1.73.78,1.73,1.73"/><path d="M134.65,109.82v24.32c0,.95-.78,1.73-1.73,1.73h-3.38c-.56,0-1.13-.26-1.43-.74l-9.43-13.55v12.55c0,.95-.78,1.73-1.73,1.73h-3.68c-.95,0-1.73-.78-1.73-1.73v-24.32c0-.95.78-1.73,1.73-1.73h3.42c.56,0,1.08.26,1.43.74l9.39,13.59v-12.59c0-.95.78-1.73,1.77-1.73h3.64c.95,0,1.73.78,1.73,1.73"/><path d="M44.55,89.25c0,2.63-.74,5.05-2.09,7.21-1.41,2.09-3.37,3.77-5.93,4.92-2.42,1.14-5.39,1.68-8.69,1.68-4.85,0-8.89-1.21-11.85-3.57-3.1-2.49-4.85-5.86-5.05-10.1-.07-.74.2-1.48.74-2.02.54-.54,1.21-.88,1.95-.88h5.72c1.41,0,2.63,1.15,2.76,2.49.07,1.21.47,1.95,1.35,2.56,1.21.67,2.63,1.08,4.31,1.08,1.89,0,3.3-.4,4.44-1.21.88-.61,1.21-1.28,1.21-2.22,0-.67-.2-.88-.27-.94-.34-.4-.88-.81-1.62-1.08-.94-.4-2.02-.81-3.23-1.15h-.07l-4.44-1.21c-3.43-.94-6.26-2.36-8.35-4.24-2.29-2.16-3.5-4.92-3.5-8.35,0-2.76.74-5.25,2.29-7.34,1.48-2.02,3.43-3.57,5.93-4.65,2.36-1.08,5.05-1.62,7.95-1.62s5.59.54,7.88,1.62c2.42,1.08,4.31,2.63,5.72,4.58,1.48,2.02,2.22,4.38,2.29,6.93.07.74-.27,1.41-.74,1.95-.54.54-1.21.81-1.95.81h-5.52c-1.35,0-2.56-1.01-2.69-2.42-.13-.94-.47-1.62-1.28-2.09-.94-.67-2.29-1.01-3.84-1.01-1.75,0-3.03.34-3.91,1.01-.88.67-1.01,1.35-1.01,1.89,0,.67.27.94.34,1.08.47.47,1.08.81,1.75,1.14,1.01.34,1.89.67,2.76.88l3.7,1.01c1.28.27,2.69.74,4.04,1.28,1.48.61,2.9,1.41,4.17,2.36,1.35,1.08,2.49,2.36,3.37,3.91.88,1.62,1.35,3.57,1.35,5.72"/><path d="M83.11,61.92v37.84c0,1.48-1.21,2.69-2.76,2.69h-5.72c-1.48,0-2.69-1.21-2.69-2.69v-13.8h-13.47v13.8c0,1.48-1.21,2.69-2.69,2.69h-5.72c-1.48,0-2.69-1.21-2.69-2.69v-37.84c0-1.48,1.21-2.69,2.69-2.69h5.72c1.48,0,2.69,1.21,2.69,2.69v13.74h13.47v-13.74c0-1.48,1.21-2.69,2.69-2.69h5.72c1.55,0,2.76,1.21,2.76,2.69"/><path d="M97.1,61.92v37.84c0,1.48-1.21,2.69-2.76,2.69h-5.66c-1.55,0-2.76-1.21-2.76-2.69v-37.84c0-1.48,1.21-2.69,2.76-2.69h5.66c1.55,0,2.76,1.21,2.76,2.69"/><path d="M134.65,61.92v4.92c0,1.48-1.21,2.69-2.69,2.69h-9.09v30.23c0,1.48-1.21,2.69-2.76,2.69h-5.66c-1.55,0-2.76-1.21-2.76-2.69v-30.23h-9.02c-1.55,0-2.76-1.21-2.76-2.69v-4.92c0-1.48,1.21-2.69,2.76-2.69h29.29c1.48,0,2.69,1.21,2.69,2.69"/><path d="M133.15,97.47l-1.39,4.62c-.42,1.41-1.86,2.23-3.19,1.83L8.86,67.82c-1.34-.4-2.07-1.89-1.65-3.29l1.39-4.62c.42-1.41,1.86-2.23,3.19-1.83l119.71,36.1c1.34.4,2.07,1.89,1.65,3.29"/></svg>`;
+const SVG_HZ_W=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 568.8 94.55" fill="white"><path d="M67.46,72.48c-.66.91-1.65,1.4-2.72,1.4h-7.41c-1.48,0-2.72-.91-3.21-2.22l-3.46-10.05h-13.26l-3.54,10.05c-.41,1.32-1.73,2.22-3.13,2.22h-7.41c-1.07,0-2.06-.49-2.72-1.4-.66-.91-.74-2.06-.41-3.05l16.64-46.28c.49-1.32,1.73-2.22,3.13-2.22h8.07c1.4,0,2.72.91,3.13,2.22l16.72,46.28c.33.99.16,2.14-.41,3.05M44.07,42.33l-2.39,6.75h4.69l-2.31-6.75Z"/><path d="M115.45,47.11c0,5.35-1.07,10.05-3.05,14-1.98,4.04-5.02,7.16-8.89,9.39-3.87,2.14-8.4,3.21-13.67,3.21h-14.99c-1.81,0-3.38-1.48-3.38-3.38V24.05c0-1.81,1.56-3.29,3.38-3.29h15.48c5.11,0,9.55,1.07,13.34,3.21,3.79,2.14,6.75,5.27,8.81,9.31,1.89,3.87,2.96,8.57,2.96,13.84M98.82,36.73c-1.89-2.14-4.86-3.21-8.98-3.21h-4.69v27.42h4.28c4.37,0,7.41-1.07,9.39-3.38,2.06-2.31,3.05-5.85,3.05-10.46s-.99-8.07-3.05-10.38"/><path d="M159.32,72.06c-.58.99-1.65,1.56-2.88,1.56h-7.91c-1.24,0-2.39-.66-2.96-1.73l-8.4-15.73h-4.69v14.16c0,1.81-1.48,3.29-3.29,3.29h-7c-1.81,0-3.29-1.48-3.29-3.29V24.05c0-1.81,1.48-3.29,3.29-3.29h16.55c4.04,0,7.58.74,10.46,2.22,2.88,1.48,5.19,3.71,6.67,6.42,1.48,2.72,2.14,5.76,2.14,9.14,0,3.71-.82,7-2.55,9.8-1.15,1.89-2.72,3.46-4.61,4.69l8.56,15.73c.58.99.58,2.22-.08,3.29M144.33,38.54c0-1.73-.41-2.96-1.32-3.87-.82-.82-2.55-1.32-5.11-1.32h-5.44v10.13h5.6c2.39,0,4.2-.41,5.02-1.24.33-.33,1.24-1.24,1.24-3.71"/><path d="M352.96,47.15c0,5.23-1.05,9.82-2.98,13.68-1.93,3.94-4.91,7-8.69,9.17-3.78,2.09-8.21,3.14-13.36,3.14h-14.65c-1.77,0-3.3-1.45-3.3-3.3V24.62c0-1.77,1.53-3.22,3.3-3.22h15.13c4.99,0,9.34,1.05,13.04,3.14,3.7,2.09,6.6,5.15,8.61,9.09,1.85,3.78,2.9,8.37,2.9,13.52M336.71,37.01c-1.85-2.09-4.75-3.14-8.77-3.14h-4.59v26.8h4.18c4.27,0,7.24-1.05,9.18-3.3,2.01-2.25,2.98-5.71,2.98-10.22s-.97-7.89-2.98-10.14"/><path d="M391.41,63.97v5.88c0,1.77-1.45,3.22-3.22,3.22h-28.65c-1.77,0-3.22-1.45-3.22-3.22V24.62c0-1.77,1.45-3.22,3.22-3.22h28.33c1.85,0,3.3,1.45,3.3,3.22v5.88c0,1.77-1.45,3.22-3.3,3.22h-18.27v7.32h16.82c1.77,0,3.22,1.45,3.22,3.22v5.88c0,1.77-1.45,3.22-3.22,3.22h-16.82v7.41h18.59c1.77,0,3.22,1.45,3.22,3.22"/><path d="M434.94,57.29c0,3.14-.89,6.04-2.5,8.61-1.69,2.5-4.02,4.51-7.08,5.88-2.9,1.37-6.44,2.01-10.38,2.01-5.79,0-10.62-1.45-14.16-4.27-3.7-2.98-5.79-7-6.04-12.07-.08-.88.24-1.77.89-2.41.64-.64,1.45-1.05,2.33-1.05h6.84c1.69,0,3.14,1.37,3.3,2.98.08,1.45.56,2.33,1.61,3.06,1.45.81,3.14,1.29,5.15,1.29,2.25,0,3.94-.48,5.31-1.45,1.05-.72,1.45-1.53,1.45-2.66,0-.81-.24-1.05-.32-1.13-.4-.48-1.05-.97-1.93-1.29-1.13-.48-2.41-.97-3.86-1.37h-.08l-5.31-1.45c-4.1-1.13-7.48-2.82-9.98-5.07-2.74-2.58-4.19-5.88-4.19-9.98,0-3.3.89-6.28,2.74-8.77,1.77-2.42,4.1-4.27,7.08-5.55,2.82-1.29,6.04-1.93,9.5-1.93s6.68.64,9.42,1.93c2.9,1.29,5.15,3.14,6.84,5.47,1.77,2.41,2.66,5.23,2.74,8.29.08.89-.32,1.69-.88,2.34-.64.64-1.45.97-2.33.97h-6.6c-1.61,0-3.06-1.21-3.22-2.9-.16-1.13-.56-1.93-1.53-2.5-1.13-.8-2.74-1.21-4.59-1.21-2.09,0-3.62.4-4.67,1.21-1.05.81-1.21,1.61-1.21,2.25,0,.8.32,1.13.4,1.29.56.56,1.29.96,2.09,1.37,1.21.4,2.25.8,3.3,1.05l4.43,1.21c1.53.32,3.22.89,4.83,1.53,1.77.72,3.46,1.69,4.99,2.82,1.61,1.29,2.98,2.82,4.02,4.67,1.05,1.93,1.61,4.27,1.61,6.84"/><path d="M451.65,24.62v45.23c0,1.77-1.45,3.22-3.3,3.22h-6.76c-1.85,0-3.3-1.45-3.3-3.22V24.62c0-1.77,1.45-3.22,3.3-3.22h6.76c1.85,0,3.3,1.45,3.3,3.22"/><path d="M500.88,46.67v5.15c0,4.43-.88,8.29-2.82,11.51-1.93,3.3-4.59,5.96-7.97,7.73-3.3,1.77-7.08,2.66-11.27,2.66-4.67,0-8.85-1.13-12.39-3.3-3.62-2.17-6.52-5.31-8.45-9.34-2.01-3.94-2.98-8.53-2.98-13.84s1.05-9.98,2.98-13.84c2.01-4.02,4.83-7.16,8.45-9.34,3.54-2.17,7.65-3.3,12.07-3.3,3.78,0,7.24.72,10.3,2.17,3.06,1.53,5.71,3.54,7.73,6.2,2.09,2.66,3.46,5.79,4.02,9.26.16.88-.08,1.85-.72,2.66-.64.72-1.53,1.13-2.49,1.13h-7c-1.37,0-2.66-.89-3.06-2.25-.64-2.09-1.69-3.62-3.22-4.75-1.37-1.13-3.22-1.69-5.47-1.69-1.93,0-3.62.48-5.15,1.45-1.53.97-2.74,2.41-3.62,4.43-.97,2.09-1.53,4.75-1.53,7.89s.56,5.79,1.53,7.89c.89,2.01,2.09,3.38,3.7,4.43,1.53.97,3.3,1.45,5.31,1.45,2.82,0,4.91-.72,6.52-2.33.88-.8,1.53-1.85,1.93-3.06h-7.4c-1.77,0-3.22-1.45-3.22-3.3v-5.63c0-1.77,1.45-3.22,3.22-3.22h17.79c1.77,0,3.22,1.45,3.22,3.22"/><path d="M547.21,24.62v45.23c0,1.77-1.45,3.22-3.22,3.22h-6.28c-1.05,0-2.09-.48-2.66-1.37l-17.55-25.19v23.34c0,1.77-1.45,3.22-3.22,3.22h-6.84c-1.77,0-3.22-1.45-3.22-3.22V24.62c0-1.77,1.45-3.22,3.22-3.22h6.36c1.05,0,2.01.48,2.66,1.37l17.46,25.27v-23.42c0-1.77,1.45-3.22,3.3-3.22h6.76c1.77,0,3.22,1.45,3.22,3.22"/><path d="M202.96,56.84c0,3.03-.85,5.83-2.41,8.31-1.63,2.41-3.88,4.35-6.84,5.67-2.8,1.32-6.21,1.94-10.02,1.94-5.59,0-10.25-1.4-13.67-4.12-3.57-2.87-5.59-6.76-5.83-11.65-.08-.85.23-1.71.85-2.33.62-.62,1.4-1.01,2.25-1.01h6.6c1.63,0,3.03,1.32,3.19,2.87.08,1.4.54,2.25,1.55,2.95,1.4.78,3.03,1.24,4.97,1.24,2.17,0,3.81-.47,5.13-1.4,1.01-.7,1.4-1.48,1.4-2.56,0-.78-.23-1.01-.31-1.09-.39-.47-1.01-.93-1.86-1.24-1.09-.47-2.33-.93-3.73-1.32h-.08l-5.13-1.4c-3.96-1.09-7.22-2.72-9.63-4.89-2.64-2.49-4.04-5.67-4.04-9.63,0-3.19.85-6.06,2.64-8.47,1.71-2.33,3.96-4.12,6.84-5.36,2.72-1.24,5.83-1.86,9.17-1.86s6.45.62,9.09,1.86c2.8,1.24,4.97,3.03,6.6,5.28,1.71,2.33,2.56,5.05,2.64,8,.08.86-.31,1.63-.85,2.25-.62.62-1.4.93-2.25.93h-6.37c-1.55,0-2.95-1.17-3.11-2.8-.16-1.09-.54-1.86-1.48-2.41-1.09-.78-2.64-1.17-4.43-1.17-2.02,0-3.5.39-4.51,1.17-1.01.78-1.17,1.55-1.17,2.18,0,.78.31,1.09.39,1.24.54.54,1.24.93,2.02,1.32,1.17.39,2.17.78,3.18,1.01l4.27,1.17c1.48.31,3.11.85,4.66,1.48,1.71.7,3.34,1.63,4.82,2.72,1.55,1.24,2.87,2.72,3.88,4.51,1.01,1.86,1.55,4.12,1.55,6.6"/><path d="M247.44,25.3v43.66c0,1.71-1.4,3.11-3.19,3.11h-6.6c-1.71,0-3.11-1.4-3.11-3.11v-15.92h-15.54v15.92c0,1.71-1.4,3.11-3.11,3.11h-6.6c-1.71,0-3.11-1.4-3.11-3.11V25.3c0-1.71,1.4-3.11,3.11-3.11h6.6c1.71,0,3.11,1.4,3.11,3.11v15.85h15.54v-15.85c0-1.71,1.4-3.11,3.11-3.11h6.6c1.79,0,3.19,1.4,3.19,3.11"/><path d="M263.57,25.3v43.66c0,1.71-1.4,3.11-3.18,3.11h-6.52c-1.79,0-3.19-1.4-3.19-3.11V25.3c0-1.71,1.4-3.11,3.19-3.11h6.52c1.79,0,3.18,1.4,3.18,3.11"/><path d="M306.89,25.3v5.67c0,1.71-1.4,3.11-3.11,3.11h-10.49v34.88c0,1.71-1.4,3.11-3.18,3.11h-6.53c-1.79,0-3.18-1.4-3.18-3.11v-34.88h-10.41c-1.79,0-3.18-1.4-3.18-3.11v-5.67c0-1.71,1.4-3.11,3.18-3.11h33.79c1.71,0,3.11,1.4,3.11,3.11"/><path d="M305.17,66.32l-1.61,5.33c-.49,1.62-2.14,2.58-3.69,2.11l-138.1-41.65c-1.54-.47-2.39-2.18-1.9-3.8l1.61-5.33c.49-1.62,2.14-2.58,3.69-2.11l138.1,41.65c1.54.47,2.39,2.18,1.9,3.8"/></svg>`;
+const SVG_HZ_B=SVG_HZ_W.replace('fill="white"','fill="black"');
 
-const defaultData = {
+const DD={
+  hero:{sub:'Image, vidéo, photo, graphisme, motion.\nEt une marque de vêtements.'},
   portfolio:[
-    {label:'VIDÉO',title:'Réalisation Live Beido',sub:'Motion — 2025',img:''},
-    {label:'DIRECTION',title:'Dans La Boucle Vol.1',sub:'Art Direction — 2024',img:''},
-    {label:'TYPO',title:'ADRshitTYPO',sub:'Type Design — 2024',img:''},
-    {label:'BRAND',title:"L'Oréal Brainstorm 2024",sub:'Branding — 2024',img:''},
-    {label:'MOTION',title:'Motion design',sub:'After Effects — 2024',img:''}
+    {label:'VIDÉO',title:'Réalisation Live Beido',sub:'Motion — 2025',img:'',link:'',desc:'',techs:'',extLink:'',gallery:[]},
+    {label:'DIRECTION',title:'Dans La Boucle Vol.1',sub:'Art Direction — 2024',img:'',link:'',desc:'',techs:'',extLink:'',gallery:[]},
+    {label:'TYPO',title:'ADRshitTYPO',sub:'Type Design — 2024',img:'',link:'',desc:'',techs:'',extLink:'',gallery:[]},
+    {label:'BRAND',title:"L'Oréal Brainstorm 2024",sub:'Branding — 2024',img:'',link:'',desc:'',techs:'',extLink:'',gallery:[]},
+    {label:'MOTION',title:'Motion design',sub:'After Effects — 2024',img:'',link:'',desc:'',techs:'',extLink:'',gallery:[]}
   ],
   shirts:[
     {label:'DROP 01',img:'',link:'https://www.vinted.fr'},
@@ -188,17 +245,12 @@ const defaultData = {
     {label:'DROP 03',img:'',link:'https://www.vinted.fr'},
     {label:'SOON',img:'',link:'https://www.vinted.fr'}
   ],
-  about:{
-    text1:"Je travaille dans l'image sous toutes ses formes — vidéo, photo, graphisme, motion design. Chaque projet est une exploration de ce qu'on peut faire avec une idée et les bons outils.",
-    text2:"ADRSHITDESIGN c'est mon nom, ma signature, mon terrain de jeu. ADRSHIRTDESIGN c'est le prolongement physique de cet univers — des vêtements conçus comme des objets graphiques."
-  },
+  about:{text1:"Je travaille dans l'image sous toutes ses formes — vidéo, photo, graphisme, motion design.",text2:"ADRSHITDESIGN c'est mon nom, ma signature, mon terrain de jeu."},
   contact:{email:'adrshitdesign@gmail.com',instagram:'https://www.instagram.com/adrshitdesign/',vinted:'https://www.vinted.fr'}
 };
-
-function load(){try{return JSON.parse(localStorage.getItem('asd_data'))||defaultData}catch{return defaultData}}
-function save(d){localStorage.setItem('asd_data',JSON.stringify(d))}
-let D = load();
-let editMode = false;
+function load(){try{return JSON.parse(localStorage.getItem('asd5'))||DD}catch{return DD}}
+function save(d){localStorage.setItem('asd5',JSON.stringify(d))}
+let D=load(), editMode=false, _imgCb=null, _rawCb=null, _curTarget=null, _curType=null, _curField=null;
 </script>
 
 <!-- NAV -->
@@ -214,17 +266,17 @@ let editMode = false;
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
-  <div class="grid-overlay"></div>
+  <canvas id="hero-canvas"></canvas>
   <div class="hero-content">
-    <div class="hero-logo-wrap reveal" id="hero-logo"></div>
-    <div class="reveal reveal-d1">
-      <div class="hero-tag">Directeur Artistique · Paris</div>
-      <p class="hero-sub editable" data-key="hero-sub">Image, vidéo, photo, graphisme, motion.<br>Et une marque de vêtements.</p>
-      <div class="hero-ctas">
-        <a href="#portfolio" class="btn btn-primary">Voir le portfolio</a>
-        <a href="#shirts" class="btn btn-outline">ADRSHIRTDESIGN →</a>
-      </div>
+    <div class="hero-logo-wrap reveal">
+      <div class="hero-logo-glow"></div>
+      <div id="hero-logo"></div>
+    </div>
+    <div class="hero-tag">Directeur Artistique · Paris</div>
+    <p class="hero-sub" id="hero-sub-el"></p>
+    <div class="hero-ctas">
+      <a href="#portfolio" class="btn btn-primary">Voir le portfolio</a>
+      <a href="#shirts" class="btn btn-outline">ADRSHIRTDESIGN →</a>
     </div>
   </div>
   <div class="hero-scroll">scroll</div>
@@ -254,8 +306,8 @@ let editMode = false;
   </div>
   <div class="shirts-layout reveal reveal-d1">
     <div class="shirts-text">
-      <p class="editable" data-key="shirts-p1">Des vêtements pensés par un DA. Chaque pièce est un objet graphique — pas juste un t-shirt.</p>
-      <p class="editable" data-key="shirts-p2">Disponible sur Vinted. Stock limité, designs exclusifs.</p>
+      <p id="shirts-p1-el"></p>
+      <p id="shirts-p2-el"></p>
       <div class="shirts-tag-list">
         <span class="tag">Streetwear</span><span class="tag">Édition limitée</span>
         <span class="tag">Paris</span><span class="tag">Fait avec intention</span>
@@ -279,8 +331,8 @@ let editMode = false;
         <p class="about-title">DIRECTEUR<br>ARTISTIQUE</p>
       </div>
       <div class="about-body">
-        <p class="editable" id="about-p1" data-key="about-p1"></p>
-        <p class="editable" id="about-p2" data-key="about-p2"></p>
+        <p id="about-p1-el"></p>
+        <p id="about-p2-el"></p>
         <div class="skills">
           <span class="skill">Direction artistique</span><span class="skill">Vidéo</span>
           <span class="skill">Photographie</span><span class="skill">Graphisme</span>
@@ -299,11 +351,11 @@ let editMode = false;
   <div class="reveal">
     <div class="section-tag" data-num="04">Contact</div>
     <h2>ON TRAVAILLE<br>ENSEMBLE ?</h2>
-    <p class="contact-sub editable" data-key="contact-sub">Un projet, une collab, une question — la porte est ouverte.</p>
+    <p class="contact-sub" id="contact-sub-el"></p>
     <div class="contact-links">
       <a id="lnk-email" href="#" class="contact-link">✉ Email</a>
       <a id="lnk-insta" href="#" target="_blank" class="contact-link">◎ Instagram</a>
-      <a id="lnk-vinted2" href="#" target="_blank" class="contact-link">◈ Vinted</a>
+      <a id="lnk-vinted" href="#" target="_blank" class="contact-link">◈ Vinted</a>
     </div>
   </div>
 </section>
@@ -313,87 +365,190 @@ let editMode = false;
   <div class="footer-copy">Paris — © 2026</div>
 </footer>
 
-<!-- EDIT BAR (admin only) -->
+<!-- PROJECT MODAL -->
+<div id="project-modal">
+  <button class="pm-close" onclick="closeProject()">✕ Fermer</button>
+  <div class="pm-wrap" id="pm-content"></div>
+</div>
+
+<!-- EDIT BAR -->
 <div id="edit-bar">
   <div class="edit-bar-left">
-    <div class="edit-bar-dot"></div>
-    <div class="edit-bar-label">Mode <span>édition</span> — cliquez sur n'importe quel élément pour le modifier</div>
+    <div class="edit-dot"></div>
+    <div class="edit-label">Mode <span>édition</span> — cliquez sur un élément pour modifier</div>
   </div>
   <div class="edit-bar-right">
     <button class="eb-btn eb-save" onclick="saveAll()">💾 Enregistrer</button>
+    <button class="eb-btn" onclick="openAdminPanel()">⚙ Admin complet</button>
     <button class="eb-btn eb-exit" onclick="exitEdit()">Quitter</button>
   </div>
 </div>
 
 <!-- INLINE EDITOR -->
-<div id="inline-editor">
-  <div class="ie-label" id="ie-label">Modifier</div>
-  <textarea id="ie-input"></textarea>
-  <div class="ie-actions">
-    <button class="ie-btn ie-cancel" onclick="closeEditor()">Annuler</button>
-    <button class="ie-btn ie-ok" onclick="applyEdit()">OK</button>
+<div id="inline-ed">
+  <div class="ie-lbl" id="ie-lbl">Modifier</div>
+  <textarea id="ie-inp"></textarea>
+  <div class="ie-acts">
+    <button class="ie-btn ie-cancel" onclick="closeIE()">Annuler</button>
+    <button class="ie-btn ie-ok" onclick="applyIE()">OK</button>
   </div>
 </div>
 
-<!-- LOGIN MODAL -->
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+  <div class="ap-wrap">
+    <div class="ap-header">
+      <div class="ap-title">ADMIN</div>
+      <button class="ap-close" onclick="closeAdminPanel()">✕ Fermer</button>
+    </div>
+    <!-- HERO -->
+    <div class="ap-section">
+      <div class="ap-stitle">Hero</div>
+      <div class="ap-grid">
+        <div class="ap-field ap-full"><label>Texte accroche</label><textarea id="a-hero-sub"></textarea></div>
+      </div>
+    </div>
+    <!-- PORTFOLIO -->
+    <div class="ap-section">
+      <div class="ap-stitle">Portfolio</div>
+      <div id="ap-portfolio"></div>
+    </div>
+    <!-- SHIRTS -->
+    <div class="ap-section">
+      <div class="ap-stitle">Vêtements</div>
+      <div id="ap-shirts"></div>
+    </div>
+    <!-- ABOUT -->
+    <div class="ap-section">
+      <div class="ap-stitle">À propos</div>
+      <div class="ap-grid">
+        <div class="ap-field ap-full"><label>Paragraphe 1</label><textarea id="a-about1"></textarea></div>
+        <div class="ap-field ap-full"><label>Paragraphe 2</label><textarea id="a-about2"></textarea></div>
+      </div>
+    </div>
+    <!-- CONTACT -->
+    <div class="ap-section">
+      <div class="ap-stitle">Contact</div>
+      <div class="ap-grid">
+        <div class="ap-field"><label>Email</label><input id="a-email" type="text"/></div>
+        <div class="ap-field"><label>Instagram URL</label><input id="a-insta" type="text"/></div>
+        <div class="ap-field ap-full"><label>Vinted URL principal</label><input id="a-vinted" type="text"/></div>
+      </div>
+    </div>
+    <button class="ap-save-btn" onclick="adminSave()">💾 Enregistrer tout</button>
+  </div>
+</div>
+
+<!-- LOGIN -->
 <div id="login-modal">
   <h2>ADMIN</h2>
   <input type="password" id="lpwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')tryLogin()"/>
   <button class="btn btn-primary" onclick="tryLogin()">Entrer</button>
-  <span id="login-err">Mot de passe incorrect</span>
+  <span id="lerr">Mot de passe incorrect</span>
 </div>
 
-<!-- HIDDEN FILE INPUT -->
-<input type="file" id="img-picker" accept="image/jpeg,image/png,image/webp,image/gif" style="display:none"/>
+<input type="file" id="img-pick" accept="image/*"/>
 
 <script>
+// ---- HERO CANVAS PARTICLES ----
+(function(){
+  const c=document.getElementById('hero-canvas');
+  const ctx=c.getContext('2d');
+  let W,H,pts=[];
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight}
+  function mkPt(){return{x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.3,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,o:Math.random()*.5+.1}}
+  function init(){resize();pts=Array.from({length:80},mkPt)}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;
+      if(p.y<0||p.y>H)p.vy*=-1;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(255,255,255,${p.o})`;ctx.fill();
+    });
+    // Lines between close points
+    for(let i=0;i<pts.length;i++){
+      for(let j=i+1;j<pts.length;j++){
+        const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<120){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(255,255,255,${.06*(1-d/120)})`;ctx.lineWidth=.5;ctx.stroke()}
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',init);
+  init();draw();
+})();
+
 // ---- RENDER ----
 function render(){
-  document.getElementById('nav-logo').innerHTML = SVG_HZ_W;
-  document.getElementById('hero-logo').innerHTML = SVG_SQ_W;
-  document.getElementById('shirts-logo').innerHTML = SVG_HZ_B;
-  document.getElementById('about-logo').innerHTML = SVG_SQ_W;
-  document.getElementById('footer-logo').innerHTML = SVG_SQ_W;
+  document.getElementById('nav-logo').innerHTML=SVG_HZ_W;
+  document.getElementById('hero-logo').innerHTML=SVG_SQ_W;
+  document.getElementById('shirts-logo').innerHTML=SVG_HZ_B;
+  document.getElementById('about-logo').innerHTML=SVG_SQ_W;
+  document.getElementById('footer-logo').innerHTML=SVG_SQ_W;
+
+  // Hero
+  document.getElementById('hero-sub-el').innerHTML=D.hero.sub.replace(/\n/,'<br>');
 
   // Portfolio
-  document.getElementById('portfolio-grid').innerHTML = D.portfolio.map((p,i)=>`
-    <div class="portfolio-item${editMode?' edit-img-zone':''}" ${editMode?`onclick="pickImg('portfolio',${i})" title="Cliquer pour changer l'image"`:''}data-pi="${i}">
+  document.getElementById('portfolio-grid').innerHTML=D.portfolio.map((p,i)=>`
+    <div class="portfolio-item${editMode?' edit-img-zone':''}" data-pi="${i}"
+      onclick="${editMode?`pickImgPortfolio(${i})`:`openProject(${i})`}">
       ${p.img?`<img src="${p.img}" alt="${p.title}"/>`:''}
       <div class="p-inner">
-        <div class="p-label editable" data-pk="p-label-${i}">${p.label}</div>
-        <div class="p-info">
-          <h3 class="editable" data-pk="p-title-${i}">${p.title}</h3>
-          <p class="editable" data-pk="p-sub-${i}">${p.sub}</p>
-        </div>
+        <div class="p-label">${p.label}</div>
+        <div class="p-info"><h3>${p.title}</h3><p>${p.sub}</p></div>
       </div>
     </div>`).join('');
 
   // Shirts
-  document.getElementById('shirts-gallery').innerHTML = D.shirts.map((s,i)=>`
-    <a class="shirt-card${editMode?' edit-img-zone':''}" href="${s.link}" ${editMode?`onclick="pickImgShirt(event,${i})" title="Cliquer pour changer l'image"`:'target="_blank"'}>
+  document.getElementById('shirts-gallery').innerHTML=D.shirts.map((s,i)=>`
+    <${editMode?'div':'a'} class="shirt-card${editMode?' edit-img-zone':''}"
+      ${editMode?`onclick="pickImgShirt(${i})" style="cursor:pointer"`:`href="${s.link}" target="_blank"`}>
       ${s.img?`<img src="${s.img}" alt="${s.label}"/>`:`<span class="shirt-ph">${s.label.substring(0,3)}</span>`}
-      <div class="s-overlay"><div class="s-label editable" data-sk="s-label-${i}">${s.label}</div></div>
-    </a>`).join('');
+      <div class="s-overlay"><div class="s-label">${s.label}</div></div>
+    </${editMode?'div':'a'}>`).join('');
 
-  // Links
-  document.getElementById('vinted-btn').href = D.contact.vinted;
-  document.getElementById('lnk-email').href = 'mailto:'+D.contact.email;
-  document.getElementById('lnk-insta').href = D.contact.instagram;
-  document.getElementById('lnk-vinted2').href = D.contact.vinted;
+  document.getElementById('vinted-btn').href=D.contact.vinted;
+  document.getElementById('shirts-p1-el').textContent=D.about.text1||'Des vêtements pensés par un DA.';
+  document.getElementById('shirts-p2-el').textContent='Disponible sur Vinted. Stock limité, designs exclusifs.';
+  document.getElementById('about-p1-el').textContent=D.about.text1;
+  document.getElementById('about-p2-el').textContent=D.about.text2;
+  document.getElementById('contact-sub-el').textContent='Un projet, une collab, une question — la porte est ouverte.';
+  document.getElementById('lnk-email').href='mailto:'+D.contact.email;
+  document.getElementById('lnk-insta').href=D.contact.instagram;
+  document.getElementById('lnk-vinted').href=D.contact.vinted;
 
-  // About texts
-  document.getElementById('about-p1').textContent = D.about.text1;
-  document.getElementById('about-p2').textContent = D.about.text2;
-
-  // Reveal
   if(!editMode){
-    const obs = new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
+    const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
     document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
   } else {
     document.querySelectorAll('.reveal').forEach(r=>r.classList.add('visible'));
   }
+}
 
-  if(editMode) bindEditables();
+// ---- PROJECT MODAL ----
+function openProject(i){
+  if(editMode)return;
+  const p=D.portfolio[i];
+  const imgs=p.gallery&&p.gallery.length?p.gallery:(p.img?[p.img]:[]);
+  document.getElementById('pm-content').innerHTML=`
+    <div class="pm-tag">${p.sub}</div>
+    <div class="pm-title">${p.title}</div>
+    ${p.desc?`<p class="pm-desc">${p.desc}</p>`:'<p class="pm-desc" style="color:#555">Aucune description pour le moment.</p>'}
+    ${imgs.length?`<div class="pm-gallery">${imgs.map(src=>`<img src="${src}" alt="${p.title}"/>`).join('')}</div>`:''}
+    <div class="pm-meta">
+      ${p.techs?`<div class="pm-meta-block"><label>Technologies</label><span>${p.techs}</span></div>`:''}
+    </div>
+    ${p.extLink?`<a href="${p.extLink}" target="_blank" class="pm-link">↗ Voir le projet</a>`:''}
+  `;
+  document.getElementById('project-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeProject(){
+  document.getElementById('project-modal').classList.remove('open');
+  document.body.style.overflow='';
 }
 
 // ---- EDIT MODE ----
@@ -401,123 +556,124 @@ function enterEdit(){
   editMode=true;
   document.body.classList.add('edit-mode');
   document.getElementById('edit-bar').classList.add('visible');
-  document.getElementById('login-modal').classList.remove('visible');
+  document.getElementById('login-modal').classList.remove('open');
   render();
 }
 function exitEdit(){
   editMode=false;
   document.body.classList.remove('edit-mode');
   document.getElementById('edit-bar').classList.remove('visible');
-  closeEditor();
+  closeIE();
   render();
 }
 function saveAll(){
   save(D);
-  // Flash save
-  const btn = document.querySelector('.eb-save');
-  btn.textContent='✅ Enregistré !';
-  setTimeout(()=>btn.textContent='💾 Enregistrer',2000);
+  const b=document.querySelector('.eb-save');
+  b.textContent='✅ Enregistré !';
+  setTimeout(()=>b.textContent='💾 Enregistrer',2000);
 }
 
 // ---- INLINE EDITOR ----
-let currentTarget=null, currentType=null, currentIdx=null, currentField=null;
+function openIE(label,val,cb){
+  _rawCb=cb;
+  document.getElementById('ie-lbl').textContent=label;
+  document.getElementById('ie-inp').value=val;
+  const ed=document.getElementById('inline-ed');
+  ed.classList.add('open');
+  ed.style.top='50%';ed.style.left='50%';ed.style.transform='translate(-50%,-50%)';
+  document.getElementById('ie-inp').focus();
+}
+function closeIE(){document.getElementById('inline-ed').classList.remove('open');_rawCb=null}
+function applyIE(){if(_rawCb)_rawCb(document.getElementById('ie-inp').value);closeIE()}
 
-function bindEditables(){
-  document.querySelectorAll('[data-pk]').forEach(el=>{
-    el.onclick=e=>{e.stopPropagation();openEditor(el,'portfolio-text',el.dataset.pk)};
+// ---- ADMIN PANEL ----
+function openAdminPanel(){
+  const d=D;
+  document.getElementById('a-hero-sub').value=d.hero.sub;
+  document.getElementById('ap-portfolio').innerHTML=d.portfolio.map((p,i)=>`
+    <div class="ap-card">
+      <div class="ap-card-title">Projet ${i+1} — ${p.title}</div>
+      <div class="ap-grid">
+        <div class="ap-field"><label>Label</label><input id="ap-pl-${i}" value="${p.label}"/></div>
+        <div class="ap-field"><label>Titre</label><input id="ap-pt-${i}" value="${p.title}"/></div>
+        <div class="ap-field ap-full"><label>Sous-titre</label><input id="ap-ps-${i}" value="${p.sub}"/></div>
+        <div class="ap-field ap-full"><label>Description</label><textarea id="ap-pd-${i}">${p.desc||''}</textarea></div>
+        <div class="ap-field"><label>Technologies</label><input id="ap-ptech-${i}" value="${p.techs||''}"/></div>
+        <div class="ap-field"><label>Lien externe</label><input id="ap-pext-${i}" value="${p.extLink||''}"/></div>
+        <div class="ap-field ap-full">
+          <label>Image principale</label>
+          ${dropZone('api-'+i,p.img,'Image principale')}
+        </div>
+      </div>
+    </div>`).join('');
+  document.getElementById('ap-shirts').innerHTML=d.shirts.map((s,i)=>`
+    <div class="ap-card">
+      <div class="ap-card-title">Drop ${i+1}</div>
+      <div class="ap-grid">
+        <div class="ap-field"><label>Label</label><input id="ap-sl-${i}" value="${s.label}"/></div>
+        <div class="ap-field"><label>Lien Vinted</label><input id="ap-slink-${i}" value="${s.link}" placeholder="https://www.vinted.fr/items/..."/></div>
+        <div class="ap-field ap-full">
+          <label>Image</label>
+          ${dropZone('asi-'+i,s.img,'Image vêtement')}
+        </div>
+      </div>
+    </div>`).join('');
+  document.getElementById('a-about1').value=d.about.text1;
+  document.getElementById('a-about2').value=d.about.text2;
+  document.getElementById('a-email').value=d.contact.email;
+  document.getElementById('a-insta').value=d.contact.instagram;
+  document.getElementById('a-vinted').value=d.contact.vinted;
+  document.getElementById('admin-panel').classList.add('open');
+}
+function closeAdminPanel(){document.getElementById('admin-panel').classList.remove('open')}
+function adminSave(){
+  D.hero.sub=document.getElementById('a-hero-sub').value;
+  D.portfolio.forEach((p,i)=>{
+    p.label=document.getElementById('ap-pl-'+i).value;
+    p.title=document.getElementById('ap-pt-'+i).value;
+    p.sub=document.getElementById('ap-ps-'+i).value;
+    p.desc=document.getElementById('ap-pd-'+i).value;
+    p.techs=document.getElementById('ap-ptech-'+i).value;
+    p.extLink=document.getElementById('ap-pext-'+i).value;
+    const img=document.getElementById('api-'+i);if(img&&img.value)p.img=img.value;
   });
-  document.querySelectorAll('[data-sk]').forEach(el=>{
-    el.onclick=e=>{e.stopPropagation();openEditor(el,'shirt-text',el.dataset.sk)};
+  D.shirts.forEach((s,i)=>{
+    s.label=document.getElementById('ap-sl-'+i).value;
+    s.link=document.getElementById('ap-slink-'+i).value;
+    const img=document.getElementById('asi-'+i);if(img&&img.value)s.img=img.value;
   });
-  // Contact links edit
-  document.getElementById('lnk-email').onclick=e=>{if(editMode){e.preventDefault();openEditorRaw('Email',D.contact.email,v=>{D.contact.email=v;render()})}};
-  document.getElementById('lnk-insta').onclick=e=>{if(editMode){e.preventDefault();openEditorRaw('Instagram URL',D.contact.instagram,v=>{D.contact.instagram=v;render()})}};
-  document.getElementById('lnk-vinted2').onclick=e=>{if(editMode){e.preventDefault();openEditorRaw('Vinted URL',D.contact.vinted,v=>{D.contact.vinted=v;render()})}};
-  document.getElementById('vinted-btn').onclick=e=>{if(editMode){e.preventDefault();openEditorRaw('Vinted URL',D.contact.vinted,v=>{D.contact.vinted=v;render()})}};
-  // About texts
-  document.getElementById('about-p1').onclick=e=>{if(editMode)openEditorRaw('À propos — paragraphe 1',D.about.text1,v=>{D.about.text1=v;render()})};
-  document.getElementById('about-p2').onclick=e=>{if(editMode)openEditorRaw('À propos — paragraphe 2',D.about.text2,v=>{D.about.text2=v;render()})};
+  D.about.text1=document.getElementById('a-about1').value;
+  D.about.text2=document.getElementById('a-about2').value;
+  D.contact.email=document.getElementById('a-email').value;
+  D.contact.instagram=document.getElementById('a-insta').value;
+  D.contact.vinted=document.getElementById('a-vinted').value;
+  save(D);render();closeAdminPanel();
+  alert('✅ Tout est enregistré !');
 }
 
-let _rawCb=null;
-function openEditorRaw(label,val,cb){
-  _rawCb=cb; currentType='raw';
-  showEditor(label,val);
+// Drop zone helper
+function dropZone(id,val,label){
+  return`<div class="drop-zone" id="dz-${id}" onclick="dzClick('${id}')"
+    ondragover="event.preventDefault();this.classList.add('over')"
+    ondragleave="this.classList.remove('over')"
+    ondrop="dzDrop(event,'${id}')">
+    ${val?`<img class="drop-preview" src="${val}"/><span class="drop-hint">Cliquer pour changer</span>`
+    :`<span class="drop-icon">⊕</span><span class="drop-hint">Glisser une image ici<br>ou cliquer pour choisir</span>`}
+  </div><input type="hidden" id="${id}" value="${val}"/>`;
 }
-function openEditor(el,type,key){
-  currentTarget=el; currentType=type; currentField=key;
-  showEditor(key,el.textContent);
-}
-function showEditor(label,val){
-  const ed=document.getElementById('inline-editor');
-  document.getElementById('ie-label').textContent=label;
-  document.getElementById('ie-input').value=val;
-  ed.classList.add('visible');
-  // position near center
-  ed.style.top='50%'; ed.style.left='50%';
-  ed.style.transform='translate(-50%,-50%)';
-  document.getElementById('ie-input').focus();
-}
-function closeEditor(){
-  document.getElementById('inline-editor').classList.remove('visible');
-  currentTarget=null; currentType=null; currentField=null; _rawCb=null;
-}
-function applyEdit(){
-  const val=document.getElementById('ie-input').value;
-  if(currentType==='raw'&&_rawCb){_rawCb(val);closeEditor();return}
-  if(currentType==='portfolio-text'&&currentField){
-    const k=currentField;
-    if(k.startsWith('p-label-')){const i=+k.split('-')[2];D.portfolio[i].label=val}
-    else if(k.startsWith('p-title-')){const i=+k.split('-')[2];D.portfolio[i].title=val}
-    else if(k.startsWith('p-sub-')){const i=+k.split('-')[2];D.portfolio[i].sub=val}
-  }
-  if(currentType==='shirt-text'&&currentField){
-    const k=currentField;
-    if(k.startsWith('s-label-')){const i=+k.split('-')[2];D.shirts[i].label=val}
-  }
-  closeEditor(); render();
-}
+function dzClick(id){_imgCb=b64=>{document.getElementById(id).value=b64;const z=document.getElementById('dz-'+id);z.innerHTML=`<img class="drop-preview" src="${b64}"/><span class="drop-hint">Cliquer pour changer</span>`;};document.getElementById('img-pick').click()}
+function dzDrop(e,id){e.preventDefault();const f=e.dataTransfer.files[0];if(f)encodeImg(f,b64=>{document.getElementById(id).value=b64;const z=document.getElementById('dz-'+id);z.innerHTML=`<img class="drop-preview" src="${b64}"/><span class="drop-hint">Cliquer pour changer</span>`;z.classList.remove('over')})}
+function encodeImg(file,cb){const r=new FileReader();r.onload=e=>cb(e.target.result);r.readAsDataURL(file)}
 
-// ---- IMAGE PICKER ----
-let _imgCb=null;
-function pickImg(type,idx){
-  if(!editMode)return;
-  _imgCb=(b64)=>{
-    if(type==='portfolio')D.portfolio[idx].img=b64;
-    render();
-  };
-  document.getElementById('img-picker').click();
-}
-function pickImgShirt(e,idx){
-  if(!editMode)return;
-  e.preventDefault(); e.stopPropagation();
-  _imgCb=(b64)=>{D.shirts[idx].img=b64;render()};
-  document.getElementById('img-picker').click();
-}
-document.getElementById('img-picker').onchange=function(){
-  if(!this.files[0])return;
-  const r=new FileReader();
-  r.onload=ev=>{if(_imgCb)_imgCb(ev.target.result);this.value='';};
-  r.readAsDataURL(this.files[0]);
-};
+// Quick image pick from edit mode
+function pickImgPortfolio(i){_imgCb=b64=>{D.portfolio[i].img=b64;render()};document.getElementById('img-pick').click()}
+function pickImgShirt(i){_imgCb=b64=>{D.shirts[i].img=b64;render()};document.getElementById('img-pick').click()}
+document.getElementById('img-pick').onchange=function(){if(this.files[0]&&_imgCb)encodeImg(this.files[0],b64=>{_imgCb(b64);_imgCb=null;this.value=''})};
 
-// ---- LOGIN ----
-function tryLogin(){
-  const v=document.getElementById('lpwd').value;
-  if(v===PWD){enterEdit()}
-  else{document.getElementById('login-err').style.display='block'}
-}
-
-// ---- URL trigger ----
-// Accès admin via ?admin dans l'URL (invisible pour les visiteurs)
-if(location.search.includes('admin')){
-  window.addEventListener('load',()=>{
-    document.getElementById('login-modal').classList.add('visible');
-  });
-}
-
-// Close editor on ESC
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeEditor()});
+// Login
+function tryLogin(){const v=document.getElementById('lpwd').value;if(v===PWD)enterEdit();else document.getElementById('lerr').style.display='block'}
+if(location.search.includes('admin'))window.addEventListener('load',()=>document.getElementById('login-modal').classList.add('open'));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeIE();closeProject()}});
 
 render();
 </script>
