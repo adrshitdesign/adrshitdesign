@@ -626,16 +626,40 @@ function render(){
   if(editMode){
     D.portfolio.forEach((_,i)=>{
       const el=document.getElementById('pf-item-'+i);
-      if(el) el.onclick=()=>pickImgPF(i);
+      if(el) el.addEventListener('click',function(){
+        const inp=document.createElement('input');
+        inp.type='file';
+        inp.accept='image/*';
+        inp.onchange=function(){
+          if(inp.files[0]) enc(inp.files[0],b=>{
+            D.portfolio[i].img=b;
+            sv(D);render();
+            toast('Image du projet mise à jour');
+          });
+        };
+        inp.click();
+      });
     });
     D.shirts.forEach((_,i)=>{
       const el=document.getElementById('sh-item-'+i);
-      if(el) el.onclick=()=>pickImgSH(i);
+      if(el) el.addEventListener('click',function(){
+        const inp=document.createElement('input');
+        inp.type='file';
+        inp.accept='image/*';
+        inp.onchange=function(){
+          if(inp.files[0]) enc(inp.files[0],b=>{
+            D.shirts[i].img=b;
+            sv(D);render();
+            toast('Image vêtement mise à jour');
+          });
+        };
+        inp.click();
+      });
     });
   } else {
     D.portfolio.forEach((_,i)=>{
       const el=document.getElementById('pf-item-'+i);
-      if(el) el.onclick=()=>openProject(i);
+      if(el) el.addEventListener('click',()=>openProject(i));
     });
   }
 
