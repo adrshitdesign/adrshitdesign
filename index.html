@@ -606,7 +606,7 @@ function render(){
 
   // Portfolio
   document.getElementById('portfolio-grid').innerHTML=D.portfolio.map((p,i)=>`
-    <div class="portfolio-item${editMode?' edit-img-zone':''}" onclick="${editMode?`pickImgPF(${i})`:`openProject(${i})`}">
+    <div class="portfolio-item${editMode?' edit-img-zone':''}" id="pf-item-${i}">
       ${p.img?`<img src="${p.img}" alt="${p.title}"/>`:''}
       <div class="p-inner">
         <div class="p-label">${p.label}</div>
@@ -616,11 +616,28 @@ function render(){
 
   // Shirts
   document.getElementById('shirts-gallery').innerHTML=D.shirts.map((s,i)=>`
-    <${editMode?'div':'a'} class="shirt-card${editMode?' edit-img-zone':''}"
-      ${editMode?`onclick="pickImgSH(${i})" style="cursor:pointer"`:`href="${s.link}" target="_blank"`}>
+    <${editMode?'div':'a'} class="shirt-card${editMode?' edit-img-zone':''}" id="sh-item-${i}"
+      ${editMode?'style="cursor:pointer"':`href="${s.link}" target="_blank"`}>
       ${s.img?`<img src="${s.img}" alt="${s.label}"/>`:`<span class="shirt-ph">${s.label.substring(0,3)}</span>`}
       <div class="s-overlay"><div class="s-label">${s.label}</div></div>
     </${editMode?'div':'a'}>`).join('');
+
+  // Bind clicks après render
+  if(editMode){
+    D.portfolio.forEach((_,i)=>{
+      const el=document.getElementById('pf-item-'+i);
+      if(el) el.onclick=()=>pickImgPF(i);
+    });
+    D.shirts.forEach((_,i)=>{
+      const el=document.getElementById('sh-item-'+i);
+      if(el) el.onclick=()=>pickImgSH(i);
+    });
+  } else {
+    D.portfolio.forEach((_,i)=>{
+      const el=document.getElementById('pf-item-'+i);
+      if(el) el.onclick=()=>openProject(i);
+    });
+  }
 
   if(!editMode){
     const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
