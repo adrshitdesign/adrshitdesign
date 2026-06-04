@@ -5,32 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>adrshitdesign</title>
 <!-- Firebase SDK -->
-<script type="module">
-  import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import{getAnalytics}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
-  import{getDatabase,ref,set,onValue}from"https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
-  const app=initializeApp({apiKey:"AIzaSyBTtQO3RHHv1J01fngjeR63qWwECiuFV80",authDomain:"adrshitdesign-ccc65.firebaseapp.com",projectId:"adrshitdesign-ccc65",storageBucket:"adrshitdesign-ccc65.firebasestorage.app",messagingSenderId:"979698259215",appId:"1:979698259215:web:99c9e02d8d955d99915a7a",measurementId:"G-M0F4PREVYQ",databaseURL:"https://adrshitdesign-ccc65-default-rtdb.europe-west1.firebasedatabase.app"});
-  getAnalytics(app);
-  const db=getDatabase(app);
-  window._fbDb=db;
-  window._fbRef=ref;
-  window._fbSet=set;
-  window._fbOnValue=onValue;
-  // Charge les données depuis Firebase au démarrage
-  const dataRef=ref(db,'sitedata');
-  onValue(dataRef,snap=>{
-    const val=snap.val();
-    if(val){
-      window.D=val;
-      if(window.render) window.render();
-    } else {
-      // Première fois — initialise avec les données par défaut
-      set(ref(db,'sitedata'),window.DD).then(()=>{
-        window.D=window.DD;
-        if(window.render) window.render();
-      });
-    }
-  });
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<script>
+firebase.initializeApp({
+  apiKey:"AIzaSyBTtQO3RHHv1J01fngjeR63qWwECiuFV80",
+  authDomain:"adrshitdesign-ccc65.firebaseapp.com",
+  projectId:"adrshitdesign-ccc65",
+  databaseURL:"https://adrshitdesign-ccc65-default-rtdb.europe-west1.firebasedatabase.app",
+  storageBucket:"adrshitdesign-ccc65.firebasestorage.app",
+  messagingSenderId:"979698259215",
+  appId:"1:979698259215:web:99c9e02d8d955d99915a7a",
+  measurementId:"G-M0F4PREVYQ"
+});
+firebase.analytics();
+const _db=firebase.database();
 </script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700;900&family=Space+Mono:wght@400;700&display=swap');
@@ -656,7 +646,7 @@ function render(){
         inp.onchange=function(){
           if(inp.files[0]) enc(inp.files[0],b=>{
             D.portfolio[i].img=b;
-            sv(D);render();
+            sv(D);// render() sera appelé après chargement Firebase
             toast('Image du projet mise à jour');
           });
         };
