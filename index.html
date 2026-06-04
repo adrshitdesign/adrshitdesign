@@ -797,6 +797,15 @@ function tryLogin(){const v=document.getElementById('lpwd').value;if(v===PWD)ent
 if(location.search.includes('admin'))window.addEventListener('load',()=>document.getElementById('login-modal').classList.add('open'));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeIE();closeProject();closeAdmin()}});
 
+// Sync entre onglets — quand l'admin sauvegarde, le site se met à jour
+window.addEventListener('storage',e=>{
+  if(e.key==='asd6'&&e.newValue){
+    D=JSON.parse(e.newValue);
+    render();
+    toast('Site mis à jour','🔄');
+  }
+});
+
 render();
 </script>
 </body>
