@@ -284,7 +284,7 @@ const DD={
     {label:'DIRECTION',title:'Dans La Boucle Vol.1',sub:'Art Direction — 2024',img:'',desc:'',techs:'',extLink:'',gallery:[]},
     {label:'TYPO',title:'ADRshitTYPO',sub:'Type Design — 2024',img:'',desc:'',techs:'',extLink:'',gallery:[]},
     {label:'BRAND',title:"L'Oréal Brainstorm 2024",sub:'Branding — 2024',img:'',desc:'',techs:'',extLink:'',gallery:[]},
-    {label:'MOTION',title:'Motion design',sub:'After Effects — 2024',img:'',desc:'',techs:'',extLink:'',gallery:[]}
+
   ],
   shirts:[
     {label:'DROP 01',img:'',link:'https://www.vinted.fr'},
@@ -348,16 +348,35 @@ let D=load(),editMode=false,_imgCb=null,_rawCb=null;
         <animate attributeName="opacity" values="0.2;0.6;0.2" dur="3s" repeatCount="indefinite"/>
       </circle>
       <!-- moving dot on outer ring -->
-      <circle cx="190" cy="30" r="3" fill="rgba(255,255,255,0.4)">
+      <circle cx="190" cy="30" r="3" fill="rgba(255,255,255,0.6)">
         <animateTransform attributeName="transform" type="rotate" from="0 190 190" to="360 190 190" dur="20s" repeatCount="indefinite"/>
       </circle>
       <!-- moving dot on inner ring (opposite) -->
-      <circle cx="190" cy="125" r="2" fill="rgba(255,255,255,0.25)">
+      <circle cx="190" cy="125" r="2" fill="rgba(255,255,255,0.45)">
         <animateTransform attributeName="transform" type="rotate" from="360 190 190" to="0 190 190" dur="9s" repeatCount="indefinite"/>
       </circle>
-      <!-- text label -->
-      <text x="190" y="196" text-anchor="middle" font-family="Space Mono, monospace" font-size="9" letter-spacing="4" fill="rgba(255,255,255,0.12)" text-transform="uppercase">ADRSHITDESIGN</text>
-      <text x="190" y="210" text-anchor="middle" font-family="Space Mono, monospace" font-size="7" letter-spacing="2" fill="rgba(255,255,255,0.06)">PARIS · 2026</text>
+      <!-- tick marks redrawn with animation -->
+      <g fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1">
+        <animateTransform attributeName="transform" type="rotate" from="0 190 190" to="360 190 190" dur="20s" repeatCount="indefinite"/>
+        <line x1="190" y1="30" x2="190" y2="52"/>
+        <line x1="190" y1="328" x2="190" y2="350"/>
+        <line x1="30" y1="190" x2="52" y2="190"/>
+        <line x1="328" y1="190" x2="350" y2="190"/>
+        <line x1="83" y1="83" x2="98" y2="98"/>
+        <line x1="297" y1="83" x2="282" y2="98"/>
+        <line x1="83" y1="297" x2="98" y2="282"/>
+        <line x1="297" y1="297" x2="282" y2="282"/>
+      </g>
+      <!-- crosshair brighter -->
+      <line x1="190" y1="30" x2="190" y2="350" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <line x1="30" y1="190" x2="350" y2="190" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <!-- center dot pulsing -->
+      <circle cx="190" cy="190" r="4" fill="rgba(255,255,255,0.35)">
+        <animate attributeName="opacity" values="0.35;0.8;0.35" dur="3s" repeatCount="indefinite"/>
+        <animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite"/>
+      </circle>
+      <!-- DA label only, no name -->
+      <text x="190" y="206" text-anchor="middle" font-family="Space Mono, monospace" font-size="7" letter-spacing="3" fill="rgba(255,255,255,0.18)">PARIS · 2026</text>
     </svg>
   </div>
   <div class="hero-content">
@@ -550,6 +569,7 @@ let D=load(),editMode=false,_imgCb=null,_rawCb=null;
 </div>
 
 <input type="file" id="img-pick" accept="image/*"/>
+<div id="toast"><span class="toast-icon">✅</span><span id="toast-msg">Modifications enregistrées</span></div>
 
 <script>
 // CANVAS PARTICLES
@@ -733,7 +753,7 @@ function adminSave(){
   D.contact.instagram=document.getElementById('a-insta').value;
   D.contact.vinted=document.getElementById('a-vinted').value;
   sv(D);render();closeAdmin();
-  alert('✅ Tout enregistré !');
+  toast('Tout enregistré avec succès !');
 }
 
 // DROP ZONE
@@ -749,9 +769,28 @@ function dz(id,val){
 function dzClick(id){_imgCb=b=>{document.getElementById(id).value=b;const z=document.getElementById('dz-'+id);z.innerHTML=`<img class="drop-preview" src="${b}"/><span class="drop-hint">Cliquer ou glisser pour remplacer</span>`;z.classList.remove('over')};document.getElementById('img-pick').click()}
 function dzDrop(e,id){e.preventDefault();const f=e.dataTransfer.files[0];if(f)enc(f,b=>{document.getElementById(id).value=b;const z=document.getElementById('dz-'+id);z.innerHTML=`<img class="drop-preview" src="${b}"/><span class="drop-hint">Cliquer ou glisser pour remplacer</span>`;z.classList.remove('over')})}
 function enc(file,cb){const r=new FileReader();r.onload=e=>cb(e.target.result);r.readAsDataURL(file)}
-function pickImgPF(i){_imgCb=b=>{D.portfolio[i].img=b;render()};document.getElementById('img-pick').click()}
-function pickImgSH(i){_imgCb=b=>{D.shirts[i].img=b;render()};document.getElementById('img-pick').click()}
-document.getElementById('img-pick').onchange=function(){if(this.files[0]&&_imgCb)enc(this.files[0],b=>{_imgCb(b);_imgCb=null;this.value=''})};
+function pickImgPF(i){
+  _imgCb=b=>{D.portfolio[i].img=b;sv(D);render()};
+  document.getElementById('img-pick').click();
+}
+function pickImgSH(i){
+  _imgCb=b=>{D.shirts[i].img=b;sv(D);render()};
+  document.getElementById('img-pick').click();
+}
+document.getElementById('img-pick').onchange=function(){
+  if(this.files[0]&&_imgCb){
+    enc(this.files[0],b=>{
+      _imgCb(b);
+      _imgCb=null;
+      this.value='';
+      // confirmation visuelle
+      const bar=document.querySelector('.eb-save');
+      const prev=bar.textContent;
+      bar.textContent='✅ Image ajoutée !';
+      setTimeout(()=>bar.textContent=prev,2000);
+    });
+  }
+};
 
 // LOGIN
 function tryLogin(){const v=document.getElementById('lpwd').value;if(v===PWD)enterEdit();else document.getElementById('lerr').style.display='block'}
