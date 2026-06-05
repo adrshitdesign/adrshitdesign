@@ -145,16 +145,38 @@ h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6
 .shirts-logo-wrap{margin-bottom:2rem}
 .shirts-logo-wrap svg{width:min(360px,65vw);height:auto;display:block}
 .shirts-head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:1rem}
-.shirts-graphic{flex:1;min-width:280px;max-width:480px;display:flex;flex-direction:column;gap:1rem;padding-top:.5rem}
-.sg-ticker{overflow:hidden;border-top:1px solid #0a0a0a;border-bottom:1px solid #0a0a0a;padding:.5rem 0;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
-.sg-ticker-track{display:inline-flex;white-space:nowrap;font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:1.5rem;text-transform:uppercase;color:#0a0a0a;animation:sgmarquee 18s linear infinite;will-change:transform}
-.sg-ticker-track span{padding:0 1rem}
-@keyframes sgmarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.sg-tags{display:flex;flex-wrap:wrap;gap:.4rem}
-.sg-chip{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:#0a0a0a;border:1px solid #0a0a0a;padding:.3rem .6rem}
-.sg-chip-fill{background:#0a0a0a;color:#f5f5f0}
-.sg-mark{width:108px;height:108px;flex-shrink:0;align-self:flex-end;margin-top:-2.5rem}
-@media(max-width:760px){.sg-mark{align-self:flex-start;margin-top:0}}
+.shirts-graphic{position:relative;flex:1;min-width:300px;max-width:440px;min-height:300px;padding-top:.5rem}
+/* Ticket de caisse façon reçu froissé */
+.receipt{position:relative;width:210px;background:#faf8f2;color:#0a0a0a;padding:1rem .9rem 1.2rem;font-family:'Space Mono',monospace;font-size:.6rem;line-height:1.5;transform:rotate(-3deg);box-shadow:6px 8px 0 rgba(10,10,10,.12),0 2px 14px rgba(0,0,0,.25);filter:contrast(1.05);clip-path:polygon(0 0,100% 0,100% 97%,96% 100%,88% 97%,80% 100%,72% 97%,64% 100%,56% 97%,48% 100%,40% 97%,32% 100%,24% 97%,16% 100%,8% 97%,0 100%);animation:receiptSway 6s ease-in-out infinite}
+@keyframes receiptSway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(-1.5deg) translateY(-3px)}}
+.receipt-top{text-align:center;display:flex;flex-direction:column;gap:.15rem;margin-bottom:.6rem}
+.r-store{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:1.15rem;letter-spacing:.02em;line-height:.9}
+.r-sub{font-size:.5rem;letter-spacing:.05em}
+.r-addr{font-size:.46rem;letter-spacing:.06em;opacity:.7}
+.r-dash{border-top:1px dashed #0a0a0a;margin:.5rem 0}
+.r-line{display:flex;justify-content:space-between;gap:.5rem}
+.r-strike{text-decoration:line-through;opacity:.6}
+.r-total{font-weight:700;font-size:.72rem}
+.r-barcode{display:flex;gap:2px;align-items:flex-end;height:34px;margin:.6rem 0 .4rem;justify-content:center}
+.r-barcode span{background:#0a0a0a;width:2px;height:100%}
+.r-barcode span:nth-child(2n){width:4px;height:80%}
+.r-barcode span:nth-child(3n){width:1px;height:100%}
+.r-barcode span:nth-child(4n){width:5px;height:90%}
+.r-barcode span:nth-child(5n){width:2px;height:70%}
+.r-foot{text-align:center;font-size:.46rem;letter-spacing:.04em;margin-top:.3rem;opacity:.8}
+/* Tampons */
+.stamp{position:absolute;font-family:'Space Mono',monospace;font-weight:700;text-transform:uppercase;text-align:center;line-height:1;letter-spacing:.05em;border:2px solid;padding:.4rem .5rem;font-size:.62rem;opacity:.82}
+.stamp-1{top:8px;right:34px;color:#c0392b;border-color:#c0392b;transform:rotate(11deg)}
+.stamp-2{bottom:48px;right:10px;color:#0a0a0a;border-color:#0a0a0a;transform:rotate(-8deg);font-size:.55rem;opacity:.7}
+/* Gribouillis manuscrits */
+.scrawl{position:absolute;font-family:'ADRSHITTypo','Space Grotesk',sans-serif;color:#0a0a0a;text-transform:lowercase}
+.scrawl-1{bottom:18px;left:6px;font-size:1.5rem;transform:rotate(-6deg)}
+.scrawl-2{top:26px;right:18px;font-size:1.1rem;transform:rotate(8deg);opacity:.75}
+/* Scotch */
+.tape{position:absolute;background:rgba(180,175,160,.35);border:1px solid rgba(120,115,100,.2);width:64px;height:22px}
+.tape-1{top:-6px;left:30px;transform:rotate(-7deg)}
+.tape-2{bottom:60px;left:-10px;transform:rotate(84deg);width:50px}
+@media(max-width:760px){.shirts-graphic{min-height:280px;margin-top:1rem}}
 .shirts-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:2.5rem}
 .shirts-text p{font-size:.9rem;line-height:1.85;color:#444;margin-bottom:1.4rem}
 .shirts-tag-list{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.8rem}
@@ -278,6 +300,23 @@ body.edit-mode .edit-img-zone::after{content:'📷 Changer';position:absolute;to
 .drop-zone:hover,.drop-zone.over{border-color:#444;background:#0e0e0e}
 .ap-save-btn{background:var(--white);color:var(--black);font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 2rem;border:none;cursor:pointer;transition:all .2s;width:100%;margin-top:1.5rem}
 .ap-save-btn:hover{background:#ccc}
+.ap-add-sm{font-size:.5rem;padding:.35rem .7rem}
+.ap-gallery-block{margin-top:1rem;border-top:1px solid #141414;padding-top:1rem}
+.ap-gallery-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:.7rem;gap:.5rem;flex-wrap:wrap}
+.ap-gallery-head label{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;color:#555}
+.ap-gallery-list{display:flex;flex-direction:column;gap:.5rem}
+.ap-gallery-empty{font-family:'Space Mono',monospace;font-size:.6rem;color:#444;padding:.7rem;border:1px dashed #1a1a1a;line-height:1.5}
+.ap-gallery-item{display:flex;align-items:center;gap:.5rem}
+.ap-gallery-thumb{width:46px;height:32px;flex-shrink:0;background:#161616;border:1px solid #1e1e1e;overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;color:#444}
+.ap-gallery-thumb img{width:100%;height:100%;object-fit:cover}
+.ap-gallery-url{flex:1;min-width:0;background:#080808;border:1px solid #1e1e1e;color:var(--white);font-family:'Space Grotesk',sans-serif;font-size:.78rem;padding:.45rem .6rem;outline:none;transition:border-color .2s}
+.ap-gallery-url:focus{border-color:#444}
+.ap-upload-sm{margin-top:0;padding:.45rem .6rem;flex-shrink:0}
+.ap-del-sm{font-size:.8rem;flex-shrink:0}
+.ap-check-lbl{display:flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.04em;text-transform:none;color:#999;cursor:pointer}
+.ap-check-lbl input{width:auto;accent-color:#63b3ed;cursor:pointer}
+.pm-font-dl{background:var(--white);color:var(--black);border:none;cursor:pointer;margin-right:.8rem}
+.pm-font-dl:hover{background:#ccc;color:var(--black)}
 
 #toast{position:fixed;bottom:5rem;left:50%;transform:translateX(-50%) translateY(20px);z-index:2000;background:#0e0e0e;border:1px solid #2a2a2a;padding:.7rem 1.5rem;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--white);opacity:0;transition:opacity .3s,transform .3s;pointer-events:none;display:flex;align-items:center;gap:.6rem}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -330,7 +369,7 @@ const DD={
   portfolio:[
     {label:'VIDÉO',title:'Réalisation Live Beido',sub:'Motion — 2025',img:BASE+'beido-04.png',desc:"Réalisation d'une live session pour la réédition du projet Les Quatre Saisons de Beido. Recrutement des cadreurs, gestion du matériel, choix des plans, briefing de l'équipe et cadrage. Montage, étalonnage et habillage typographique des 6 extraits réseaux.",techs:'Premiere Pro, After Effects',extLink:'',gallery:[BASE+'beido-04.png',BASE+'beido-06.png',BASE+'beido-07.png']},
     {label:'DIRECTION',title:'Dans La Boucle Vol.1',sub:'Art Direction — 2024',img:BASE+'behance-06.jpg',desc:"Direction artistique complète — cover du single OG VENER, tracklist, affiche officielle de la soirée La Boucle Noire et ses variantes sold out, création du merch et impression sérigraphique.",techs:'Illustrator, Photoshop',extLink:'',gallery:[BASE+'behance-06.jpg',BASE+'behance-07.jpg',BASE+'behance-08.jpg',BASE+'behance-09.jpg']},
-    {label:'TYPO',title:'ADRshitTYPO',sub:'Type Design — 2024',img:BASE+'ADRSHITTYPO_ADRshitTYPO%201.jpg',desc:"Fonte créée pour mon usage personnel en freelance. Conçue pour contraster avec les formes fines et désorganisées de mes titres manuels.",techs:'Glyphs',extLink:'',gallery:[BASE+'ADRSHITTYPO_ADRshitTYPO%201.jpg',BASE+'ADRSHITTYPO-16.jpg',BASE+'ADRSHITTYPO-17.jpg',BASE+'ADRSHITTYPO-18.jpg']},
+    {label:'TYPO',title:'ADRshitTYPO',sub:'Type Design — 2024',img:BASE+'ADRSHITTYPO_ADRshitTYPO%201.jpg',desc:"Fonte créée pour mon usage personnel en freelance. Conçue pour contraster avec les formes fines et désorganisées de mes titres manuels.",techs:'Glyphs',extLink:'',fontDownload:true,gallery:[BASE+'ADRSHITTYPO_ADRshitTYPO%201.jpg',BASE+'ADRSHITTYPO-16.jpg',BASE+'ADRSHITTYPO-17.jpg',BASE+'ADRSHITTYPO-18.jpg']},
     {label:'BRAND',title:"L'Oréal Brainstorm 2024",sub:'Branding — 2024',img:BASE+'LOREAL-15.jpg',desc:"Compétition Brandstorm L'Oréal 2024. Conception de F-Visual, un dispositif connecté pour Kérastase ciblant les hommes. Direction artistique complète.",techs:'Illustrator, Figma, Photoshop',extLink:'',gallery:[BASE+'LOREAL-15.jpg',BASE+'LOREAL-16.jpg',BASE+'LOREAL-17.jpg']}
   ],
   shirts:[
@@ -408,28 +447,29 @@ let editMode=false,_imgCb=null;
     <div class="shirts-head-row">
       <div class="shirts-logo-wrap" id="shirts-logo"></div>
       <div class="shirts-graphic" aria-hidden="true">
-        <div class="sg-ticker"><div class="sg-ticker-track" id="sg-ticker-track"></div></div>
-        <div class="sg-tags">
-          <span class="sg-chip">100% COTON</span>
-          <span class="sg-chip sg-chip-fill">ÉDITION LIMITÉE</span>
-          <span class="sg-chip">SÉRIGRAPHIE</span>
-          <span class="sg-chip">PARIS</span>
+        <div class="receipt">
+          <div class="receipt-top">
+            <span class="r-store">ADRSHIRTDESIGN</span>
+            <span class="r-sub">*** UPCYCLING DEPT ***</span>
+            <span class="r-addr">PARIS · FR · NO FIXED ADDRESS</span>
+          </div>
+          <div class="r-dash"></div>
+          <div class="r-line"><span>1x PIÈCE UNIQUE</span><span>—,—€</span></div>
+          <div class="r-line"><span>TISSU RÉCUP.</span><span>0.00€</span></div>
+          <div class="r-line r-strike"><span>NEUF</span><span>JAMAIS</span></div>
+          <div class="r-line"><span>HEURES MAIN</span><span>∞</span></div>
+          <div class="r-dash"></div>
+          <div class="r-line r-total"><span>TOTAL</span><span>1/1</span></div>
+          <div class="r-dash"></div>
+          <div class="r-barcode"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="r-foot">MERCI · PAS DE REMBOURSEMENT · C'EST DE L'ART</div>
         </div>
-        <svg class="sg-mark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="116" height="116" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
-          <line x1="2" y1="30" x2="118" y2="30" stroke="#0a0a0a" stroke-width="1"/>
-          <circle cx="16" cy="16" r="4" fill="#0a0a0a"><animate attributeName="opacity" values="1;.2;1" dur="2.4s" repeatCount="indefinite"/></circle>
-          <text x="26" y="20" font-family="'Space Mono',monospace" font-size="8" letter-spacing="1" fill="#0a0a0a">ADR/SHIRT</text>
-          <text x="8" y="56" font-family="'Space Mono',monospace" font-size="7" letter-spacing="1" fill="#0a0a0a">SIZE · S/M/L/XL</text>
-          <text x="8" y="74" font-family="'Space Mono',monospace" font-size="7" letter-spacing="1" fill="#0a0a0a">MADE IN PARIS</text>
-          <text x="8" y="92" font-family="'Space Mono',monospace" font-size="7" letter-spacing="1" fill="#0a0a0a">N° 2026</text>
-          <g stroke="#0a0a0a" stroke-width="2">
-            <line x1="78" y1="50" x2="78" y2="104"><animate attributeName="x1" values="78;78" dur="3s"/></line>
-            <line x1="84" y1="50" x2="84" y2="104"/><line x1="90" y1="50" x2="90" y2="104"/>
-            <line x1="98" y1="50" x2="98" y2="104" stroke-width="4"/><line x1="106" y1="50" x2="106" y2="104"/>
-            <line x1="112" y1="50" x2="112" y2="104" stroke-width="3"/>
-          </g>
-        </svg>
+        <div class="stamp stamp-1">ONE<br>OF<br>ONE</div>
+        <div class="stamp stamp-2">NO<br>RESTOCK</div>
+        <div class="scrawl scrawl-1">fait main ✶</div>
+        <div class="scrawl scrawl-2">recyclé</div>
+        <div class="tape tape-1"></div>
+        <div class="tape tape-2"></div>
       </div>
     </div>
   </div>
@@ -604,8 +644,6 @@ function render(){
   // Marquee hero
   const mq=document.getElementById('hero-marquee-track');
   if(mq){const words=['ADRSHITDESIGN','◆','VIDÉO','◆','MOTION','◆','BRANDING','◆','PHOTO','◆'];const seq=words.map(w=>`<span>${w}</span>`).join('');mq.innerHTML=seq+seq;}
-  const sgt=document.getElementById('sg-ticker-track');
-  if(sgt){const w=['ADRSHIRTDESIGN','✦','STREETWEAR','✦','PARIS','✦'];const s=w.map(x=>`<span>${x}</span>`).join('');sgt.innerHTML=s+s;}
   document.getElementById('about-p1-el').textContent=D.about.text1||'';
   document.getElementById('about-p2-el').textContent=D.about.text2||'';
   document.getElementById('shirts-p1-el').textContent=D.shirtsText||D.about.text2||'';
@@ -716,11 +754,41 @@ function openProject(i){
     ${yt}
     ${_lbImgs.length?`<div class="pm-gallery">${_lbImgs.map((s,j)=>`<img src="${s}" alt="${p.title}" onclick="openLightbox(${j})" style="cursor:zoom-in"/>`).join('')}</div>`:''}
     <div class="pm-meta">${p.techs?`<div class="pm-meta-block"><label>Outils</label><span>${p.techs}</span></div>`:''}</div>
+    ${p.fontDownload?`<button class="pm-link pm-font-dl" onclick="downloadFont()">⬇ Télécharger la fonte (.woff2)</button>`:''}
     ${p.extLink?`<a href="${p.extLink}" target="_blank" class="pm-link">↗ Voir le projet</a>`:''}`;
   document.getElementById('project-modal').classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeProject(){document.getElementById('project-modal').classList.remove('open');document.body.style.overflow=''}
+
+// Téléchargement de la fonte ADRSHITTypo (extraite du @font-face base64)
+function downloadFont(){
+  try{
+    // Récupère le base64 depuis les règles CSS @font-face
+    let b64=null;
+    for(const sheet of document.styleSheets){
+      let rules;try{rules=sheet.cssRules}catch(e){continue}
+      if(!rules)continue;
+      for(const rule of rules){
+        if(rule.type===CSSRule.FONT_FACE_RULE && /ADRSHITTypo/i.test(rule.cssText)){
+          const m=rule.cssText.match(/base64,([A-Za-z0-9+/=]+)/);
+          if(m){b64=m[1];break}
+        }
+      }
+      if(b64)break;
+    }
+    if(!b64){toast('Fonte introuvable','⚠️');return}
+    const bin=atob(b64),bytes=new Uint8Array(bin.length);
+    for(let k=0;k<bin.length;k++)bytes[k]=bin.charCodeAt(k);
+    const blob=new Blob([bytes],{type:'font/woff2'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url;a.download='ADRSHITTypo-Regular.woff2';
+    document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    toast('Fonte téléchargée ✓');
+  }catch(e){toast('Erreur téléchargement','⚠️')}
+}
 
 // ============ LIGHTBOX ============
 function openLightbox(idx){
@@ -743,7 +811,8 @@ function enterEdit(){editMode=true;document.body.classList.add('edit-mode');docu
 function exitEdit(){editMode=false;document.body.classList.remove('edit-mode');document.getElementById('edit-bar').classList.remove('visible');render()}
 
 // ============ IMAGE PICK ============
-function pickImg(i,type){
+// Compresse un fichier image en base64 et passe le résultat au callback
+function pickAndCompress(cb){
   const inp=document.createElement('input');
   inp.type='file';inp.accept='image/*';
   inp.onchange=()=>{
@@ -757,22 +826,43 @@ function pickImg(i,type){
         if(w>h){if(w>MAX){h=Math.round(h*MAX/w);w=MAX}}else{if(h>MAX){w=Math.round(w*MAX/h);h=MAX}}
         canvas.width=w;canvas.height=h;
         canvas.getContext('2d').drawImage(img,0,0,w,h);
-        const b64=canvas.toDataURL('image/jpeg',.8);
-        if(type==='portfolio'){D.portfolio[i].img=b64;if(!D.portfolio[i].gallery)D.portfolio[i].gallery=[];D.portfolio[i].gallery[0]=b64}
-        else{D.shirts[i].img=b64}
-        const adminOpen=document.getElementById('admin-panel').classList.contains('open');
-        if(adminOpen){
-          type==='portfolio'?renderAdminPortfolio():renderAdminShirts();
-          livePreview();toast('Image ajoutée ✓ (pense à enregistrer)');
-        } else {
-          saveAll();render();toast('Image mise à jour ✓');
-        }
+        cb(canvas.toDataURL('image/jpeg',.8));
       };
       img.src=e.target.result;
     };
     r.readAsDataURL(inp.files[0]);
   };
   inp.click();
+}
+
+// Image principale (ou image d'un drop)
+function pickImg(i,type){
+  pickAndCompress(b64=>{
+    if(type==='portfolio'){D.portfolio[i].img=b64}
+    else{D.shirts[i].img=b64}
+    const adminOpen=document.getElementById('admin-panel').classList.contains('open');
+    if(adminOpen){
+      type==='portfolio'?renderAdminPortfolio():renderAdminShirts();
+      // garder la carte dépliée
+      const card=document.querySelector(`.ap-card[data-type="${type}"][data-i="${i}"]`);
+      if(card)card.classList.add('expanded');
+      livePreview();toast('Image ajoutée ✓ (pense à enregistrer)');
+    } else {
+      saveAll();render();toast('Image mise à jour ✓');
+    }
+  });
+}
+
+// Image d'un slot de galerie
+function pickGalleryImg(i,j){
+  pickAndCompress(b64=>{
+    ensureGallery(i)[j]=b64;
+    refreshGalleryThumb(i,j,b64);
+    // remettre l'URL dans l'input correspondant
+    const items=document.querySelectorAll(`.ap-card[data-type="portfolio"][data-i="${i}"] .ap-gallery-item`);
+    if(items[j]){const inp=items[j].querySelector('.ap-gallery-url');if(inp)inp.value=b64}
+    livePreview();toast('Image galerie ajoutée ✓');
+  });
 }
 
 // ============ ADMIN ============
@@ -808,15 +898,36 @@ function renderAdminPortfolio(){
           <div class="ap-field ap-full"><label>Sous-titre (ex: Motion — 2025)</label><input value="${esc(p.sub)}" oninput="upd('portfolio',${i},'sub',this.value)"/></div>
           <div class="ap-field ap-full"><label>Description</label><textarea oninput="upd('portfolio',${i},'desc',this.value)">${esc(p.desc)}</textarea></div>
           <div class="ap-field"><label>Outils (séparés par virgules)</label><input value="${esc(p.techs)}" oninput="upd('portfolio',${i},'techs',this.value)"/></div>
-          <div class="ap-field"><label>Lien externe (optionnel)</label><input value="${esc(p.extLink)}" oninput="upd('portfolio',${i},'extLink',this.value)"/></div>
+          <div class="ap-field"><label>Lien externe (optionnel)</label><input value="${esc(p.extLink)}" oninput="upd('portfolio',${i},'extLink',this.value)" placeholder="https://behance.net/... ou autre"/></div>
+          <div class="ap-field ap-full ap-check"><label class="ap-check-lbl"><input type="checkbox" ${p.fontDownload?'checked':''} onchange="upd('portfolio',${i},'fontDownload',this.checked)"/> Proposer le téléchargement de la fonte ADRSHITTypo sur ce projet</label></div>
         </div>
         <div class="ap-imgrow">
-          <div class="ap-field"><label>URL image principale</label><input value="${esc(p.img)}" oninput="updImg('portfolio',${i},this.value)" placeholder="https://raw.githubusercontent.com/..."/><div class="hint">URL GitHub ou upload →</div></div>
+          <div class="ap-field"><label>Image principale (vignette grille)</label><input value="${esc(p.img)}" oninput="updMainImg(${i},this.value)" placeholder="Colle une URL ou clique Upload →"/></div>
           <button class="ap-upload-btn" onclick="pickImg(${i},'portfolio')">📷 Upload</button>
+        </div>
+        <div class="ap-gallery-block">
+          <div class="ap-gallery-head">
+            <label>Galerie du projet (affichée dans « Voir le projet »)</label>
+            <button class="ap-add-btn ap-add-sm" onclick="addGalleryImg(${i})">+ Ajouter une image</button>
+          </div>
+          <div class="ap-gallery-list">${renderGalleryEditor(p,i)}</div>
         </div>
       </div>
     </div>`).join('');
   bindDrag('portfolio');
+}
+
+// Éditeur de galerie pour un projet
+function renderGalleryEditor(p,i){
+  const g=p.gallery||[];
+  if(!g.length)return '<div class="ap-gallery-empty">Aucune image supplémentaire. La galerie reprendra l\'image principale par défaut.</div>';
+  return g.map((src,j)=>`
+    <div class="ap-gallery-item">
+      <span class="ap-gallery-thumb">${src?`<img src="${esc(src)}"/>`:'?'}</span>
+      <input class="ap-gallery-url" value="${esc(src)}" oninput="updGalleryImg(${i},${j},this.value)" placeholder="URL image ${j+1}"/>
+      <button class="ap-upload-btn ap-upload-sm" onclick="pickGalleryImg(${i},${j})">📷</button>
+      <button class="ap-del ap-del-sm" onclick="delGalleryImg(${i},${j})" title="Retirer">✕</button>
+    </div>`).join('');
 }
 
 function renderAdminShirts(){
@@ -848,10 +959,40 @@ function renderAdminShirts(){
 
 // Mise à jour data + aperçu live
 function upd(type,i,key,val){D[type][i][key]=val;refreshThumbMeta(type,i);livePreview()}
+
+// Image principale (n'écrase plus la galerie)
+function updMainImg(i,val){
+  D.portfolio[i].img=val;
+  // met à jour la vignette de la carte
+  const card=document.querySelector(`.ap-card[data-type="portfolio"][data-i="${i}"] .ap-thumb`);
+  if(card)card.innerHTML=val?`<img src="${esc(val)}" style="width:100%;height:100%;object-fit:cover"/>`:(D.portfolio[i].label||'?').substring(0,1);
+  livePreview();
+}
+// Shirts : image directe
 function updImg(type,i,val){
-  if(type==='portfolio'){D.portfolio[i].img=val;D.portfolio[i].gallery=val?[val]:[]}
+  if(type==='portfolio'){updMainImg(i,val)}
   else{D.shirts[i].img=val}
   livePreview();
+}
+
+// ----- Galerie projet -----
+function ensureGallery(i){if(!Array.isArray(D.portfolio[i].gallery))D.portfolio[i].gallery=[];return D.portfolio[i].gallery}
+function addGalleryImg(i){
+  const g=ensureGallery(i);
+  // si galerie vide et image principale existe, on démarre avec elle
+  if(!g.length&&D.portfolio[i].img)g.push(D.portfolio[i].img);
+  g.push('');
+  rerenderGallery(i);livePreview();
+}
+function updGalleryImg(i,j,val){ensureGallery(i)[j]=val;refreshGalleryThumb(i,j,val);livePreview()}
+function delGalleryImg(i,j){ensureGallery(i).splice(j,1);rerenderGallery(i);livePreview()}
+function rerenderGallery(i){
+  const list=document.querySelector(`.ap-card[data-type="portfolio"][data-i="${i}"] .ap-gallery-list`);
+  if(list)list.innerHTML=renderGalleryEditor(D.portfolio[i],i);
+}
+function refreshGalleryThumb(i,j,val){
+  const items=document.querySelectorAll(`.ap-card[data-type="portfolio"][data-i="${i}"] .ap-gallery-item`);
+  if(items[j]){const t=items[j].querySelector('.ap-gallery-thumb');if(t)t.innerHTML=val?`<img src="${esc(val)}"/>`:'?'}
 }
 function refreshThumbMeta(type,i){
   const card=document.querySelector(`.ap-card[data-type="${type}"][data-i="${i}"]`);
