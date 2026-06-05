@@ -144,6 +144,17 @@ h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6
 #shirts h2{color:var(--black)}
 .shirts-logo-wrap{margin-bottom:2rem}
 .shirts-logo-wrap svg{width:min(360px,65vw);height:auto;display:block}
+.shirts-head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:1rem}
+.shirts-graphic{flex:1;min-width:280px;max-width:480px;display:flex;flex-direction:column;gap:1rem;padding-top:.5rem}
+.sg-ticker{overflow:hidden;border-top:1px solid #0a0a0a;border-bottom:1px solid #0a0a0a;padding:.5rem 0;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.sg-ticker-track{display:inline-flex;white-space:nowrap;font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:1.5rem;text-transform:uppercase;color:#0a0a0a;animation:sgmarquee 18s linear infinite;will-change:transform}
+.sg-ticker-track span{padding:0 1rem}
+@keyframes sgmarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.sg-tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.sg-chip{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:#0a0a0a;border:1px solid #0a0a0a;padding:.3rem .6rem}
+.sg-chip-fill{background:#0a0a0a;color:#f5f5f0}
+.sg-mark{width:108px;height:108px;flex-shrink:0;align-self:flex-end;margin-top:-2.5rem}
+@media(max-width:760px){.sg-mark{align-self:flex-start;margin-top:0}}
 .shirts-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:2.5rem}
 .shirts-text p{font-size:.9rem;line-height:1.85;color:#444;margin-bottom:1.4rem}
 .shirts-tag-list{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.8rem}
@@ -353,7 +364,7 @@ let editMode=false,_imgCb=null;
 
 <!-- NAV -->
 <nav>
-  <div id="nav-logo"></div>
+  <div class="nav-logo" id="nav-logo"></div>
   <ul class="nav-links">
     <li><a href="#portfolio">Portfolio</a></li>
     <li><a href="#shirts">Vêtements</a></li>
@@ -392,9 +403,35 @@ let editMode=false,_imgCb=null;
 <div class="divider"></div>
 
 <section id="shirts">
-  <div class="reveal">
+  <div class="reveal shirts-head">
     <div class="section-tag" data-num="02">La marque</div>
-    <div class="shirts-logo-wrap" id="shirts-logo"></div>
+    <div class="shirts-head-row">
+      <div class="shirts-logo-wrap" id="shirts-logo"></div>
+      <div class="shirts-graphic" aria-hidden="true">
+        <div class="sg-ticker"><div class="sg-ticker-track" id="sg-ticker-track"></div></div>
+        <div class="sg-tags">
+          <span class="sg-chip">100% COTON</span>
+          <span class="sg-chip sg-chip-fill">ÉDITION LIMITÉE</span>
+          <span class="sg-chip">SÉRIGRAPHIE</span>
+          <span class="sg-chip">PARIS</span>
+        </div>
+        <svg class="sg-mark" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="116" height="116" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+          <line x1="2" y1="30" x2="118" y2="30" stroke="#0a0a0a" stroke-width="1"/>
+          <circle cx="16" cy="16" r="4" fill="#0a0a0a"><animate attributeName="opacity" values="1;.2;1" dur="2.4s" repeatCount="indefinite"/></circle>
+          <text x="26" y="20" font-family="'Space Mono',monospace" font-size="8" letter-spacing="1" fill="#0a0a0a">ADR/SHIRT</text>
+          <text x="8" y="56" font-family="'Space Mono',monospace" font-size="7" letter-spacing="1" fill="#0a0a0a">SIZE · S/M/L/XL</text>
+          <text x="8" y="74" font-family="'Space Mono',monospace" font-size="7" letter-spacing="1" fill="#0a0a0a">MADE IN PARIS</text>
+          <text x="8" y="92" font-family="'Space Mono',monospace" font-size="7" letter-spacing="1" fill="#0a0a0a">N° 2026</text>
+          <g stroke="#0a0a0a" stroke-width="2">
+            <line x1="78" y1="50" x2="78" y2="104"><animate attributeName="x1" values="78;78" dur="3s"/></line>
+            <line x1="84" y1="50" x2="84" y2="104"/><line x1="90" y1="50" x2="90" y2="104"/>
+            <line x1="98" y1="50" x2="98" y2="104" stroke-width="4"/><line x1="106" y1="50" x2="106" y2="104"/>
+            <line x1="112" y1="50" x2="112" y2="104" stroke-width="3"/>
+          </g>
+        </svg>
+      </div>
+    </div>
   </div>
   <div class="shirts-layout reveal reveal-d1">
     <div class="shirts-text">
@@ -557,7 +594,7 @@ try{
 
 // ============ RENDER ============
 function render(){
-  document.getElementById('nav-logo').innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 568.8 94.55" fill="white" style="height:26px">${SVG_SHIRT.replace('fill="black"','fill="white"').replace(/<svg[^>]*>/,'')}</svg>`;
+  document.getElementById('nav-logo').innerHTML=SVG_SQ_W;
   document.getElementById('hero-logo').innerHTML=SVG_SQ_W;
   document.getElementById('shirts-logo').innerHTML=SVG_SHIRT;
   document.getElementById('about-logo').innerHTML=SVG_SQ_W;
@@ -567,6 +604,8 @@ function render(){
   // Marquee hero
   const mq=document.getElementById('hero-marquee-track');
   if(mq){const words=['ADRSHITDESIGN','◆','VIDÉO','◆','MOTION','◆','BRANDING','◆','PHOTO','◆'];const seq=words.map(w=>`<span>${w}</span>`).join('');mq.innerHTML=seq+seq;}
+  const sgt=document.getElementById('sg-ticker-track');
+  if(sgt){const w=['ADRSHIRTDESIGN','✦','STREETWEAR','✦','PARIS','✦'];const s=w.map(x=>`<span>${x}</span>`).join('');sgt.innerHTML=s+s;}
   document.getElementById('about-p1-el').textContent=D.about.text1||'';
   document.getElementById('about-p2-el').textContent=D.about.text2||'';
   document.getElementById('shirts-p1-el').textContent=D.shirtsText||D.about.text2||'';
@@ -592,7 +631,8 @@ function render(){
         ${editMode?'':`<span class="pf-open">Voir le projet →</span>`}
       </div>
       <div class="pf-visual">
-        ${p.img?`<img src="${p.img}" alt="${p.title}"/>`:`<span class="pf-ph">${(p.label||'').substring(0,3)}</span>`}
+        ${p.img?`<img src="${p.img}" alt="${p.title}" onerror="this.style.display='none';this.parentNode.querySelector('.pf-ph').style.display='flex'"/>`:''}
+        <span class="pf-ph"${p.img?' style="display:none"':''}>${(p.label||'').substring(0,3)}</span>
         <div class="pf-scanline"></div>
       </div>
     </div>`;
