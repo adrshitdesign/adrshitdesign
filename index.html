@@ -3,7 +3,26 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>adrshitdesign</title>
+<title>adrshitdesign — Directeur Artistique · Paris</title>
+<meta name="description" content="adrshitdesign — Directeur artistique à Paris. Vidéo, photo, motion design, branding et identité visuelle. Et adrshirtdesign, une marque de vêtements streetwear en édition limitée."/>
+<meta name="author" content="adrshitdesign"/>
+<meta name="theme-color" content="#0a0a0a"/>
+<link rel="canonical" href="https://adrshitdesign.github.io/"/>
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="adrshitdesign — Directeur Artistique · Paris"/>
+<meta property="og:description" content="Vidéo, photo, motion design, branding. Et une marque de vêtements streetwear."/>
+<meta property="og:image" content="https://raw.githubusercontent.com/adrshitdesign/adrshitdesign/main/images/og-cover.jpg"/>
+<meta property="og:locale" content="fr_FR"/>
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="adrshitdesign — Directeur Artistique · Paris"/>
+<meta name="twitter:description" content="Vidéo, photo, motion design, branding. Et une marque de vêtements streetwear."/>
+<meta name="twitter:image" content="https://raw.githubusercontent.com/adrshitdesign/adrshitdesign/main/images/og-cover.jpg"/>
+<!-- Données structurées -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"adrshitdesign","jobTitle":"Directeur Artistique","url":"https://adrshitdesign.github.io/","address":{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"},"sameAs":["https://www.instagram.com/adrshitdesign/"],"knowsAbout":["Direction artistique","Motion design","Vidéo","Photographie","Branding"]}
+</script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -19,12 +38,19 @@ body{background:var(--black);color:var(--white);font-family:'Space Grotesk',sans
 nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 2.5rem;background:rgba(10,10,10,.92);backdrop-filter:blur(12px);border-bottom:1px solid #1e1e1e}
 .nav-logo svg{height:26px;width:auto;display:block}
 .nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{text-decoration:none;color:var(--gray);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;font-family:'Space Mono',monospace}
+.nav-links a{text-decoration:none;color:var(--gray);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;transition:color .2s;font-family:'Space Mono',monospace;position:relative}
 .nav-links a:hover{color:var(--white)}
+.nav-links a.active{color:var(--white)}
+.nav-links a.active::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--white)}
 
 #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 2.5rem 5rem;position:relative;overflow:hidden}
 canvas#hero-canvas{position:absolute;inset:0;z-index:0;opacity:.5}
-#hero-graphic{position:absolute;right:3rem;top:50%;transform:translateY(-50%);z-index:1;pointer-events:none;width:min(380px,38vw)}
+.hero-grid-overlay{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 75% 75% at 50% 45%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 75% 75% at 50% 45%,#000 30%,transparent 80%);animation:gridDrift 24s linear infinite}
+@keyframes gridDrift{from{background-position:0 0,0 0}to{background-position:64px 64px,64px 64px}}
+.hero-marquee{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%) rotate(-2.5deg);z-index:0;pointer-events:none;overflow:hidden;width:120%;margin-left:-10%;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.hero-marquee-track{display:inline-flex;white-space:nowrap;font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(4rem,13vw,11rem);line-height:1;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.06);animation:marquee 32s linear infinite;will-change:transform}
+.hero-marquee-track span{padding:0 1.5rem}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .hero-content{position:relative;z-index:1}
 .hero-logo-wrap{margin-bottom:2.5rem;position:relative;display:inline-block}
 .hero-logo-wrap svg{width:min(500px,78vw);height:auto;display:block;filter:drop-shadow(0 0 30px rgba(255,255,255,.07))}
@@ -57,20 +83,30 @@ h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6
 #portfolio{background:var(--black)}
 .portfolio-intro{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem}
 .portfolio-sub{color:var(--light);font-size:.85rem;max-width:280px;line-height:1.7}
-.portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-.portfolio-item{background:#0b0b0b;aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer;border:1px solid #1a1a1a;transition:border-color .3s}
-.portfolio-item:hover{border-color:#333}
-.portfolio-item:nth-child(1){grid-column:span 2;aspect-ratio:2/1}
-.portfolio-item:nth-child(4){grid-column:span 2;aspect-ratio:2/1}
-.portfolio-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.7;transition:opacity .4s,transform .5s;filter:contrast(1.1)}
-.portfolio-item:hover img{opacity:.3;transform:scale(1.04)}
-.p-inner{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem}
-.p-label{font-family:'ADRSHITTypo',sans-serif;font-size:1.5rem;letter-spacing:.05em;text-transform:uppercase;color:#1e1e1e;transition:color .3s;margin-bottom:.25rem}
-.portfolio-item:hover .p-label{color:#333}
-.p-info{transform:translateY(6px);opacity:0;transition:all .3s}
-.portfolio-item:hover .p-info{transform:translateY(0);opacity:1}
-.p-info h3{font-size:.78rem;font-weight:600;margin-bottom:.12rem;color:var(--white)}
-.p-info p{font-size:.63rem;color:var(--light);font-family:'Space Mono',monospace}
+.portfolio-grid{display:flex;flex-direction:column;gap:1px;background:#161616;border:1px solid #161616}
+.portfolio-item{background:var(--black);position:relative;overflow:hidden;cursor:pointer;display:grid;grid-template-columns:90px 1.1fr 1fr;align-items:stretch;min-height:230px;transition:background .4s}
+.portfolio-item:hover{background:#0d0d0d}
+.pf-index{display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:1.4rem .6rem;border-right:1px solid #161616}
+.pf-num{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em;color:#444;transition:color .4s}
+.portfolio-item:hover .pf-num{color:var(--white)}
+.pf-year{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;color:#333;writing-mode:vertical-rl;transform:rotate(180deg)}
+.pf-body{padding:1.6rem 1.8rem;display:flex;flex-direction:column;justify-content:center;gap:.7rem;z-index:2}
+.pf-cat{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gray);display:flex;align-items:center;gap:.7rem}
+.pf-cat::before{content:'';width:18px;height:1px;background:#444;transition:width .4s,background .4s}
+.portfolio-item:hover .pf-cat::before{width:34px;background:var(--white)}
+.pf-title{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(1.6rem,3.2vw,2.6rem);line-height:.95;text-transform:uppercase;letter-spacing:.02em}
+.pf-techs{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.2rem}
+.pf-tech{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;color:#666;border:1px solid #222;padding:.2rem .5rem}
+.pf-open{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:#444;display:inline-flex;align-items:center;gap:.5rem;margin-top:.4rem;transition:color .3s,gap .3s}
+.portfolio-item:hover .pf-open{color:var(--white);gap:.9rem}
+.pf-visual{position:relative;overflow:hidden;border-left:1px solid #161616}
+.pf-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.55;transition:opacity .5s,transform .7s;filter:grayscale(1) contrast(1.1)}
+.portfolio-item:hover .pf-visual img{opacity:.85;transform:scale(1.05);filter:grayscale(0) contrast(1.05)}
+.pf-visual::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,var(--black),transparent 40%);pointer-events:none}
+.pf-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'ADRSHITTypo',sans-serif;font-size:2.5rem;color:#1a1a1a}
+.pf-scanline{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);top:0;opacity:0;transition:opacity .3s}
+.portfolio-item:hover .pf-scanline{opacity:1;animation:scan 2.2s linear infinite}
+@keyframes scan{0%{top:0}100%{top:100%}}
 
 #project-modal{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.96);backdrop-filter:blur(8px);overflow-y:auto}
 #project-modal.open{display:block}
@@ -88,6 +124,17 @@ h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6
 .pm-meta-block span{font-size:.85rem;color:var(--light)}
 .pm-link{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.4rem;border:1px solid #333;text-decoration:none;color:var(--light);font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s}
 .pm-link:hover{border-color:#888;color:var(--white)}
+.pm-gallery img{cursor:zoom-in}
+#lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.97);backdrop-filter:blur(6px);align-items:center;justify-content:center;flex-direction:column}
+#lightbox.open{display:flex}
+#lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;border:1px solid #1a1a1a;display:block}
+#lightbox-nav{display:flex;align-items:center;gap:1.5rem;margin-top:1.2rem}
+.lb-btn{background:none;border:1px solid #333;color:var(--gray);font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.1rem;cursor:pointer;transition:all .2s}
+.lb-btn:hover{border-color:#888;color:var(--white)}
+.lb-btn:disabled{opacity:.2;cursor:default;border-color:#1a1a1a;color:#333}
+#lb-counter{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;color:#555}
+#lb-close{position:fixed;top:1.5rem;right:2rem;background:none;border:1px solid #333;color:var(--gray);font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;cursor:pointer;transition:all .2s;z-index:1000}
+#lb-close:hover{border-color:#888;color:var(--white)}
 .pm-yt{position:relative;padding-bottom:56.25%;height:0;margin-bottom:2rem;border:1px solid #1a1a1a}
 .pm-yt iframe{position:absolute;inset:0;width:100%;height:100%;border:none}
 
@@ -110,6 +157,8 @@ h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6
 .shirt-card .s-label{width:100%;padding:.7rem;font-family:'ADRSHITTypo',sans-serif;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.85));transform:translateY(100%);transition:transform .3s}
 .shirt-card:hover .s-label{transform:translateY(0)}
 .shirt-ph{font-family:'ADRSHITTypo',sans-serif;font-size:2rem;color:#1a1a1a;letter-spacing:.1em;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.s-soon{position:absolute;top:.7rem;right:.7rem;z-index:3;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.25);padding:.25rem .55rem;backdrop-filter:blur(4px)}
+.shirt-card.is-soon{cursor:default}
 
 #about{background:var(--black)}
 .about-layout{display:grid;grid-template-columns:250px 1fr;gap:5rem;align-items:start;margin-top:3rem}
@@ -136,6 +185,8 @@ footer{background:var(--black);padding:1.8rem 2.5rem;display:flex;justify-conten
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 .reveal-d1{transition-delay:.12s}
+.portfolio-item{opacity:0;transform:translateX(-18px);transition:opacity .7s ease,transform .7s ease,background .4s}
+.portfolio-item.pf-in{opacity:1;transform:translateX(0)}
 
 body.edit-mode .edit-img-zone{outline:2px dashed rgba(99,179,237,.5);cursor:pointer;position:relative}
 body.edit-mode .edit-img-zone:hover{outline:2px solid #63b3ed}
@@ -153,22 +204,52 @@ body.edit-mode .edit-img-zone::after{content:'📷 Changer';position:absolute;to
 .eb-admin{background:transparent;color:#63b3ed;border:1px solid #1a3a4a}.eb-admin:hover{border-color:#63b3ed}
 .eb-exit{background:transparent;color:#555;border:1px solid #222}.eb-exit:hover{color:#888}
 
-#admin-panel{display:none;position:fixed;inset:0;z-index:500;background:#080808;overflow-y:auto}
+#admin-panel{display:none;position:fixed;inset:0;z-index:500;background:#080808}
 #admin-panel.open{display:flex;flex-direction:column}
-.ap-nav{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 2rem;background:#0c0c0c;border-bottom:1px solid #1a1a1a;position:sticky;top:0;z-index:10;flex-wrap:wrap;gap:.5rem}
-.ap-nav-title{font-family:'ADRSHITTypo',sans-serif;font-size:1.4rem;letter-spacing:.05em}
+.ap-nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;background:#0c0c0c;border-bottom:1px solid #1a1a1a;flex-wrap:wrap;gap:.5rem;flex-shrink:0}
+.ap-nav-title{font-family:'ADRSHITTypo',sans-serif;font-size:1.4rem;letter-spacing:.05em;display:flex;align-items:center;gap:.6rem}
+.ap-nav-title::before{content:'';width:7px;height:7px;border-radius:50%;background:#63b3ed;animation:pulse 2s infinite}
 .ap-tabs{display:flex;gap:.3rem;overflow-x:auto}
 .ap-tab{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.45rem 1rem;cursor:pointer;border:none;background:transparent;color:#555;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
 .ap-tab.active,.ap-tab:hover{color:var(--white);border-bottom-color:#444}
 .ap-tab.active{border-bottom-color:var(--white)}
-.ap-close-btn{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.45rem 1rem;cursor:pointer;border:1px solid #222;background:transparent;color:#555;transition:all .2s}
+.ap-nav-actions{display:flex;gap:.5rem;align-items:center}
+.ap-save-top{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1.1rem;cursor:pointer;border:none;background:var(--white);color:var(--black);transition:all .2s}
+.ap-save-top:hover{background:#ccc}
+.ap-close-btn{font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;cursor:pointer;border:1px solid #222;background:transparent;color:#555;transition:all .2s}
 .ap-close-btn:hover{color:var(--white);border-color:#555}
-.ap-body{flex:1;padding:2.5rem 2rem;max-width:900px;width:100%;margin:0 auto}
+
+/* Layout 2 colonnes : éditeur + aperçu live */
+.ap-split{flex:1;display:grid;grid-template-columns:minmax(380px,1fr) 1fr;overflow:hidden}
+.ap-editor{overflow-y:auto;padding:2rem 1.8rem;border-right:1px solid #161616}
+.ap-preview-pane{position:relative;background:#060606;overflow:hidden;display:flex;flex-direction:column}
+.ap-preview-bar{flex-shrink:0;padding:.7rem 1.2rem;background:#0c0c0c;border-bottom:1px solid #161616;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;color:#555;display:flex;align-items:center;gap:.6rem}
+.ap-preview-bar::before{content:'◉';color:#63b3ed}
+.ap-preview-frame{flex:1;width:100%;border:none;background:#0a0a0a}
 .ap-page{display:none}.ap-page.active{display:block}
-.ap-card{background:#0c0c0c;border:1px solid #161616;padding:1.5rem;margin-bottom:1rem}
-.ap-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
-.ap-card-title{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:#888}
-.ap-card-badge{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .6rem;background:#161616;color:#444;border:1px solid #1e1e1e}
+.ap-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
+.ap-section-title{font-family:'ADRSHITTypo',sans-serif;font-size:1.6rem;letter-spacing:.03em}
+.ap-add-btn{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem 1rem;cursor:pointer;border:1px dashed #2a2a2a;background:transparent;color:#888;transition:all .2s;display:inline-flex;align-items:center;gap:.4rem}
+.ap-add-btn:hover{border-color:#63b3ed;color:#63b3ed;border-style:solid}
+
+/* Cartes repliables triables */
+.ap-card{background:#0c0c0c;border:1px solid #161616;margin-bottom:.8rem;transition:border-color .2s,box-shadow .2s}
+.ap-card.dragging{opacity:.4;border-color:#63b3ed}
+.ap-card.drag-over{border-top:2px solid #63b3ed}
+.ap-card-head{display:flex;align-items:center;gap:.7rem;padding:.9rem 1.1rem;cursor:pointer;user-select:none}
+.ap-handle{cursor:grab;color:#333;font-size:1rem;line-height:1;padding:.2rem;transition:color .2s}
+.ap-handle:active{cursor:grabbing}
+.ap-card:hover .ap-handle{color:#666}
+.ap-thumb{width:38px;height:38px;object-fit:cover;background:#161616;border:1px solid #1e1e1e;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'ADRSHITTypo',sans-serif;font-size:.7rem;color:#444}
+.ap-card-meta{flex:1;min-width:0}
+.ap-card-name{font-family:'Space Grotesk',sans-serif;font-size:.9rem;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ap-card-cat{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.12em;text-transform:uppercase;color:#555;margin-top:.15rem}
+.ap-chevron{color:#444;transition:transform .25s;font-size:.7rem}
+.ap-card.expanded .ap-chevron{transform:rotate(90deg)}
+.ap-del{background:none;border:none;color:#444;cursor:pointer;font-size:.95rem;padding:.2rem .4rem;transition:color .2s}
+.ap-del:hover{color:#fc8181}
+.ap-card-body{display:none;padding:0 1.1rem 1.2rem;border-top:1px solid #141414}
+.ap-card.expanded .ap-card-body{display:block;padding-top:1.1rem}
 .ap-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}
 .ap-full{grid-column:span 2}
 .ap-field{display:flex;flex-direction:column;gap:.35rem}
@@ -177,11 +258,13 @@ body.edit-mode .edit-img-zone::after{content:'📷 Changer';position:absolute;to
 .ap-field input:focus,.ap-field textarea:focus{border-color:#444}
 .ap-field textarea{resize:vertical;min-height:70px}
 .ap-field .hint{font-size:.58rem;color:#444;font-family:'Space Mono',monospace;margin-top:.2rem}
+.ap-imgrow{display:flex;gap:.6rem;align-items:flex-start}
+.ap-imgrow .ap-field{flex:1}
+.ap-upload-btn{flex-shrink:0;margin-top:1.45rem;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;padding:.6rem .9rem;cursor:pointer;border:1px solid #1e1e1e;background:#0e0e0e;color:#888;transition:all .2s;white-space:nowrap}
+.ap-upload-btn:hover{border-color:#63b3ed;color:#63b3ed}
+.ap-empty{text-align:center;padding:3rem 1rem;border:1px dashed #1a1a1a;color:#444;font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.05em}
 .drop-zone{border:1px dashed #1e1e1e;background:#060606;min-height:90px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;padding:.8rem}
 .drop-zone:hover,.drop-zone.over{border-color:#444;background:#0e0e0e}
-.drop-icon{font-size:1.8rem;color:#222}
-.drop-hint{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.06em;color:#444;text-align:center;line-height:1.5}
-.drop-preview{width:100%;max-height:120px;object-fit:cover;opacity:.75}
 .ap-save-btn{background:var(--white);color:var(--black);font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:.9rem 2rem;border:none;cursor:pointer;transition:all .2s;width:100%;margin-top:1.5rem}
 .ap-save-btn:hover{background:#ccc}
 
@@ -198,11 +281,14 @@ body.edit-mode .edit-img-zone::after{content:'📷 Changer';position:absolute;to
 @media(max-width:900px){
   nav{padding:.9rem 1.5rem}.nav-links{display:none}
   section{padding:4rem 1.5rem}#hero{padding:5rem 1.5rem 4rem}
-  #hero-graphic{display:none}
-  .portfolio-grid{grid-template-columns:1fr 1fr}
-  .portfolio-item:nth-child(1),.portfolio-item:nth-child(4){grid-column:span 2}
+  .portfolio-item{grid-template-columns:60px 1fr;min-height:0}
+  .pf-visual{grid-column:1 / -1;height:200px;border-left:none;border-top:1px solid #161616}
+  .pf-visual::after{background:linear-gradient(0deg,var(--black),transparent 50%)}
   .shirts-layout,.about-layout{grid-template-columns:1fr;gap:2rem}
   .ap-grid{grid-template-columns:1fr}.ap-full{grid-column:span 1}
+  .ap-split{grid-template-columns:1fr}
+  .ap-editor{border-right:none;border-bottom:1px solid #161616}
+  .ap-preview-pane{min-height:50vh}
   .pm-gallery{grid-template-columns:1fr}
   footer{flex-direction:column;text-align:center}
   #edit-bar{padding:.6rem 1rem;flex-wrap:wrap}
@@ -211,9 +297,20 @@ body.edit-mode .edit-img-zone::after{content:'📷 Changer';position:absolute;to
 </head>
 <body>
 
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lb-close" onclick="closeLightbox()">✕ Fermer</button>
+  <img id="lb-img" src="" alt=""/>
+  <div id="lightbox-nav">
+    <button class="lb-btn" id="lb-prev" onclick="lbNav(-1)">← Préc</button>
+    <span id="lb-counter"></span>
+    <button class="lb-btn" id="lb-next" onclick="lbNav(1)">Suiv →</button>
+  </div>
+</div>
+
 <script>
 // ============ CONFIG ============
-const PWD='adrshit2026';
+const PWD_HASH='a6c3199164c4315028129fc0e1a010d9cfc4a9fb56752ea3bafb756873fb1abe';
 const BASE='https://raw.githubusercontent.com/adrshitdesign/adrshitdesign/main/images/';
 const YTLINKS={0:'https://www.youtube.com/embed/yFLQ0PP466U'};
 
@@ -226,19 +323,29 @@ const DD={
     {label:'BRAND',title:"L'Oréal Brainstorm 2024",sub:'Branding — 2024',img:BASE+'LOREAL-15.jpg',desc:"Compétition Brandstorm L'Oréal 2024. Conception de F-Visual, un dispositif connecté pour Kérastase ciblant les hommes. Direction artistique complète.",techs:'Illustrator, Figma, Photoshop',extLink:'',gallery:[BASE+'LOREAL-15.jpg',BASE+'LOREAL-16.jpg',BASE+'LOREAL-17.jpg']}
   ],
   shirts:[
-    {label:'DROP 01',img:'',link:'https://www.vinted.fr'},
-    {label:'DROP 02',img:'',link:'https://www.vinted.fr'},
-    {label:'DROP 03',img:'',link:'https://www.vinted.fr'},
-    {label:'SOON',img:'',link:'https://www.vinted.fr'}
+    {label:'DROP 01',img:'',link:''},
+    {label:'DROP 02',img:'',link:''},
+    {label:'DROP 03',img:'',link:''},
+    {label:'DROP 04',img:'',link:''}
   ],
   about:{text1:"Je travaille dans l'image sous toutes ses formes — vidéo, photo, graphisme, motion design. Chaque projet est une exploration de ce qu'on peut faire avec une idée et les bons outils.",text2:"ADRSHITDESIGN c'est mon nom, ma signature, mon terrain de jeu. ADRSHIRTDESIGN c'est le prolongement physique de cet univers — des vêtements conçus comme des objets graphiques."},
+  shirtsText:"ADRSHIRTDESIGN, c'est le prolongement physique de mon univers graphique. Des pièces pensées comme des objets de direction artistique — pas juste des t-shirts imprimés.",
   contact:{email:'adrshitdesign@gmail.com',instagram:'https://www.instagram.com/adrshitdesign/',vinted:'https://www.vinted.fr'}
 };
 
 // SVGs
 const SVG_SQ_W=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141.73 141.73" fill="white"><path d="M50.38,52.65c-.6.83-1.5,1.28-2.48,1.28h-6.76c-1.35,0-2.48-.83-2.93-2.03l-3.16-9.17h-12.1l-3.23,9.17c-.38,1.2-1.58,2.03-2.86,2.03h-6.76c-.98,0-1.88-.45-2.48-1.28-.6-.83-.68-1.88-.38-2.78L22.44,7.64c.45-1.2,1.58-2.03,2.85-2.03h7.36c1.28,0,2.48.83,2.86,2.03l15.25,42.23c.3.9.15,1.95-.38,2.78M29.05,25.15l-2.18,6.16h4.28l-2.1-6.16Z"/><path d="M94.16,29.51c0,4.88-.98,9.17-2.78,12.77-1.8,3.68-4.58,6.54-8.11,8.56-3.53,1.95-7.66,2.93-12.47,2.93h-13.67c-1.65,0-3.08-1.35-3.08-3.08V8.47c0-1.65,1.43-3,3.08-3h14.12c4.66,0,8.72.98,12.17,2.93,3.46,1.95,6.16,4.81,8.04,8.49,1.73,3.53,2.7,7.81,2.7,12.62M78.99,20.04c-1.73-1.95-4.43-2.93-8.19-2.93h-4.28v25.02h3.91c3.98,0,6.76-.98,8.57-3.08,1.88-2.1,2.78-5.33,2.78-9.54s-.9-7.36-2.78-9.47"/><path d="M134.18,52.27c-.53.9-1.5,1.43-2.63,1.43h-7.21c-1.13,0-2.18-.6-2.7-1.58l-7.66-14.35h-4.28v12.92c0,1.65-1.35,3.01-3.01,3.01h-6.39c-1.65,0-3.01-1.35-3.01-3.01V8.47c0-1.65,1.35-3,3.01-3h15.1c3.68,0,6.91.68,9.54,2.03,2.63,1.35,4.73,3.38,6.09,5.86,1.35,2.48,1.95,5.26,1.95,8.34,0,3.38-.75,6.39-2.33,8.94-1.05,1.73-2.48,3.16-4.21,4.28l7.81,14.35c.53.9.53,2.03-.07,3.01M120.51,21.69c0-1.58-.38-2.7-1.2-3.53-.75-.75-2.33-1.2-4.66-1.2h-4.96v9.24h5.11c2.18,0,3.83-.38,4.58-1.13.3-.3,1.13-1.13,1.13-3.38"/><path d="M30.2,121.94c0,2.81-.56,5.28-1.6,7.36-1.04,2.12-2.64,3.77-4.67,4.93-2.03,1.13-4.41,1.69-7.18,1.69h-7.88c-.95,0-1.77-.78-1.77-1.77v-24.32c0-.95.82-1.73,1.77-1.73h8.14c2.68,0,5.02.56,7.01,1.69,1.99,1.13,3.55,2.77,4.63,4.89,1,2.03,1.56,4.5,1.56,7.27M21.45,116.49c-1-1.13-2.55-1.69-4.72-1.69h-2.47v14.41h2.25c2.29,0,3.9-.56,4.93-1.77,1.08-1.21,1.6-3.07,1.6-5.5s-.52-4.24-1.6-5.45"/><path d="M50.87,130.99v3.16c0,.95-.78,1.73-1.73,1.73h-15.41c-.95,0-1.73-.78-1.73-1.73v-24.32c0-.95.78-1.73,1.73-1.73h15.23c1,0,1.77.78,1.77,1.73v3.16c0,.95-.78,1.73-1.77,1.73h-9.82v3.94h9.05c.95,0,1.73.78,1.73,1.73v3.16c0,.95-.78,1.73-1.73,1.73h-9.05v3.98h10c.95,0,1.73.78,1.73,1.73"/><path d="M74.27,127.4c0,1.69-.48,3.25-1.34,4.63-.91,1.34-2.16,2.42-3.81,3.16-1.56.74-3.46,1.08-5.58,1.08-3.12,0-5.71-.78-7.62-2.29-1.99-1.6-3.12-3.77-3.25-6.49-.04-.48.13-.95.48-1.3.35-.35.78-.56,1.25-.56h3.68c.91,0,1.69.74,1.77,1.6.04.78.3,1.26.87,1.64.78.43,1.69.69,2.77.69,1.21,0,2.12-.26,2.86-.78.56-.39.78-.82.78-1.43,0-.43-.13-.56-.17-.61-.22-.26-.56-.52-1.04-.69-.61-.26-1.3-.52-2.08-.74h-.04l-2.86-.78c-2.21-.61-4.02-1.51-5.37-2.73-1.47-1.39-2.25-3.16-2.25-5.37,0-1.77.48-3.38,1.47-4.72.95-1.3,2.21-2.29,3.81-2.99,1.51-.69,3.25-1.04,5.11-1.04s3.59.35,5.06,1.04c1.56.69,2.77,1.69,3.68,2.94.95,1.3,1.43,2.81,1.47,4.46.04.48-.17.91-.48,1.26-.35.35-.78.52-1.26.52h-3.55c-.87,0-1.64-.65-1.73-1.56-.09-.61-.3-1.04-.82-1.34-.61-.43-1.47-.65-2.47-.65-1.13,0-1.95.22-2.51.65-.56.43-.65.87-.65,1.21,0,.43.17.61.22.69.3.3.69.52,1.13.74.65.22,1.21.43,1.77.56l2.38.65c.82.17,1.73.48,2.6.82.95.39,1.86.91,2.68,1.51.87.69,1.6,1.52,2.16,2.51.56,1.04.87,2.29.87,3.68"/><path d="M83.26,109.82v24.32c0,.95-.78,1.73-1.77,1.73h-3.64c-1,0-1.77-.78-1.77-1.73v-24.32c0-.95.78-1.73,1.77-1.73h3.64c1,0,1.77.78,1.77,1.73"/><path d="M109.73,121.68v2.77c0,2.38-.48,4.46-1.51,6.19-1.04,1.77-2.47,3.2-4.28,4.15-1.77.95-3.81,1.43-6.06,1.43-2.51,0-4.76-.61-6.66-1.77-1.95-1.17-3.51-2.86-4.54-5.02-1.08-2.12-1.6-4.59-1.6-7.44s.56-5.37,1.6-7.44c1.08-2.16,2.6-3.85,4.54-5.02,1.9-1.17,4.11-1.77,6.49-1.77,2.03,0,3.9.39,5.54,1.17,1.64.82,3.07,1.9,4.15,3.33,1.13,1.43,1.86,3.12,2.16,4.98.09.48-.04,1-.39,1.43-.35.39-.82.61-1.34.61h-3.77c-.74,0-1.43-.48-1.64-1.21-.35-1.13-.91-1.95-1.73-2.55-.74-.61-1.73-.91-2.94-.91-1.04,0-1.95.26-2.77.78-.82.52-1.47,1.3-1.95,2.38-.52,1.13-.82,2.55-.82,4.24s.3,3.12.82,4.24c.48,1.08,1.13,1.82,1.99,2.38.82.52,1.77.78,2.86.78,1.51,0,2.64-.39,3.51-1.25.48-.43.82-1,1.04-1.64h-3.98c-.95,0-1.73-.78-1.73-1.77v-3.03c0-.95.78-1.73,1.73-1.73h9.56c.95,0,1.73.78,1.73,1.73"/><path d="M134.65,109.82v24.32c0,.95-.78,1.73-1.73,1.73h-3.38c-.56,0-1.13-.26-1.43-.74l-9.43-13.55v12.55c0,.95-.78,1.73-1.73,1.73h-3.68c-.95,0-1.73-.78-1.73-1.73v-24.32c0-.95.78-1.73,1.73-1.73h3.42c.56,0,1.08.26,1.43.74l9.39,13.59v-12.59c0-.95.78-1.73,1.77-1.73h3.64c.95,0,1.73.78,1.73,1.73"/><path d="M44.55,89.25c0,2.63-.74,5.05-2.09,7.21-1.41,2.09-3.37,3.77-5.93,4.92-2.42,1.14-5.39,1.68-8.69,1.68-4.85,0-8.89-1.21-11.85-3.57-3.1-2.49-4.85-5.86-5.05-10.1-.07-.74.2-1.48.74-2.02.54-.54,1.21-.88,1.95-.88h5.72c1.41,0,2.63,1.15,2.76,2.49.07,1.21.47,1.95,1.35,2.56,1.21.67,2.63,1.08,4.31,1.08,1.89,0,3.3-.4,4.44-1.21.88-.61,1.21-1.28,1.21-2.22,0-.67-.2-.88-.27-.94-.34-.4-.88-.81-1.62-1.08-.94-.4-2.02-.81-3.23-1.15h-.07l-4.44-1.21c-3.43-.94-6.26-2.36-8.35-4.24-2.29-2.16-3.5-4.92-3.5-8.35,0-2.76.74-5.25,2.29-7.34,1.48-2.02,3.43-3.57,5.93-4.65,2.36-1.08,5.05-1.62,7.95-1.62s5.59.54,7.88,1.62c2.42,1.08,4.31,2.63,5.72,4.58,1.48,2.02,2.22,4.38,2.29,6.93.07.74-.27,1.41-.74,1.95-.54.54-1.21.81-1.95.81h-5.52c-1.35,0-2.56-1.01-2.69-2.42-.13-.94-.47-1.62-1.28-2.09-.94-.67-2.29-1.01-3.84-1.01-1.75,0-3.03.34-3.91,1.01-.88.67-1.01,1.35-1.01,1.89,0,.67.27.94.34,1.08.47.47,1.08.81,1.75,1.14,1.01.34,1.89.67,2.76.88l3.7,1.01c1.28.27,2.69.74,4.04,1.28,1.48.61,2.9,1.41,4.17,2.36,1.35,1.08,2.49,2.36,3.37,3.91.88,1.62,1.35,3.57,1.35,5.72"/><path d="M83.11,61.92v37.84c0,1.48-1.21,2.69-2.76,2.69h-5.72c-1.48,0-2.69-1.21-2.69-2.69v-13.8h-13.47v13.8c0,1.48-1.21,2.69-2.69,2.69h-5.72c-1.48,0-2.69-1.21-2.69-2.69v-37.84c0-1.48,1.21-2.69,2.69-2.69h5.72c1.48,0,2.69,1.21,2.69,2.69v13.74h13.47v-13.74c0-1.48,1.21-2.69,2.69-2.69h5.72c1.55,0,2.76,1.21,2.76,2.69"/><path d="M97.1,61.92v37.84c0,1.48-1.21,2.69-2.76,2.69h-5.66c-1.55,0-2.76-1.21-2.76-2.69v-37.84c0-1.48,1.21-2.69,2.76-2.69h5.66c1.55,0,2.76,1.21,2.76,2.69"/><path d="M134.65,61.92v4.92c0,1.48-1.21,2.69-2.69,2.69h-9.09v30.23c0,1.48-1.21,2.69-2.76,2.69h-5.66c-1.55,0-2.76-1.21-2.76-2.69v-30.23h-9.02c-1.55,0-2.76-1.21-2.76-2.69v-4.92c0-1.48,1.21-2.69,2.76-2.69h29.29c1.48,0,2.69,1.21,2.69,2.69"/><path d="M133.15,97.47l-1.39,4.62c-.42,1.41-1.86,2.23-3.19,1.83L8.86,67.82c-1.34-.4-2.07-1.89-1.65-3.29l1.39-4.62c.42-1.41,1.86-2.23,3.19-1.83l119.71,36.1c1.34.4,2.07,1.89,1.65,3.29"/></svg>`;
 
-const SVG_SHIRT=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 568.8 94.55" fill="black"><path d="M67.46,72.48c-.66.91-1.65,1.4-2.72,1.4h-7.41c-1.48,0-2.72-.91-3.21-2.22l-3.46-10.05h-13.26l-3.54,10.05c-.41,1.32-1.73,2.22-3.13,2.22h-7.41c-1.07,0-2.06-.49-2.72-1.4-.66-.91-.74-2.06-.41-3.05l16.64-46.28c.49-1.32,1.73-2.22,3.13-2.22h8.07c1.4,0,2.72.91,3.13,2.22l16.72,46.28c.33.99.16,2.14-.41,3.05M44.07,42.33l-2.39,6.75h4.69l-2.31-6.75Z"/><path d="M115.45,47.11c0,5.35-1.07,10.05-3.05,14-1.98,4.04-5.02,7.16-8.89,9.39-3.87,2.14-8.4,3.21-13.67,3.21h-14.99c-1.81,0-3.38-1.48-3.38-3.38V24.05c0-1.81,1.56-3.29,3.38-3.29h15.48c5.11,0,9.55,1.07,13.34,3.21,3.79,2.14,6.75,5.27,8.81,9.31,1.89,3.87,2.96,8.57,2.96,13.84M98.82,36.73c-1.89-2.14-4.86-3.21-8.98-3.21h-4.69v27.42h4.28c4.37,0,7.41-1.07,9.39-3.38,2.06-2.31,3.05-5.85,3.05-10.46s-.99-8.07-3.05-10.38"/><path d="M159.32,72.06c-.58.99-1.65,1.56-2.88,1.56h-7.91c-1.24,0-2.39-.66-2.96-1.73l-8.4-15.73h-4.69v14.16c0,1.81-1.48,3.29-3.29,3.29h-7c-1.81,0-3.29-1.48-3.29-3.29V24.05c0-1.81,1.48-3.29,3.29-3.29h16.55c4.04,0,7.58.74,10.46,2.22,2.88,1.48,5.19,3.71,6.67,6.42,1.48,2.72,2.14,5.76,2.14,9.14,0,3.71-.82,7-2.55,9.8-1.15,1.89-2.72,3.46-4.61,4.69l8.56,15.73c.58.99.58,2.22-.08,3.29M144.33,38.54c0-1.73-.41-2.96-1.32-3.87-.82-.82-2.55-1.32-5.11-1.32h-5.44v10.13h5.6c2.39,0,4.2-.41,5.02-1.24.33-.33,1.24-1.24,1.24-3.71"/><path d="M352.96,47.15c0,5.23-1.05,9.82-2.98,13.68-1.93,3.94-4.91,7-8.69,9.17-3.78,2.09-8.21,3.14-13.36,3.14h-14.65c-1.77,0-3.3-1.45-3.3-3.3V24.62c0-1.77,1.53-3.22,3.3-3.22h15.13c4.99,0,9.34,1.05,13.04,3.14,3.7,2.09,6.6,5.15,8.61,9.09,1.85,3.78,2.9,8.37,2.9,13.52M336.71,37.01c-1.85-2.09-4.75-3.14-8.77-3.14h-4.59v26.8h4.18c4.27,0,7.24-1.05,9.18-3.3,2.01-2.25,2.98-5.71,2.98-10.22s-.97-7.89-2.98-10.14"/><path d="M391.41,63.97v5.88c0,1.77-1.45,3.22-3.22,3.22h-28.65c-1.77,0-3.22-1.45-3.22-3.22V24.62c0-1.77,1.45-3.22,3.22-3.22h28.33c1.85,0,3.3,1.45,3.3,3.22v5.88c0,1.77-1.45,3.22-3.3,3.22h-18.27v7.32h16.82c1.77,0,3.22,1.45,3.22,3.22v5.88c0,1.77-1.45,3.22-3.22,3.22h-16.82v7.41h18.59c1.77,0,3.22,1.45,3.22,3.22"/><path d="M434.94,57.29c0,3.14-.89,6.04-2.5,8.61-1.69,2.5-4.02,4.51-7.08,5.88-2.9,1.37-6.44,2.01-10.38,2.01-5.79,0-10.62-1.45-14.16-4.27-3.7-2.98-5.79-7-6.04-12.07-.08-.88.24-1.77.89-2.41.64-.64,1.45-1.05,2.33-1.05h6.84c1.69,0,3.14,1.37,3.3,2.98.08,1.45.56,2.33,1.61,3.06,1.45.81,3.14,1.29,5.15,1.29,2.25,0,3.94-.48,5.31-1.45,1.05-.72,1.45-1.53,1.45-2.66,0-.81-.24-1.05-.32-1.13-.4-.48-1.05-.97-1.93-1.29-1.13-.48-2.41-.97-3.86-1.37h-.08l-5.31-1.45c-4.1-1.13-7.48-2.82-9.98-5.07-2.74-2.58-4.19-5.88-4.19-9.98,0-3.3.89-6.28,2.74-8.77,1.77-2.42,4.1-4.27,7.08-5.55,2.82-1.29,6.04-1.93,9.5-1.93s6.68.64,9.42,1.93c2.9,1.29,5.15,3.14,6.84,5.47,1.77,2.41,2.66,5.23,2.74,8.29.08.89-.32,1.69-.88,2.34-.64.64-1.45.97-2.33.97h-6.6c-1.61,0-3.06-1.21-3.22-2.9-.16-1.13-.56-1.93-1.53-2.5-1.13-.8-2.74-1.21-4.59-1.21-2.09,0-3.62.4-4.67,1.21-1.05.81-1.21,1.61-1.21,2.25,0,.8.32,1.13.4,1.29.56.56,1.29.96,2.09,1.37,1.21.4,2.25.8,3.3,1.05l4.43,1.21c1.53.32,3.22.89,4.83,1.53,1.77.72,3.46,1.69,4.99,2.82,1.61,1.29,2.98,2.82,4.02,4.67,1.05,1.93,1.61,4.27,1.61,6.84"/><path d="M451.65,24.62v45.23c0,1.77-1.45,3.22-3.3,3.22h-6.76c-1.85,0-3.3-1.45-3.3-3.22V24.62c0-1.77,1.45-3.22,3.3-3.22h6.76c1.85,0,3.3,1.45,3.3,3.22"/><path d="M500.88,46.67v5.15c0,4.43-.88,8.29-2.82,11.51-1.93,3.3-4.59,5.96-7.97,7.73-3.3,1.77-7.08,2.66-11.27,2.66-4.67,0-8.85-1.13-12.39-3.3-3.62-2.17-6.52-5.31-8.45-9.34-2.01-3.94-2.98-8.53-2.98-13.84s1.05-9.98,2.98-13.84c2.01-4.02,4.83-7.16,8.45-9.34,3.54-2.17,7.65-3.3,12.07-3.3,3.78,0,7.24.72,10.3,2.17,3.06,1.53,5.71,3.54,7.73,6.2,2.09,2.66,3.46,5.79,4.02,9.26.16.88-.08,1.85-.72,2.66-.64.72-1.53,1.13-2.49,1.13h-7c-1.37,0-2.66-.89-3.06-2.25-.64-2.09-1.69-3.62-3.22-4.75-1.37-1.13-3.22-1.69-5.47-1.69-1.93,0-3.62.48-5.15,1.45-1.53.97-2.74,2.41-3.62,4.43-.97,2.09-1.53,4.75-1.53,7.89s.56,5.79,1.53,7.89c.89,2.01,2.09,3.38,3.7,4.43,1.53.97,3.3,1.45,5.31,1.45,2.82,0,4.91-.72,6.52-2.33.88-.8,1.53-1.85,1.93-3.06h-7.4c-1.77,0-3.22-1.45-3.22-3.3v-5.63c0-1.77,1.45-3.22,3.22-3.22h17.79c1.77,0,3.22,1.45,3.22,3.22"/><path d="M547.21,24.62v45.23c0,1.77-1.45,3.22-3.22,3.22h-6.28c-1.05,0-2.09-.48-2.66-1.37l-17.55-25.19v23.34c0,1.77-1.45,3.22-3.22,3.22h-6.84c-1.77,0-3.22-1.45-3.22-3.22V24.62c0-1.77,1.45-3.22,3.22-3.22h6.36c1.05,0,2.01.48,2.66,1.37l17.46,25.27v-23.42c0-1.77,1.45-3.22,3.3-3.22h6.76c1.77,0,3.22,1.45,3.22,3.22"/><path d="M202.96,56.84c0,3.03-.85,5.83-2.41,8.31-1.63,2.41-3.88,4.35-6.84,5.67-2.8,1.32-6.21,1.94-10.02,1.94-5.59,0-10.25-1.4-13.67-4.12-3.57-2.87-5.59-6.76-5.83-11.65-.08-.85.23-1.71.85-2.33.62-.62,1.4-1.01,2.25-1.01h6.6c1.63,0,3.03,1.32,3.19,2.87.08,1.4.54,2.25,1.55,2.95,1.4.78,3.03,1.24,4.97,1.24,2.17,0,3.81-.47,5.13-1.4,1.01-.7,1.4-1.48,1.4-2.56,0-.78-.23-1.01-.31-1.09-.39-.47-1.01-.93-1.86-1.24-1.09-.47-2.33-.93-3.73-1.32h-.08l-5.13-1.4c-3.96-1.09-7.22-2.72-9.63-4.89-2.64-2.49-4.04-5.67-4.04-9.63,0-3.19.85-6.06,2.64-8.47,1.71-2.33,3.96-4.12,6.84-5.36,2.72-1.24,5.83-1.86,9.17-1.86s6.45.62,9.09,1.86c2.8,1.24,4.97,3.03,6.6,5.28,1.71,2.33,2.56,5.05,2.64,8,.08.86-.31,1.63-.85,2.25-.62.62-1.4.93-2.25.93h-6.37c-1.55,0-2.95-1.17-3.11-2.8-.16-1.09-.54-1.86-1.48-2.41-1.09-.78-2.64-1.17-4.43-1.17-2.02,0-3.5.39-4.51,1.17-1.01.78-1.17,1.55-1.17,2.18,0,.78.31,1.09.39,1.24.54.54,1.24.93,2.02,1.32,1.17.39,2.17.78,3.18,1.01l4.27,1.17c1.48.31,3.11.85,4.66,1.48,1.71.7,3.34,1.63,4.82,2.72,1.55,1.24,2.87,2.72,3.88,4.51,1.01,1.86,1.55,4.12,1.55,6.6"/><path d="M247.44,25.3v43.66c0,1.71-1.4,3.11-3.19,3.11h-6.6c-1.71,0-3.11-1.4-3.11-3.11v-15.92h-15.54v15.92c0,1.71-1.4,3.11-3.11,3.11h-6.6c-1.71,0-3.11-1.4-3.11-3.11V25.3c0-1.71,1.4-3.11,3.11-3.11h6.6c1.71,0,3.11,1.4,3.11,3.11v15.85h15.54v-15.85c0-1.71,1.4-3.11,3.11-3.11h6.6c1.79,0,3.19,1.4,3.19,3.11"/><path d="M263.57,25.3v43.66c0,1.71-1.4,3.11-3.18,3.11h-6.52c-1.79,0-3.19-1.4-3.19-3.11V25.3c0-1.71,1.4-3.11,3.19-3.11h6.52c1.79,0,3.18,1.4,3.18,3.11"/><path d="M306.89,25.3v5.67c0,1.71-1.4,3.11-3.11,3.11h-10.49v34.88c0,1.71-1.4,3.11-3.18,3.11h-6.53c-1.79,0-3.18-1.4-3.18-3.11v-34.88h-10.41c-1.79,0-3.18-1.4-3.18-3.11v-5.67c0-1.71,1.4-3.11,3.18-3.11h33.79c1.71,0,3.11,1.4,3.11,3.11"/><path d="M305.17,66.32l-1.61,5.33c-.49,1.62-2.14,2.58-3.69,2.11l-138.1-41.65c-1.54-.47-2.39-2.18-1.9-3.8l1.61-5.33c.49-1.62,2.14-2.58,3.69-2.11l138.1,41.65c1.54.47,2.39,2.18,1.9,3.8"/></svg>`;
+// Logo adrshirtdesign — version portrait (sections vêtements + about)
+const SVG_SHIRT_PORTRAIT_B=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 595.28 841.89"><g><path d="M81.33,637.9c19.69-4.26,38.63,9.87,56.82,42.41.67-.14,2.3.97,4.9,3.35l.55,2.53c.71,4.56-.93,7.26-4.92,8.13-5.19,1.12-13.68-8.51-25.48-28.9-10.78-11.19-19.37-16.1-25.75-14.72l-4.79,1.04c-7.18,1.56-10.98,5.91-11.38,13.05.46,2.11,9.65,9.82,27.58,23.15,13.96,13.01,23.85,32.93,29.66,59.76l2.55,11.8c2.56,11.8-2.82,19.14-16.12,22.02l-.8.17c-15.05.61-35.98-9.86-62.79-31.41-2.63-4.42-4.1-7.35-4.4-8.75-.73-3.37.97-5.8,5.11-7.28,3.46-.75,7.24,2.55,11.34,9.9,23.84,16.16,40.1,24.41,48.81,24.73,5.32-1.15,7.31-4.81,5.97-11-7.55-34.84-19.9-57.16-37.07-66.98-13.58-8.67-21.24-17.02-22.97-25.03-2.4-11.09,4.79-20.31,21.59-27.62l1.6-.35Z"/><path d="M182.97,635.88c4.36.43,6.53,2.45,6.53,6.04,0,1.29-.27,2.45-.82,3.45,1.09,6.33,1.63,13.51,1.63,21.56v39.67c6.26,1.73,13.34,2.88,21.24,3.45,9.93-1.73,19.73-3.74,29.4-6.04v-26.74c0-3.59.27-7.9.82-12.94-.54-1.72-.82-5.17-.82-10.35v-3.45c0-5.74,2.18-8.63,6.54-8.63s6.53,2.3,6.53,6.9c0,2.3-.28,3.45-.82,3.45l.82,8.63v55.2c-1.77,39.1-6.94,58.65-15.52,58.65-2.86,0-5.04-2.29-6.53-6.9,5.99-13.23,8.98-29.32,8.98-48.3v-1.73h-.82c-4.63,1.73-13.89,3.45-27.77,5.18h-3.27c-3.27,0-9.53-.57-18.78-1.73v29.32c0,2.45.27,5.61.82,9.49-1.91,4.03-4.08,6.04-6.53,6.04-4.9,0-7.35-4.6-7.35-13.8v-37.95c-4.36-5.17-6.53-8.05-6.53-8.63v-1.72c0-4.6,2.18-6.9,6.53-6.9,0-1.43.27-9.2.82-23.29,0-9.92-.82-19.41-2.45-28.46.95-6.33,3.4-9.49,7.35-9.49"/><path d="M297.93,655.29h4.9c3.27,2.45,4.9,4.74,4.9,6.9-.41,2.3-.95,3.45-1.63,3.45,2.72,27.03,8.17,51.75,16.34,74.18,2.18,15.82,3.54,32.21,4.08,49.16-2.73,2.59-4.9,4.02-6.54,4.31-4.9-1.15-7.35-4.02-7.35-8.62v-12.07c0-15.53-4.63-38.52-13.88-69-2.18-11.07-4.08-24.87-5.72-41.4,0-2.16,1.63-4.45,4.9-6.9"/><path d="M398.18,627.47c10.89,0,17.69,14.24,20.42,42.72,0,14.1-4.36,28.08-13.07,41.91,23.41,27,35.12,49.57,35.12,67.7.54,0,.82,2.42.82,7.25,0,2.82-1.36,4.97-4.08,6.45h-4.9c-3.27,0-4.9-6.45-4.9-19.34-2.86-12.49-8.3-23.78-16.33-33.85-8.3-11.95-13.21-18.13-14.7-18.54-8.85,10.35-17.02,15.72-24.5,16.12v46.74c4.9.67,7.35,3.09,7.35,7.25-3.81,7.52-8.17,11.28-13.07,11.28-4.36,0-6.81-4.3-7.35-12.9v-36.27c2.86-54.53,6.94-85.16,12.25-91.88,7.07-23.1,16.06-34.66,26.95-34.66M373.68,724.19c4.49-1.48,8.85-4.97,13.07-10.48-2.18-.93-3.27-2.82-3.27-5.64v-2.42c1.36-2.69,3.54-4.03,6.53-4.03l5.72,1.61h.82c5.99-12.22,8.98-22.43,8.98-30.63v-6.45c0-6.45-2.45-15.04-7.35-25.79h-.82c-5.44,2.95-11.16,14.51-17.15,34.66-4.36,21.63-6.53,38.01-6.53,49.16"/><path d="M573.51,622.08c2.31.72,3.95,2.16,4.9,4.31v2.59c-1.4,1.67-3.7,4.03-7.05,6.01-5.48,3.24-10.7,3.63-13.41,3.86-8.64.72-20.22,2.13-34.81,3.93,0,.58.27.86.82.86,1.63,83.66,4.63,129.38,8.98,137.14v2.59c0,3.45-1.91,5.17-5.72,5.17h-2.45c-7.08,0-11.16-32.77-12.25-98.32-.55-21.27-1.09-36.51-1.63-45.71h-5.72c-5.72,0-22.05-1.72-49-5.17h-10.62c-.68,0-2.04-1.43-4.08-4.31v-2.59c0-4.6,2.45-6.9,7.35-6.9h7.35c25.32,3.45,41.38,5.18,48.19,5.18h5.72c8.65-.28,18-.94,27.94-2.16,13.04-1.6,24.92-3.9,35.5-6.47Z"/></g><g><g><path d="M209.28,240.62c-2.59,3.57-6.48,5.51-10.7,5.51h-29.18c-5.84,0-10.7-3.57-12.64-8.75l-13.62-39.56h-52.2l-13.94,39.56c-1.62,5.18-6.81,8.75-12.32,8.75h-29.18c-4.21,0-8.11-1.95-10.7-5.51-2.59-3.57-2.92-8.1-1.62-12L88.67,46.41c1.94-5.19,6.81-8.75,12.32-8.75h31.77c5.51,0,10.7,3.57,12.32,8.75l65.82,182.21c1.3,3.89.65,8.43-1.62,12M117.2,121.95l-9.4,26.59h18.48l-9.08-26.59Z"/><path d="M398.2,140.76c0,21.08-4.22,39.55-12,55.12-7.78,15.89-19.78,28.21-35.02,36.96-15.24,8.43-33.07,12.65-53.82,12.65h-59.01c-7.13,0-13.29-5.83-13.29-13.29V49.98c0-7.13,6.16-12.97,13.29-12.97h60.95c20.1,0,37.61,4.21,52.53,12.64,14.91,8.43,26.59,20.75,34.69,36.64,7.46,15.24,11.67,33.72,11.67,54.47M332.71,99.91c-7.46-8.43-19.13-12.64-35.34-12.64h-18.48v107.96h16.86c17.18,0,29.18-4.21,36.96-13.29,8.1-9.08,12-23.02,12-41.17s-3.89-31.77-12-40.85"/><path d="M570.9,239c-2.27,3.89-6.49,6.16-11.35,6.16h-31.13c-4.86,0-9.4-2.6-11.67-6.81l-33.07-61.92h-18.48v55.76c0,7.13-5.83,12.97-12.97,12.97h-27.56c-7.13,0-12.97-5.84-12.97-12.97V49.98c0-7.13,5.84-12.97,12.97-12.97h65.17c15.89,0,29.83,2.91,41.18,8.75,11.35,5.84,20.43,14.59,26.26,25.29,5.84,10.7,8.43,22.69,8.43,35.99,0,14.59-3.24,27.56-10.05,38.59-4.54,7.46-10.7,13.62-18.16,18.48l33.72,61.92c2.27,3.89,2.27,8.76-.32,12.97M511.9,107.04c0-6.81-1.62-11.67-5.19-15.24-3.24-3.24-10.05-5.19-20.1-5.19h-21.4v39.88h22.05c9.4,0,16.54-1.62,19.78-4.86,1.3-1.3,4.86-4.87,4.86-14.59"/></g><path d="M180.55,398.98c0,11.69-3.3,22.47-9.29,32.06-6.29,9.29-14.98,16.78-26.37,21.87-10.79,5.09-23.97,7.49-38.65,7.49-21.57,0-39.55-5.39-52.73-15.88-13.78-11.09-21.57-26.07-22.47-44.94-.3-3.3.9-6.59,3.3-8.99,2.4-2.4,5.39-3.9,8.69-3.9h25.47c6.29,0,11.69,5.1,12.29,11.09.3,5.4,2.1,8.69,5.99,11.39,5.39,3,11.68,4.8,19.18,4.8,8.39,0,14.68-1.8,19.78-5.39,3.89-2.7,5.39-5.69,5.39-9.89,0-3-.9-3.9-1.2-4.2-1.5-1.8-3.89-3.59-7.19-4.79-4.19-1.8-8.99-3.6-14.38-5.1h-.3l-19.78-5.39c-15.28-4.19-27.86-10.49-37.15-18.87-10.19-9.59-15.58-21.88-15.58-37.15,0-12.29,3.29-23.37,10.19-32.66,6.59-8.99,15.28-15.88,26.37-20.68,10.49-4.79,22.47-7.19,35.36-7.19s24.87,2.4,35.06,7.19c10.79,4.79,19.18,11.68,25.47,20.38,6.59,8.99,9.89,19.48,10.19,30.86.3,3.3-1.2,6.3-3.3,8.69-2.4,2.4-5.39,3.6-8.69,3.6h-24.57c-5.99,0-11.39-4.49-11.99-10.79-.6-4.19-2.1-7.19-5.69-9.29-4.19-3-10.19-4.49-17.08-4.49-7.79,0-13.48,1.5-17.38,4.49-3.89,3-4.49,5.99-4.49,8.39,0,2.99,1.2,4.19,1.5,4.79,2.1,2.1,4.79,3.59,7.79,5.09,4.49,1.5,8.39,2.99,12.28,3.9l16.48,4.49c5.69,1.2,11.98,3.3,17.98,5.69,6.59,2.69,12.88,6.29,18.58,10.48,5.99,4.79,11.09,10.49,14.98,17.38,3.89,7.19,5.99,15.88,5.99,25.47"/><path d="M352.14,277.33v168.39c0,6.59-5.39,11.98-12.29,11.98h-25.47c-6.59,0-11.99-5.39-11.99-11.98v-61.43h-59.93v61.43c0,6.59-5.39,11.98-11.99,11.98h-25.47c-6.59,0-11.98-5.39-11.98-11.98v-168.39c0-6.59,5.39-11.98,11.98-11.98h25.47c6.59,0,11.99,5.39,11.99,11.98v61.12h59.93v-61.12c0-6.59,5.39-11.98,11.99-11.98h25.47c6.89,0,12.29,5.39,12.29,11.98"/><path d="M414.36,277.33v168.39c0,6.59-5.39,11.98-12.28,11.98h-25.17c-6.89,0-12.29-5.39-12.29-11.98v-168.39c0-6.59,5.39-11.98,12.29-11.98h25.17c6.89,0,12.28,5.39,12.28,11.98"/><path d="M581.45,277.33v21.87c0,6.59-5.39,11.98-11.99,11.98h-40.45v134.53c0,6.59-5.39,11.98-12.28,11.98h-25.17c-6.89,0-12.28-5.39-12.28-11.98v-134.53h-40.15c-6.89,0-12.28-5.39-12.28-11.98v-21.87c0-6.59,5.39-11.98,12.28-11.98h130.34c6.59,0,11.99,5.39,11.99,11.98"/><path d="M128.67,538.36c0,12.14-2.43,22.78-6.91,31.75-4.48,9.15-11.39,16.25-20.17,21.29-8.78,4.85-19.05,7.28-31,7.28h-33.99c-4.11,0-7.66-3.36-7.66-7.66v-104.96c0-4.11,3.55-7.47,7.66-7.47h35.11c11.58,0,21.66,2.43,30.25,7.28,8.59,4.86,15.31,11.95,19.98,21.1,4.29,8.78,6.72,19.42,6.72,31.38M90.95,514.83c-4.3-4.85-11.02-7.28-20.36-7.28h-10.64v62.19h9.71c9.9,0,16.81-2.43,21.29-7.66,4.67-5.23,6.91-13.26,6.91-23.72s-2.24-18.3-6.91-23.53"/><path d="M217.88,577.39v13.63c0,4.11-3.36,7.47-7.47,7.47h-66.49c-4.11,0-7.47-3.36-7.47-7.47v-104.96c0-4.11,3.36-7.47,7.47-7.47h65.74c4.3,0,7.66,3.36,7.66,7.47v13.63c0,4.11-3.36,7.47-7.66,7.47h-42.39v17h39.03c4.11,0,7.47,3.36,7.47,7.47v13.64c0,4.11-3.36,7.47-7.47,7.47h-39.03v17.18h43.14c4.11,0,7.47,3.36,7.47,7.47"/><path d="M318.88,561.89c0,7.28-2.05,14.01-5.79,19.98-3.92,5.79-9.34,10.46-16.43,13.63-6.72,3.17-14.94,4.67-24.09,4.67-13.44,0-24.65-3.36-32.87-9.9-8.59-6.91-13.45-16.25-14.01-28.01-.19-2.05.56-4.11,2.06-5.6,1.49-1.49,3.36-2.43,5.42-2.43h15.87c3.92,0,7.28,3.18,7.66,6.91.19,3.36,1.31,5.42,3.74,7.1,3.36,1.87,7.28,2.99,11.95,2.99,5.23,0,9.15-1.12,12.33-3.36,2.43-1.68,3.36-3.55,3.36-6.16,0-1.87-.56-2.43-.75-2.62-.93-1.12-2.43-2.24-4.48-2.99-2.61-1.12-5.6-2.24-8.96-3.18h-.19l-12.33-3.36c-9.52-2.61-17.37-6.54-23.16-11.76-6.35-5.98-9.71-13.63-9.71-23.16,0-7.66,2.06-14.57,6.35-20.36,4.11-5.61,9.52-9.9,16.43-12.89,6.54-2.99,14.01-4.48,22.04-4.48s15.5,1.49,21.85,4.48c6.72,2.99,11.95,7.28,15.87,12.7,4.11,5.6,6.16,12.14,6.35,19.23.19,2.06-.75,3.92-2.05,5.42-1.49,1.49-3.36,2.24-5.42,2.24h-15.31c-3.74,0-7.1-2.8-7.47-6.72-.37-2.61-1.31-4.48-3.55-5.79-2.62-1.87-6.35-2.8-10.65-2.8-4.85,0-8.4.94-10.83,2.8-2.43,1.87-2.8,3.74-2.8,5.23,0,1.87.75,2.61.93,2.99,1.31,1.31,2.99,2.24,4.86,3.17,2.8.93,5.23,1.87,7.66,2.43l10.27,2.8c3.55.75,7.47,2.05,11.21,3.55,4.11,1.68,8.03,3.92,11.58,6.53,3.74,2.99,6.91,6.54,9.34,10.83,2.43,4.48,3.74,9.9,3.74,15.87"/><path d="M357.66,486.07v104.96c0,4.11-3.36,7.47-7.66,7.47h-15.69c-4.3,0-7.66-3.36-7.66-7.47v-104.96c0-4.11,3.36-7.47,7.66-7.47h15.69c4.3,0,7.66,3.36,7.66,7.47"/><path d="M471.89,537.24v11.95c0,10.27-2.05,19.24-6.54,26.71-4.48,7.66-10.64,13.82-18.49,17.93-7.66,4.11-16.44,6.16-26.15,6.16-10.83,0-20.54-2.61-28.76-7.66-8.41-5.04-15.13-12.33-19.61-21.66-4.67-9.15-6.91-19.8-6.91-32.12s2.43-23.16,6.91-32.12c4.67-9.34,11.21-16.62,19.61-21.66,8.22-5.04,17.74-7.66,28.01-7.66,8.78,0,16.81,1.68,23.91,5.04,7.1,3.55,13.26,8.22,17.93,14.38,4.85,6.16,8.03,13.45,9.34,21.48.37,2.05-.19,4.29-1.68,6.16-1.49,1.68-3.55,2.61-5.79,2.61h-16.25c-3.17,0-6.16-2.05-7.1-5.23-1.49-4.85-3.92-8.4-7.47-11.02-3.17-2.61-7.47-3.92-12.7-3.92-4.48,0-8.4,1.12-11.95,3.36-3.55,2.24-6.35,5.6-8.4,10.27-2.24,4.85-3.55,11.02-3.55,18.3s1.31,13.44,3.55,18.3c2.05,4.67,4.85,7.84,8.59,10.27,3.55,2.24,7.66,3.36,12.33,3.36,6.54,0,11.39-1.68,15.13-5.42,2.05-1.87,3.55-4.3,4.48-7.1h-17.18c-4.11,0-7.47-3.36-7.47-7.66v-13.07c0-4.11,3.36-7.47,7.47-7.47h41.27c4.11,0,7.47,3.36,7.47,7.47"/><path d="M579.4,486.07v104.96c0,4.11-3.36,7.47-7.47,7.47h-14.57c-2.43,0-4.86-1.12-6.16-3.17l-40.71-58.46v54.16c0,4.11-3.36,7.47-7.47,7.47h-15.87c-4.11,0-7.47-3.36-7.47-7.47v-104.96c0-4.11,3.36-7.47,7.47-7.47h14.75c2.43,0,4.67,1.12,6.16,3.17l40.52,58.64v-54.35c0-4.11,3.36-7.47,7.66-7.47h15.69c4.11,0,7.47,3.36,7.47,7.47"/><path d="M574.81,435.54l-6.2,20.54c-1.89,6.25-8.27,9.94-14.22,8.15L21.7,303.59c-5.95-1.79-9.23-8.4-7.34-14.65l6.2-20.54c1.89-6.25,8.27-9.94,14.22-8.15l532.7,160.64c5.95,1.79,9.23,8.4,7.34,14.65"/></g></svg>`;
+
+// Version blanc (pour nav et footer sur fond noir)
+const SVG_SHIRT_W=SVG_SHIRT_PORTRAIT_B.replace(/<svg /,'<svg fill="white" ');
+// Version noir (pour section vêtements sur fond blanc)  
+const SVG_SHIRT=SVG_SHIRT_PORTRAIT_B.replace(/<svg /,'<svg fill="black" ');
+
+// Logo horizontal paysage (1280x1024) — pour la nav
+const SVG_SHIRT_HORIZ_W=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 1024" fill="white"><path d="M791.85,514.88c18.48-4,36.25,9.26,53.33,39.8.63-.14,2.16.91,4.6,3.14l.51,2.37c.66,4.28-.88,6.81-4.62,7.63-4.87,1.06-12.84-7.99-23.91-27.12-10.12-10.51-18.18-15.11-24.17-13.81l-4.5.97c-6.74,1.46-10.3,5.55-10.68,12.25.43,1.98,9.06,9.22,25.88,21.73,13.1,12.21,22.38,30.9,27.84,56.09l2.4,11.08c2.4,11.08-2.65,17.97-15.13,20.67l-.75.16c-14.12.57-33.77-9.25-58.93-29.47-2.47-4.15-3.85-6.9-4.13-8.22-.69-3.16.91-5.44,4.79-6.84,3.25-.7,6.79,2.39,10.64,9.29,22.37,15.17,37.64,22.91,45.81,23.2,4.99-1.08,6.87-4.52,5.61-10.32-7.08-32.7-18.68-53.65-34.79-62.86-12.74-8.14-19.93-15.98-21.56-23.49-2.26-10.41,4.5-19.06,20.27-25.92l1.5-.32Z"/><path d="M887.23,512.99c4.09.4,6.13,2.3,6.13,5.67,0,1.21-.26,2.3-.77,3.24,1.02,5.94,1.53,12.68,1.53,20.24v37.23c5.87,1.62,12.52,2.7,19.93,3.24,9.32-1.62,18.52-3.51,27.59-5.67v-25.09c0-3.37.26-7.41.77-12.14-.51-1.62-.77-4.86-.77-9.71v-3.24c0-5.39,2.04-8.1,6.13-8.1s6.13,2.16,6.13,6.48c0,2.16-.26,3.24-.77,3.24l.77,8.1v51.81c-1.66,36.7-6.52,55.04-14.56,55.04-2.68,0-4.73-2.15-6.13-6.48,5.62-12.41,8.43-27.52,8.43-45.33v-1.62h-.77c-4.34,1.62-13.03,3.24-26.06,4.86h-3.07c-3.07,0-8.94-.53-17.63-1.62v27.52c0,2.3.26,5.26.77,8.9-1.79,3.78-3.83,5.67-6.13,5.67-4.6,0-6.9-4.32-6.9-12.95v-35.62c-4.09-4.86-6.13-7.56-6.13-8.1v-1.62c0-4.32,2.04-6.48,6.13-6.48,0-1.34.26-8.63.77-21.86,0-9.31-.77-18.21-2.3-26.71.89-5.94,3.19-8.9,6.9-8.9"/><path d="M995.12,531.21h4.6c3.07,2.3,4.6,4.45,4.6,6.48-.38,2.16-.9,3.24-1.53,3.24,2.56,25.37,7.67,48.57,15.33,69.61,2.04,14.85,3.32,30.23,3.83,46.14-2.56,2.43-4.6,3.78-6.13,4.05-4.6-1.08-6.9-3.77-6.9-8.09v-11.33c0-14.57-4.34-36.15-13.03-64.76-2.04-10.39-3.83-23.34-5.37-38.85,0-2.02,1.53-4.18,4.6-6.48"/><path d="M1089.21,505.1c10.22,0,16.61,14.3,19.16,42.9,0,14.17-4.09,28.2-12.27,42.09,21.97,27.12,32.96,49.78,32.96,68,.51,0,.77,2.43.77,7.29,0,2.83-1.28,4.99-3.83,6.48h-4.6c-3.07,0-4.6-6.48-4.6-19.43-2.68-12.55-7.79-23.88-15.33-34-7.79-12.01-12.39-18.21-13.8-18.62-8.31,10.39-15.97,15.79-23,16.19v46.95c4.6.68,6.9,3.1,6.9,7.29-3.58,7.56-7.67,11.33-12.27,11.33-4.09,0-6.39-4.32-6.9-12.95v-36.42c2.68-54.77,6.52-85.53,11.5-92.28,6.64-23.2,15.07-34.81,25.3-34.81M1066.21,602.24c4.22-1.48,8.3-4.99,12.27-10.52-2.04-.94-3.07-2.83-3.07-5.67v-2.43c1.27-2.7,3.32-4.05,6.13-4.05l5.36,1.62h.77c5.62-12.27,8.43-22.53,8.43-30.76v-6.48c0-6.48-2.3-15.1-6.9-25.9h-.77c-5.11,2.97-10.48,14.57-16.1,34.81-4.09,21.73-6.13,38.18-6.13,49.38"/><path d="M1229.25,519.36c2.17.68,3.7,2.02,4.6,4.05v2.43c0,5.4-8.94,9.71-26.83,12.95,0,.54.26.81.77.81,1.53,78.52,4.34,121.42,8.43,128.71v2.43c0,3.24-1.79,4.86-5.36,4.86h-2.3c-6.64,0-10.48-30.76-11.5-92.28-.51-19.96-1.03-34.27-1.53-42.9h-5.37c-5.36,0-20.7-1.62-45.99-4.86h-9.97c-.64,0-1.92-1.34-3.83-4.05v-2.43c0-4.32,2.3-6.48,6.9-6.48h6.9c23.76,3.24,38.84,4.86,45.23,4.86h5.36c7.03,0,18.27-2.7,33.73-8.1h.77Z"/><path d="M310.51,412.83c-3.3,4.53-8.24,7.01-13.61,7.01h-37.11c-7.42,0-13.61-4.54-16.08-11.13l-17.32-50.31h-66.39l-17.73,50.31c-2.06,6.59-8.66,11.13-15.67,11.13h-37.11c-5.36,0-10.31-2.48-13.61-7.01-3.3-4.54-3.71-10.31-2.06-15.26l83.3-231.74c2.47-6.6,8.66-11.13,15.67-11.13h40.41c7.01,0,13.61,4.53,15.67,11.13l83.71,231.74c1.65,4.95.82,10.72-2.06,15.26M193.4,261.91l-11.96,33.81h23.5l-11.54-33.81Z"/><path d="M550.79,285.83c0,26.8-5.36,50.3-15.26,70.1-9.9,20.2-25.15,35.87-44.53,47-19.38,10.72-42.06,16.08-68.45,16.08h-75.05c-9.07,0-16.91-7.42-16.91-16.91v-231.74c0-9.07,7.83-16.49,16.91-16.49h77.52c25.57,0,47.84,5.36,66.8,16.08,18.97,10.73,33.81,26.39,44.12,46.6,9.48,19.38,14.85,42.89,14.85,69.28M467.49,233.87c-9.48-10.72-24.33-16.08-44.95-16.08h-23.5v137.31h21.44c21.86,0,37.11-5.36,47.01-16.91,10.31-11.54,15.26-29.28,15.26-52.37s-4.95-40.41-15.26-51.96"/><path d="M770.43,410.77c-2.89,4.95-8.25,7.83-14.43,7.83h-39.59c-6.19,0-11.96-3.3-14.84-8.66l-42.06-78.76h-23.5v70.92c0,9.07-7.42,16.49-16.49,16.49h-35.05c-9.07,0-16.49-7.42-16.49-16.49v-231.74c0-9.07,7.42-16.49,16.49-16.49h82.88c20.21,0,37.94,3.71,52.37,11.13,14.43,7.42,25.98,18.56,33.4,32.16,7.42,13.61,10.72,28.86,10.72,45.77,0,18.56-4.12,35.05-12.78,49.07-5.77,9.48-13.61,17.32-23.09,23.5l42.88,78.76c2.89,4.95,2.89,11.14-.41,16.49M695.38,242.94c0-8.66-2.06-14.84-6.6-19.38-4.12-4.12-12.78-6.6-25.57-6.6h-27.22v50.72h28.04c11.96,0,21.03-2.06,25.15-6.19,1.65-1.65,6.19-6.19,6.19-18.56"/><path d="M258.19,614.23c0,14.86-4.19,28.58-11.81,40.78-8,11.81-19.05,21.34-33.53,27.82-13.72,6.48-30.49,9.53-49.16,9.53-27.44,0-50.3-6.86-67.07-20.2-17.53-14.1-27.44-33.15-28.58-57.16-.38-4.19,1.14-8.38,4.19-11.43,3.05-3.05,6.86-4.96,11.05-4.96h32.39c8,0,14.86,6.48,15.63,14.1.38,6.86,2.67,11.06,7.62,14.48,6.86,3.81,14.86,6.1,24.39,6.1,10.67,0,18.67-2.29,25.15-6.86,4.95-3.43,6.86-7.24,6.86-12.57,0-3.81-1.14-4.96-1.52-5.34-1.9-2.28-4.95-4.57-9.15-6.09-5.33-2.29-11.43-4.57-18.29-6.48h-.38l-25.15-6.86c-19.44-5.33-35.44-13.34-47.25-24.01-12.96-12.2-19.81-27.82-19.81-47.25,0-15.63,4.19-29.73,12.96-41.54,8.38-11.44,19.44-20.2,33.53-26.29,13.34-6.1,28.58-9.15,44.97-9.15s31.63,3.05,44.59,9.15c13.72,6.1,24.39,14.86,32.39,25.91,8.38,11.43,12.57,24.77,12.96,39.25.38,4.2-1.52,8.01-4.19,11.06-3.05,3.05-6.86,4.57-11.05,4.57h-31.25c-7.62,0-14.48-5.72-15.24-13.72-.76-5.33-2.67-9.15-7.24-11.81-5.33-3.81-12.96-5.72-21.72-5.72-9.91,0-17.15,1.91-22.1,5.72-4.95,3.81-5.72,7.62-5.72,10.67,0,3.81,1.52,5.33,1.9,6.1,2.67,2.67,6.1,4.57,9.91,6.48,5.72,1.91,10.67,3.81,15.62,4.96l20.96,5.72c7.24,1.52,15.24,4.19,22.86,7.24,8.38,3.43,16.39,8,23.63,13.33,7.62,6.1,14.1,13.34,19.05,22.1,4.95,9.15,7.62,20.2,7.62,32.39"/><path d="M476.42,459.52v214.16c0,8.38-6.86,15.24-15.63,15.24h-32.39c-8.39,0-15.24-6.86-15.24-15.24v-78.12h-76.21v78.12c0,8.38-6.86,15.24-15.24,15.24h-32.39c-8.38,0-15.24-6.86-15.24-15.24v-214.16c0-8.38,6.86-15.24,15.24-15.24h32.39c8.38,0,15.24,6.86,15.24,15.24v77.74h76.21v-77.74c0-8.38,6.86-15.24,15.24-15.24h32.39c8.76,0,15.63,6.86,15.63,15.24"/><path d="M555.55,459.52v214.16c0,8.38-6.86,15.24-15.62,15.24h-32.01c-8.76,0-15.63-6.86-15.63-15.24v-214.16c0-8.38,6.86-15.24,15.63-15.24h32.01c8.77,0,15.62,6.86,15.62,15.24"/><path d="M768.06,459.52v27.82c0,8.38-6.86,15.24-15.24,15.24h-51.44v171.1c0,8.38-6.86,15.24-15.62,15.24h-32.01c-8.76,0-15.62-6.86-15.62-15.24v-171.1h-51.06c-8.77,0-15.62-6.86-15.62-15.24v-27.82c0-8.38,6.86-15.24,15.62-15.24h165.76c8.39,0,15.24,6.86,15.24,15.24"/><path d="M192.21,791.5c0,15.44-3.09,28.98-8.79,40.38-5.7,11.64-14.49,20.66-25.65,27.07-11.16,6.17-24.22,9.26-39.43,9.26h-43.23c-5.22,0-9.74-4.27-9.74-9.74v-133.49c0-5.23,4.51-9.5,9.74-9.5h44.65c14.73,0,27.55,3.09,38.48,9.26,10.93,6.18,19.48,15.2,25.41,26.84,5.46,11.17,8.55,24.7,8.55,39.9M144.23,761.57c-5.46-6.17-14.01-9.26-25.89-9.26h-13.54v79.09h12.35c12.59,0,21.38-3.09,27.08-9.74,5.94-6.65,8.79-16.86,8.79-30.16s-2.85-23.28-8.79-29.93"/><path d="M305.66,841.14v17.34c0,5.23-4.27,9.5-9.5,9.5h-84.56c-5.23,0-9.5-4.28-9.5-9.5v-133.49c0-5.23,4.28-9.5,9.5-9.5h83.61c5.46,0,9.74,4.28,9.74,9.5v17.34c0,5.23-4.28,9.5-9.74,9.5h-53.92v21.62h49.64c5.23,0,9.5,4.27,9.5,9.5v17.34c0,5.23-4.27,9.5-9.5,9.5h-49.64v21.85h54.87c5.23,0,9.5,4.27,9.5,9.5"/><path d="M434.11,821.43c0,9.26-2.61,17.81-7.36,25.42-4.99,7.36-11.88,13.3-20.9,17.34-8.55,4.04-19,5.94-30.64,5.94-17.1,0-31.35-4.27-41.8-12.59-10.93-8.79-17.1-20.67-17.81-35.63-.24-2.61.71-5.23,2.61-7.13,1.9-1.9,4.27-3.09,6.89-3.09h20.19c4.99,0,9.26,4.04,9.74,8.79.24,4.28,1.66,6.89,4.75,9.02,4.27,2.38,9.26,3.8,15.2,3.8,6.65,0,11.64-1.42,15.68-4.27,3.09-2.14,4.28-4.51,4.28-7.84,0-2.38-.71-3.09-.95-3.33-1.19-1.42-3.09-2.85-5.7-3.8-3.32-1.43-7.13-2.85-11.4-4.04h-.24l-15.68-4.28c-12.11-3.32-22.09-8.31-29.45-14.96-8.08-7.6-12.35-17.34-12.35-29.45,0-9.74,2.61-18.53,8.08-25.89,5.23-7.13,12.11-12.59,20.9-16.39,8.31-3.8,17.81-5.7,28.03-5.7s19.71,1.9,27.79,5.7c8.55,3.8,15.2,9.26,20.19,16.15,5.22,7.13,7.84,15.44,8.07,24.46.24,2.62-.95,4.99-2.61,6.89-1.9,1.9-4.28,2.85-6.89,2.85h-19.48c-4.75,0-9.03-3.56-9.5-8.55-.47-3.32-1.66-5.7-4.51-7.36-3.33-2.37-8.08-3.56-13.54-3.56-6.17,0-10.69,1.19-13.77,3.56-3.09,2.38-3.56,4.75-3.56,6.65,0,2.37.95,3.32,1.19,3.8,1.66,1.66,3.8,2.85,6.18,4.04,3.56,1.19,6.65,2.37,9.74,3.09l13.06,3.56c4.51.95,9.5,2.61,14.25,4.51,5.23,2.14,10.21,4.99,14.73,8.31,4.75,3.8,8.79,8.32,11.87,13.78,3.09,5.7,4.75,12.59,4.75,20.19"/><path d="M483.44,725v133.49c0,5.23-4.27,9.5-9.74,9.5h-19.95c-5.46,0-9.74-4.27-9.74-9.5v-133.49c0-5.23,4.28-9.5,9.74-9.5h19.95c5.46,0,9.74,4.27,9.74,9.5"/><path d="M628.72,790.08v15.2c0,13.07-2.61,24.47-8.31,33.97-5.7,9.74-13.54,17.58-23.51,22.8-9.74,5.23-20.9,7.84-33.25,7.84-13.77,0-26.13-3.32-36.58-9.74-10.69-6.41-19.24-15.68-24.94-27.55-5.94-11.64-8.79-25.18-8.79-40.85s3.09-29.45,8.79-40.86c5.94-11.87,14.25-21.14,24.94-27.55,10.45-6.41,22.56-9.74,35.63-9.74,11.16,0,21.38,2.14,30.4,6.41,9.02,4.51,16.86,10.45,22.8,18.29,6.17,7.84,10.21,17.1,11.88,27.32.47,2.61-.24,5.46-2.14,7.84-1.9,2.14-4.51,3.32-7.36,3.32h-20.66c-4.04,0-7.84-2.61-9.03-6.65-1.9-6.17-4.99-10.69-9.5-14.02-4.04-3.32-9.5-4.98-16.15-4.98-5.7,0-10.69,1.42-15.2,4.27-4.51,2.85-8.08,7.13-10.69,13.07-2.85,6.17-4.51,14.01-4.51,23.28s1.66,17.1,4.51,23.28c2.61,5.94,6.17,9.97,10.93,13.06,4.51,2.85,9.74,4.27,15.68,4.27,8.31,0,14.49-2.14,19.24-6.89,2.61-2.37,4.51-5.46,5.7-9.03h-21.85c-5.23,0-9.5-4.27-9.5-9.74v-16.63c0-5.23,4.28-9.5,9.5-9.5h52.49c5.23,0,9.5,4.27,9.5,9.5"/><path d="M765.45,725v133.49c0,5.23-4.28,9.5-9.5,9.5h-18.53c-3.09,0-6.18-1.42-7.84-4.04l-51.78-74.34v68.88c0,5.23-4.28,9.5-9.5,9.5h-20.19c-5.23,0-9.5-4.27-9.5-9.5v-133.49c0-5.23,4.28-9.5,9.5-9.5h18.76c3.09,0,5.94,1.42,7.84,4.04l51.54,74.58v-69.12c0-5.23,4.28-9.5,9.74-9.5h19.95c5.23,0,9.5,4.27,9.5,9.5"/><path d="M759.61,660.74l-7.88,26.13c-2.4,7.95-10.51,12.65-18.08,10.36L56.16,492.92c-7.57-2.28-11.73-10.68-9.34-18.63l7.88-26.13c2.4-7.95,10.51-12.65,18.08-10.36l677.49,204.31c7.57,2.28,11.73,10.68,9.34,18.63"/></svg>`;
 
 let D=JSON.parse(JSON.stringify(DD));
 let editMode=false,_imgCb=null;
@@ -258,20 +365,8 @@ let editMode=false,_imgCb=null;
 <!-- HERO -->
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
-  <div id="hero-graphic">
-    <svg viewBox="0 0 380 380" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;overflow:visible">
-      <circle cx="190" cy="190" r="160" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"><animateTransform attributeName="transform" type="rotate" from="0 190 190" to="360 190 190" dur="20s" repeatCount="indefinite"/></circle>
-      <g fill="none" stroke="rgba(255,255,255,0.18)" stroke-width="1"><animateTransform attributeName="transform" type="rotate" from="0 190 190" to="360 190 190" dur="20s" repeatCount="indefinite"/><line x1="190" y1="30" x2="190" y2="52"/><line x1="190" y1="328" x2="190" y2="350"/><line x1="30" y1="190" x2="52" y2="190"/><line x1="328" y1="190" x2="350" y2="190"/><line x1="83" y1="83" x2="98" y2="98"/><line x1="297" y1="83" x2="282" y2="98"/><line x1="83" y1="297" x2="98" y2="282"/><line x1="297" y1="297" x2="282" y2="282"/></g>
-      <circle cx="190" cy="190" r="110" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1" stroke-dasharray="4 8"><animateTransform attributeName="transform" type="rotate" from="360 190 190" to="0 190 190" dur="14s" repeatCount="indefinite"/></circle>
-      <circle cx="190" cy="190" r="65" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"><animateTransform attributeName="transform" type="rotate" from="0 190 190" to="360 190 190" dur="9s" repeatCount="indefinite"/></circle>
-      <line x1="190" y1="30" x2="190" y2="350" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-      <line x1="30" y1="190" x2="350" y2="190" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
-      <circle cx="190" cy="190" r="4" fill="rgba(255,255,255,0.35)"><animate attributeName="opacity" values="0.35;0.8;0.35" dur="3s" repeatCount="indefinite"/><animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite"/></circle>
-      <circle cx="190" cy="30" r="3" fill="rgba(255,255,255,0.6)"><animateTransform attributeName="transform" type="rotate" from="0 190 190" to="360 190 190" dur="20s" repeatCount="indefinite"/></circle>
-      <circle cx="190" cy="125" r="2" fill="rgba(255,255,255,0.45)"><animateTransform attributeName="transform" type="rotate" from="360 190 190" to="0 190 190" dur="9s" repeatCount="indefinite"/></circle>
-      <text x="190" y="206" text-anchor="middle" font-family="Space Mono, monospace" font-size="7" letter-spacing="3" fill="rgba(255,255,255,0.18)">PARIS · 2026</text>
-    </svg>
-  </div>
+  <div class="hero-grid-overlay" aria-hidden="true"></div>
+  <div class="hero-marquee" aria-hidden="true"><div class="hero-marquee-track" id="hero-marquee-track"></div></div>
   <div class="hero-content">
     <div class="hero-logo-wrap"><div class="hero-logo-glow"></div><div id="hero-logo"></div></div>
     <div class="hero-tag">Directeur Artistique · Paris</div>
@@ -370,25 +465,46 @@ let editMode=false,_imgCb=null;
       <button class="ap-tab" onclick="showTab('texts')">✏️ Textes</button>
       <button class="ap-tab" onclick="showTab('contact')">📧 Contact</button>
     </div>
-    <button class="ap-close-btn" onclick="closeAdmin()">✕ Fermer</button>
-  </div>
-  <div class="ap-body">
-    <div class="ap-page active" id="tab-portfolio"><div id="ap-portfolio-content"></div></div>
-    <div class="ap-page" id="tab-shirts"><div id="ap-shirts-content"></div></div>
-    <div class="ap-page" id="tab-texts">
-      <div class="ap-card"><div class="ap-card-head"><div class="ap-card-title">Hero</div></div><div class="ap-field"><label>Texte accroche</label><textarea id="a-hero-sub"></textarea></div></div>
-      <div class="ap-card"><div class="ap-card-head"><div class="ap-card-title">À propos</div></div><div class="ap-grid"><div class="ap-field ap-full"><label>Paragraphe 1</label><textarea id="a-about1"></textarea></div><div class="ap-field ap-full"><label>Paragraphe 2</label><textarea id="a-about2"></textarea></div></div></div>
+    <div class="ap-nav-actions">
+      <button class="ap-save-top" onclick="adminSave(true)">💾 Enregistrer</button>
+      <button class="ap-close-btn" onclick="closeAdmin()">✕ Fermer</button>
     </div>
-    <div class="ap-page" id="tab-contact">
-      <div class="ap-card"><div class="ap-card-head"><div class="ap-card-title">Contact</div></div>
-        <div class="ap-grid">
-          <div class="ap-field"><label>Email</label><input id="a-email" type="text"/></div>
-          <div class="ap-field"><label>Instagram URL</label><input id="a-insta" type="text"/></div>
-          <div class="ap-field ap-full"><label>Vinted URL principal</label><input id="a-vinted" type="text"/></div>
+  </div>
+  <div class="ap-split">
+    <div class="ap-editor">
+      <div class="ap-page active" id="tab-portfolio">
+        <div class="ap-section-head">
+          <div class="ap-section-title">Projets</div>
+          <button class="ap-add-btn" onclick="addProject()">+ Ajouter un projet</button>
         </div>
+        <div id="ap-portfolio-content"></div>
+      </div>
+      <div class="ap-page" id="tab-shirts">
+        <div class="ap-section-head">
+          <div class="ap-section-title">Drops</div>
+          <button class="ap-add-btn" onclick="addShirt()">+ Ajouter un drop</button>
+        </div>
+        <div id="ap-shirts-content"></div>
+      </div>
+      <div class="ap-page" id="tab-texts">
+        <div class="ap-card expanded"><div class="ap-card-head" onclick="toggleCard(this)"><span class="ap-card-meta"><span class="ap-card-name">Hero</span><span class="ap-card-cat">Accroche page d'accueil</span></span><span class="ap-chevron">▶</span></div><div class="ap-card-body"><div class="ap-field"><label>Texte accroche</label><textarea id="a-hero-sub" oninput="livePreview()"></textarea></div></div></div>
+        <div class="ap-card expanded"><div class="ap-card-head" onclick="toggleCard(this)"><span class="ap-card-meta"><span class="ap-card-name">À propos</span><span class="ap-card-cat">Section bio</span></span><span class="ap-chevron">▶</span></div><div class="ap-card-body"><div class="ap-grid"><div class="ap-field ap-full"><label>Paragraphe 1</label><textarea id="a-about1" oninput="livePreview()"></textarea></div><div class="ap-field ap-full"><label>Paragraphe 2</label><textarea id="a-about2" oninput="livePreview()"></textarea></div></div></div></div>
+        <div class="ap-card expanded"><div class="ap-card-head" onclick="toggleCard(this)"><span class="ap-card-meta"><span class="ap-card-name">Vêtements</span><span class="ap-card-cat">Présentation de la marque</span></span><span class="ap-chevron">▶</span></div><div class="ap-card-body"><div class="ap-field"><label>Texte présentation marque</label><textarea id="a-shirts-text" oninput="livePreview()"></textarea></div></div></div>
+      </div>
+      <div class="ap-page" id="tab-contact">
+        <div class="ap-card expanded"><div class="ap-card-head" onclick="toggleCard(this)"><span class="ap-card-meta"><span class="ap-card-name">Contact</span><span class="ap-card-cat">Liens & coordonnées</span></span><span class="ap-chevron">▶</span></div><div class="ap-card-body">
+          <div class="ap-grid">
+            <div class="ap-field"><label>Email</label><input id="a-email" type="text" oninput="livePreview()"/></div>
+            <div class="ap-field"><label>Instagram URL</label><input id="a-insta" type="text" oninput="livePreview()"/></div>
+            <div class="ap-field ap-full"><label>Vinted URL principal</label><input id="a-vinted" type="text" oninput="livePreview()"/></div>
+          </div>
+        </div></div>
       </div>
     </div>
-    <button class="ap-save-btn" onclick="adminSave()">💾 Enregistrer tout</button>
+    <div class="ap-preview-pane">
+      <div class="ap-preview-bar">Aperçu en direct</div>
+      <iframe class="ap-preview-frame" id="ap-preview-frame" title="Aperçu"></iframe>
+    </div>
   </div>
 </div>
 
@@ -404,18 +520,24 @@ let editMode=false,_imgCb=null;
 
 <script>
 // ============ FIREBASE INIT ============
-firebase.initializeApp({
-  apiKey:"AIzaSyBTtQO3RHHv1J01fngjeR63qWwECiuFV80",
-  authDomain:"adrshitdesign-ccc65.firebaseapp.com",
-  databaseURL:"https://adrshitdesign-ccc65-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId:"adrshitdesign-ccc65",
-  storageBucket:"adrshitdesign-ccc65.firebasestorage.app",
-  messagingSenderId:"979698259215",
-  appId:"1:979698259215:web:99c9e02d8d955d99915a7a",
-  measurementId:"G-M0F4PREVYQ"
-});
-firebase.analytics();
-const db=firebase.database();
+var db=null,_fbOk=false;
+try{
+  if(typeof firebase!=='undefined'){
+    firebase.initializeApp({
+      apiKey:"AIzaSyBTtQO3RHHv1J01fngjeR63qWwECiuFV80",
+      authDomain:"adrshitdesign-ccc65.firebaseapp.com",
+      databaseURL:"https://adrshitdesign-ccc65-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId:"adrshitdesign-ccc65",
+      storageBucket:"adrshitdesign-ccc65.firebasestorage.app",
+      messagingSenderId:"979698259215",
+      appId:"1:979698259215:web:99c9e02d8d955d99915a7a",
+      measurementId:"G-M0F4PREVYQ"
+    });
+    try{firebase.analytics()}catch(e){}
+    db=firebase.database();
+    _fbOk=true;
+  }
+}catch(e){console.warn('Firebase indisponible, mode local:',e)}
 
 // ============ CANVAS ============
 (function(){
@@ -442,31 +564,53 @@ function render(){
   document.getElementById('footer-logo').innerHTML=SVG_SQ_W;
 
   document.getElementById('hero-sub-el').innerHTML=(D.hero.sub||'').replace(/\n/g,'<br>');
+  // Marquee hero
+  const mq=document.getElementById('hero-marquee-track');
+  if(mq){const words=['ADRSHITDESIGN','◆','VIDÉO','◆','MOTION','◆','BRANDING','◆','PHOTO','◆'];const seq=words.map(w=>`<span>${w}</span>`).join('');mq.innerHTML=seq+seq;}
   document.getElementById('about-p1-el').textContent=D.about.text1||'';
   document.getElementById('about-p2-el').textContent=D.about.text2||'';
-  document.getElementById('shirts-p1-el').textContent=D.about.text1||'';
+  document.getElementById('shirts-p1-el').textContent=D.shirtsText||D.about.text2||'';
   document.getElementById('vinted-btn').href=D.contact.vinted||'#';
   document.getElementById('lnk-email').href='mailto:'+(D.contact.email||'');
   document.getElementById('lnk-insta').href=D.contact.instagram||'#';
   document.getElementById('lnk-vinted').href=D.contact.vinted||'#';
 
   // Portfolio
-  document.getElementById('portfolio-grid').innerHTML=(D.portfolio||[]).map((p,i)=>`
+  document.getElementById('portfolio-grid').innerHTML=(D.portfolio||[]).map((p,i)=>{
+    const year=(p.sub||'').match(/\d{4}/)?.[0]||'';
+    const techs=(p.techs||'').split(',').map(t=>t.trim()).filter(Boolean);
+    return `
     <div class="portfolio-item${editMode?' edit-img-zone':''}" id="pf-${i}">
-      ${p.img?`<img src="${p.img}" alt="${p.title}"/>`:''}
-      <div class="p-inner">
-        <div class="p-label">${p.label||''}</div>
-        <div class="p-info"><h3>${p.title||''}</h3><p>${p.sub||''}</p></div>
+      <div class="pf-index">
+        <span class="pf-num">${String(i+1).padStart(2,'0')}</span>
+        <span class="pf-year">${year}</span>
       </div>
-    </div>`).join('');
+      <div class="pf-body">
+        <div class="pf-cat">${p.label||''}</div>
+        <div class="pf-title">${p.title||''}</div>
+        ${techs.length?`<div class="pf-techs">${techs.map(t=>`<span class="pf-tech">${t}</span>`).join('')}</div>`:''}
+        ${editMode?'':`<span class="pf-open">Voir le projet →</span>`}
+      </div>
+      <div class="pf-visual">
+        ${p.img?`<img src="${p.img}" alt="${p.title}"/>`:`<span class="pf-ph">${(p.label||'').substring(0,3)}</span>`}
+        <div class="pf-scanline"></div>
+      </div>
+    </div>`;
+  }).join('');
 
   // Shirts
-  document.getElementById('shirts-gallery').innerHTML=(D.shirts||[]).map((s,i)=>`
-    <${editMode?'div':'a'} class="shirt-card${editMode?' edit-img-zone':''}" id="sh-${i}"
-      ${editMode?'style="cursor:pointer"':`href="${s.link||'#'}" target="_blank"`}>
+  document.getElementById('shirts-gallery').innerHTML=(D.shirts||[]).map((s,i)=>{
+    const hasLink=s.link&&s.link.trim()&&s.link.trim()!=='#';
+    const tag=editMode?'div':(hasLink?'a':'div');
+    const attrs=editMode?'style="cursor:pointer"':(hasLink?`href="${s.link}" target="_blank"`:'');
+    const badge=(!editMode&&!hasLink)?`<div class="s-soon">Bientôt</div>`:'';
+    return `
+    <${tag} class="shirt-card${editMode?' edit-img-zone':''}${(!editMode&&!hasLink)?' is-soon':''}" id="sh-${i}" ${attrs}>
       ${s.img?`<img src="${s.img}" alt="${s.label}"/>`:`<span class="shirt-ph">${(s.label||'').substring(0,3)}</span>`}
-      <div class="s-overlay"><div class="s-label">${s.label||''}</div></div>
-    </${editMode?'div':'a'}>`).join('');
+      ${badge}
+      <div class="s-overlay"><div class="s-label">${s.label||''}${hasLink&&!editMode?' →':''}</div></div>
+    </${tag}>`;
+  }).join('');
 
   // Bind events
   (D.portfolio||[]).forEach((_,i)=>{
@@ -483,49 +627,76 @@ function render(){
   // Reveal
   const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.07,rootMargin:'0px 0px -30px 0px'});
   document.querySelectorAll('.reveal').forEach(r=>{r.classList.remove('visible');obs.observe(r)});
+  // Reveal cascade des cartes portfolio
+  const cardObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const idx=[...document.querySelectorAll('.portfolio-item')].indexOf(e.target);e.target.style.transitionDelay=(idx*0.09)+'s';e.target.classList.add('pf-in');cardObs.unobserve(e.target);}})},{threshold:.15});
+  document.querySelectorAll('.portfolio-item').forEach(c=>{c.classList.remove('pf-in');cardObs.observe(c)});
 }
 
 // ============ FIREBASE LOAD ============
-db.ref('sitedata').once('value').then(snap=>{
-  const val=snap.val();
-  if(val&&val.portfolio){
-    D=val;
-  } else {
-    // Première fois : écrit les données par défaut
-    db.ref('sitedata').set(DD);
+if(_fbOk&&db){
+  db.ref('sitedata').once('value').then(snap=>{
+    const val=snap.val();
+    if(val&&val.portfolio){
+      D=val;
+    } else {
+      // Première fois : écrit les données par défaut
+      db.ref('sitedata').set(DD);
+      D=JSON.parse(JSON.stringify(DD));
+    }
+    render();
+  }).catch(err=>{
+    console.error('Firebase error:',err);
     D=JSON.parse(JSON.stringify(DD));
-  }
-  render();
-}).catch(err=>{
-  console.error('Firebase error:',err);
+    render();
+  });
+} else {
+  // Pas de Firebase : on affiche les données par défaut
   D=JSON.parse(JSON.stringify(DD));
   render();
-});
+}
 
 // ============ SAVE ============
 function saveAll(){
+  if(!_fbOk||!db){toast('Hors-ligne : modifs non sauvegardées','⚠️');return}
   db.ref('sitedata').set(D)
     .then(()=>toast('Enregistré ✓'))
     .catch(()=>toast('Erreur','⚠️'));
 }
 
 // ============ PROJECT MODAL ============
+let _lbImgs=[],_lbIdx=0;
 function openProject(i){
   const p=D.portfolio[i];
-  const imgs=(p.gallery&&p.gallery.length)?p.gallery:(p.img?[p.img]:[]);
+  _lbImgs=(p.gallery&&p.gallery.length)?p.gallery:(p.img?[p.img]:[]);
   const yt=YTLINKS[i]?`<div class="pm-yt"><iframe src="${YTLINKS[i]}" allowfullscreen></iframe></div>`:'';
   document.getElementById('pm-content').innerHTML=`
     <div class="pm-tag">${p.sub||''}</div>
     <div class="pm-title">${p.title||''}</div>
     <p class="pm-desc">${p.desc||'<span style="color:#444">Aucune description.</span>'}</p>
     ${yt}
-    ${imgs.length?`<div class="pm-gallery">${imgs.map(s=>`<img src="${s}" alt="${p.title}"/>`).join('')}</div>`:''}
+    ${_lbImgs.length?`<div class="pm-gallery">${_lbImgs.map((s,j)=>`<img src="${s}" alt="${p.title}" onclick="openLightbox(${j})" style="cursor:zoom-in"/>`).join('')}</div>`:''}
     <div class="pm-meta">${p.techs?`<div class="pm-meta-block"><label>Outils</label><span>${p.techs}</span></div>`:''}</div>
     ${p.extLink?`<a href="${p.extLink}" target="_blank" class="pm-link">↗ Voir le projet</a>`:''}`;
   document.getElementById('project-modal').classList.add('open');
   document.body.style.overflow='hidden';
 }
 function closeProject(){document.getElementById('project-modal').classList.remove('open');document.body.style.overflow=''}
+
+// ============ LIGHTBOX ============
+function openLightbox(idx){
+  _lbIdx=idx;
+  document.getElementById('lightbox').classList.add('open');
+  lbRender();
+}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('open')}
+function lbNav(dir){_lbIdx=(_lbIdx+dir+_lbImgs.length)%_lbImgs.length;lbRender()}
+function lbRender(){
+  document.getElementById('lb-img').src=_lbImgs[_lbIdx];
+  document.getElementById('lb-counter').textContent=(_lbIdx+1)+' / '+_lbImgs.length;
+  document.getElementById('lb-prev').disabled=_lbImgs.length<=1;
+  document.getElementById('lb-next').disabled=_lbImgs.length<=1;
+}
+document.getElementById('lightbox').addEventListener('click',function(e){if(e.target===this)closeLightbox()});
 
 // ============ EDIT MODE ============
 function enterEdit(){editMode=true;document.body.classList.add('edit-mode');document.getElementById('edit-bar').classList.add('visible');document.getElementById('login-modal').classList.remove('open');render()}
@@ -549,7 +720,13 @@ function pickImg(i,type){
         const b64=canvas.toDataURL('image/jpeg',.8);
         if(type==='portfolio'){D.portfolio[i].img=b64;if(!D.portfolio[i].gallery)D.portfolio[i].gallery=[];D.portfolio[i].gallery[0]=b64}
         else{D.shirts[i].img=b64}
-        saveAll();render();toast('Image mise à jour ✓');
+        const adminOpen=document.getElementById('admin-panel').classList.contains('open');
+        if(adminOpen){
+          type==='portfolio'?renderAdminPortfolio():renderAdminShirts();
+          livePreview();toast('Image ajoutée ✓ (pense à enregistrer)');
+        } else {
+          saveAll();render();toast('Image mise à jour ✓');
+        }
       };
       img.src=e.target.result;
     };
@@ -564,63 +741,264 @@ function showTab(name){
   document.querySelectorAll('.ap-page').forEach(p=>p.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
 }
+function toggleCard(head){head.closest('.ap-card').classList.toggle('expanded')}
+
+// Échappe pour les value="" des inputs
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+function renderAdminPortfolio(){
+  const c=document.getElementById('ap-portfolio-content');
+  if(!(D.portfolio||[]).length){c.innerHTML='<div class="ap-empty">Aucun projet. Clique sur « + Ajouter un projet ».</div>';return}
+  c.innerHTML=D.portfolio.map((p,i)=>`
+    <div class="ap-card" data-type="portfolio" data-i="${i}" draggable="false">
+      <div class="ap-card-head">
+        <span class="ap-handle" draggable="true" title="Glisser pour réordonner">⠿</span>
+        <span class="ap-thumb">${p.img?`<img src="${esc(p.img)}" style="width:100%;height:100%;object-fit:cover"/>`:(p.label||'?').substring(0,1)}</span>
+        <span class="ap-card-meta" onclick="toggleCard(this.parentNode)">
+          <span class="ap-card-name">${esc(p.title)||'Sans titre'}</span>
+          <span class="ap-card-cat">${esc(p.label)||'—'}${p.sub?' · '+esc(p.sub):''}</span>
+        </span>
+        <button class="ap-del" onclick="delProject(${i})" title="Supprimer">🗑</button>
+        <span class="ap-chevron" onclick="toggleCard(this.parentNode)">▶</span>
+      </div>
+      <div class="ap-card-body">
+        <div class="ap-grid">
+          <div class="ap-field"><label>Catégorie / Label</label><input value="${esc(p.label)}" oninput="upd('portfolio',${i},'label',this.value)"/></div>
+          <div class="ap-field"><label>Titre</label><input value="${esc(p.title)}" oninput="upd('portfolio',${i},'title',this.value)"/></div>
+          <div class="ap-field ap-full"><label>Sous-titre (ex: Motion — 2025)</label><input value="${esc(p.sub)}" oninput="upd('portfolio',${i},'sub',this.value)"/></div>
+          <div class="ap-field ap-full"><label>Description</label><textarea oninput="upd('portfolio',${i},'desc',this.value)">${esc(p.desc)}</textarea></div>
+          <div class="ap-field"><label>Outils (séparés par virgules)</label><input value="${esc(p.techs)}" oninput="upd('portfolio',${i},'techs',this.value)"/></div>
+          <div class="ap-field"><label>Lien externe (optionnel)</label><input value="${esc(p.extLink)}" oninput="upd('portfolio',${i},'extLink',this.value)"/></div>
+        </div>
+        <div class="ap-imgrow">
+          <div class="ap-field"><label>URL image principale</label><input value="${esc(p.img)}" oninput="updImg('portfolio',${i},this.value)" placeholder="https://raw.githubusercontent.com/..."/><div class="hint">URL GitHub ou upload →</div></div>
+          <button class="ap-upload-btn" onclick="pickImg(${i},'portfolio')">📷 Upload</button>
+        </div>
+      </div>
+    </div>`).join('');
+  bindDrag('portfolio');
+}
+
+function renderAdminShirts(){
+  const c=document.getElementById('ap-shirts-content');
+  if(!(D.shirts||[]).length){c.innerHTML='<div class="ap-empty">Aucun drop. Clique sur « + Ajouter un drop ».</div>';return}
+  c.innerHTML=D.shirts.map((s,i)=>`
+    <div class="ap-card" data-type="shirts" data-i="${i}">
+      <div class="ap-card-head">
+        <span class="ap-handle" draggable="true" title="Glisser pour réordonner">⠿</span>
+        <span class="ap-thumb">${s.img?`<img src="${esc(s.img)}" style="width:100%;height:100%;object-fit:cover"/>`:(s.label||'?').substring(0,1)}</span>
+        <span class="ap-card-meta" onclick="toggleCard(this.parentNode)">
+          <span class="ap-card-name">${esc(s.label)||'Sans nom'}</span>
+          <span class="ap-card-cat">${s.link?'Lien Vinted ✓':'Pas encore de lien'}</span>
+        </span>
+        <button class="ap-del" onclick="delShirt(${i})" title="Supprimer">🗑</button>
+        <span class="ap-chevron" onclick="toggleCard(this.parentNode)">▶</span>
+      </div>
+      <div class="ap-card-body">
+        <div class="ap-field"><label>Nom du drop / design</label><input value="${esc(s.label)}" oninput="upd('shirts',${i},'label',this.value)"/></div>
+        <div class="ap-field"><label>🔗 Lien Vinted (optionnel)</label><input value="${esc(s.link)}" oninput="upd('shirts',${i},'link',this.value)" placeholder="Laisse vide → bouton « Bientôt »"/></div>
+        <div class="ap-imgrow">
+          <div class="ap-field"><label>URL image du design</label><input value="${esc(s.img)}" oninput="updImg('shirts',${i},this.value)" placeholder="https://raw.githubusercontent.com/..."/></div>
+          <button class="ap-upload-btn" onclick="pickImg(${i},'shirt')">📷 Upload</button>
+        </div>
+      </div>
+    </div>`).join('');
+  bindDrag('shirts');
+}
+
+// Mise à jour data + aperçu live
+function upd(type,i,key,val){D[type][i][key]=val;refreshThumbMeta(type,i);livePreview()}
+function updImg(type,i,val){
+  if(type==='portfolio'){D.portfolio[i].img=val;D.portfolio[i].gallery=val?[val]:[]}
+  else{D.shirts[i].img=val}
+  livePreview();
+}
+function refreshThumbMeta(type,i){
+  const card=document.querySelector(`.ap-card[data-type="${type}"][data-i="${i}"]`);
+  if(!card)return;
+  const d=D[type][i];
+  card.querySelector('.ap-card-name').textContent=(type==='portfolio'?d.title:d.label)||'Sans titre';
+  if(type==='portfolio')card.querySelector('.ap-card-cat').textContent=(d.label||'—')+(d.sub?' · '+d.sub:'');
+}
+
+// Ajout / suppression
+function addProject(){
+  D.portfolio=D.portfolio||[];
+  D.portfolio.push({label:'NOUVEAU',title:'Nouveau projet',sub:'Catégorie — '+new Date().getFullYear(),img:'',desc:'',techs:'',extLink:'',gallery:[]});
+  renderAdminPortfolio();livePreview();
+  const cards=document.querySelectorAll('#ap-portfolio-content .ap-card');
+  const last=cards[cards.length-1];if(last){last.classList.add('expanded');last.scrollIntoView({behavior:'smooth',block:'center'})}
+  toast('Projet ajouté ✓');
+}
+function delProject(i){
+  if(!confirm('Supprimer ce projet ?'))return;
+  D.portfolio.splice(i,1);renderAdminPortfolio();livePreview();toast('Projet supprimé','🗑');
+}
+function addShirt(){
+  D.shirts=D.shirts||[];
+  D.shirts.push({label:'DROP '+String((D.shirts.length+1)).padStart(2,'0'),img:'',link:''});
+  renderAdminShirts();livePreview();
+  const cards=document.querySelectorAll('#ap-shirts-content .ap-card');
+  const last=cards[cards.length-1];if(last){last.classList.add('expanded');last.scrollIntoView({behavior:'smooth',block:'center'})}
+  toast('Drop ajouté ✓');
+}
+function delShirt(i){
+  if(!confirm('Supprimer ce drop ?'))return;
+  D.shirts.splice(i,1);renderAdminShirts();livePreview();toast('Drop supprimé','🗑');
+}
+
+// Drag & drop pour réordonner
+var _dragType=null,_dragIdx=null;
+function bindDrag(type){
+  document.querySelectorAll(`.ap-card[data-type="${type}"]`).forEach(card=>{
+    const handle=card.querySelector('.ap-handle');
+    handle.addEventListener('dragstart',e=>{_dragType=type;_dragIdx=+card.dataset.i;card.classList.add('dragging');e.dataTransfer.effectAllowed='move'});
+    handle.addEventListener('dragend',()=>{card.classList.remove('dragging');document.querySelectorAll('.ap-card').forEach(c=>c.classList.remove('drag-over'))});
+    card.addEventListener('dragover',e=>{if(_dragType!==type)return;e.preventDefault();card.classList.add('drag-over')});
+    card.addEventListener('dragleave',()=>card.classList.remove('drag-over'));
+    card.addEventListener('drop',e=>{
+      if(_dragType!==type)return;e.preventDefault();
+      const to=+card.dataset.i;
+      if(_dragIdx===to||_dragIdx===null)return;
+      const arr=D[type];const[moved]=arr.splice(_dragIdx,1);arr.splice(to,0,moved);
+      _dragIdx=null;
+      type==='portfolio'?renderAdminPortfolio():renderAdminShirts();
+      livePreview();toast('Ordre mis à jour ✓');
+    });
+  });
+}
+
+// Aperçu live (debounced) — réinjecte les données dans l'iframe
+var _previewTO=null;
+function livePreview(){
+  clearTimeout(_previewTO);
+  _previewTO=setTimeout(()=>{
+    const f=document.getElementById('ap-preview-frame');
+    if(f&&f.contentWindow&&f.contentWindow.__applyData){
+      f.contentWindow.__applyData(JSON.parse(JSON.stringify(D)));
+    }
+  },180);
+}
+
 function openAdmin(){
-  document.getElementById('ap-portfolio-content').innerHTML=(D.portfolio||[]).map((p,i)=>`
-    <div class="ap-card">
-      <div class="ap-card-head"><div class="ap-card-title">Projet ${i+1}</div><span class="ap-card-badge">${p.label}</span></div>
-      <div class="ap-grid">
-        <div class="ap-field"><label>Label</label><input id="apl-${i}" value="${p.label||''}"/></div>
-        <div class="ap-field"><label>Titre</label><input id="apt-${i}" value="${p.title||''}"/></div>
-        <div class="ap-field ap-full"><label>Sous-titre</label><input id="aps-${i}" value="${p.sub||''}"/></div>
-        <div class="ap-field ap-full"><label>Description</label><textarea id="apd-${i}">${p.desc||''}</textarea></div>
-        <div class="ap-field"><label>Outils</label><input id="aptech-${i}" value="${p.techs||''}"/></div>
-        <div class="ap-field"><label>Lien externe</label><input id="apext-${i}" value="${p.extLink||''}"/></div>
-        <div class="ap-field ap-full"><label>URL image (GitHub)</label><input id="apimg-${i}" value="${p.img||''}" placeholder="https://raw.githubusercontent.com/..."/><div class="hint">Colle l'URL de ton image GitHub ici</div></div>
-      </div>
-    </div>`).join('');
-  document.getElementById('ap-shirts-content').innerHTML=(D.shirts||[]).map((s,i)=>`
-    <div class="ap-card">
-      <div class="ap-card-head"><div class="ap-card-title">${s.label}</div></div>
-      <div class="ap-grid">
-        <div class="ap-field"><label>Label</label><input id="asl-${i}" value="${s.label||''}"/></div>
-        <div class="ap-field"><label>🔗 Lien Vinted</label><input id="aslink-${i}" value="${s.link||''}" placeholder="https://www.vinted.fr/items/..."/></div>
-        <div class="ap-field ap-full"><label>URL image (GitHub)</label><input id="asimg-${i}" value="${s.img||''}" placeholder="https://raw.githubusercontent.com/..."/></div>
-      </div>
-    </div>`).join('');
+  renderAdminPortfolio();
+  renderAdminShirts();
   document.getElementById('a-hero-sub').value=D.hero.sub||'';
   document.getElementById('a-about1').value=D.about.text1||'';
   document.getElementById('a-about2').value=D.about.text2||'';
+  document.getElementById('a-shirts-text').value=D.shirtsText||'';
   document.getElementById('a-email').value=D.contact.email||'';
   document.getElementById('a-insta').value=D.contact.instagram||'';
   document.getElementById('a-vinted').value=D.contact.vinted||'';
   document.getElementById('admin-panel').classList.add('open');
+  // Charge l'aperçu : on clone la page courante dans l'iframe
+  initPreviewFrame();
 }
 function closeAdmin(){document.getElementById('admin-panel').classList.remove('open')}
-function adminSave(){
-  (D.portfolio||[]).forEach((p,i)=>{
-    p.label=document.getElementById('apl-'+i).value;
-    p.title=document.getElementById('apt-'+i).value;
-    p.sub=document.getElementById('aps-'+i).value;
-    p.desc=document.getElementById('apd-'+i).value;
-    p.techs=document.getElementById('aptech-'+i).value;
-    p.extLink=document.getElementById('apext-'+i).value;
-    const imgUrl=document.getElementById('apimg-'+i).value;
-    if(imgUrl){p.img=imgUrl;p.gallery=[imgUrl]}
-  });
-  (D.shirts||[]).forEach((s,i)=>{
-    s.label=document.getElementById('asl-'+i).value;
-    s.link=document.getElementById('aslink-'+i).value;
-    const imgUrl=document.getElementById('asimg-'+i).value;
-    if(imgUrl)s.img=imgUrl;
-  });
+
+// Initialise l'iframe d'aperçu avec un mini-rendu autonome
+function initPreviewFrame(){
+  const f=document.getElementById('ap-preview-frame');
+  const doc=f.contentDocument;
+  doc.open();
+  doc.write(buildPreviewDoc());
+  doc.close();
+}
+
+// Lie les champs Textes/Contact à l'objet D avant l'aperçu
+function syncTextFields(){
+  D.hero.sub=document.getElementById('a-hero-sub').value;
   D.about.text1=document.getElementById('a-about1').value;
   D.about.text2=document.getElementById('a-about2').value;
-  D.hero.sub=document.getElementById('a-hero-sub').value;
+  D.shirtsText=document.getElementById('a-shirts-text').value;
   D.contact.email=document.getElementById('a-email').value;
   D.contact.instagram=document.getElementById('a-insta').value;
   D.contact.vinted=document.getElementById('a-vinted').value;
-  saveAll();render();closeAdmin();
 }
+
+function adminSave(syncText){
+  if(syncText)syncTextFields();
+  saveAll();render();toast('Enregistré ✓');
+}
+
+// Document autonome de l'aperçu (mini-rendu fidèle des sections clés)
+function buildPreviewDoc(){
+  return `<!DOCTYPE html><html><head><meta charset="utf-8"/>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;700;900&family=Space+Mono:wght@400;700&display=swap');
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#0a0a0a;color:#f5f5f0;font-family:'Space Grotesk',sans-serif}
+.pv-sec{padding:2.5rem 1.8rem;border-bottom:1px solid #1a1a1a}
+.pv-tag{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.28em;text-transform:uppercase;color:#888;margin-bottom:1rem}
+.pv-h{font-size:2rem;font-weight:900;text-transform:uppercase;line-height:.95;letter-spacing:.02em;margin-bottom:.5rem}
+.pv-hero{min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;background:#0a0a0a}
+.pv-hero .pv-logo{font-size:2.6rem;font-weight:900;letter-spacing:.04em}
+.pv-sub{color:#ddd;font-size:.85rem;line-height:1.7;max-width:420px;margin-top:.8rem}
+.pv-item{display:grid;grid-template-columns:50px 1.1fr 1fr;border:1px solid #161616;margin-bottom:1px;min-height:120px;overflow:hidden}
+.pv-idx{display:flex;align-items:center;justify-content:center;font-family:'Space Mono',monospace;font-size:.6rem;color:#555;border-right:1px solid #161616}
+.pv-body{padding:1rem;display:flex;flex-direction:column;gap:.4rem;justify-content:center}
+.pv-cat{font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.2em;text-transform:uppercase;color:#888}
+.pv-title{font-size:1.2rem;font-weight:900;text-transform:uppercase;line-height:1}
+.pv-techs{display:flex;flex-wrap:wrap;gap:.25rem;margin-top:.2rem}
+.pv-tech{font-family:'Space Mono',monospace;font-size:.5rem;text-transform:uppercase;color:#666;border:1px solid #222;padding:.15rem .4rem}
+.pv-vis{position:relative;border-left:1px solid #161616;background:#0d0d0d;overflow:hidden}
+.pv-vis img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);opacity:.6}
+.pv-ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem;font-weight:900;color:#1a1a1a}
+.pv-shirts{background:#f5f5f0;color:#0a0a0a}
+.pv-shirts .pv-tag,.pv-shirts .pv-cat{color:#666}
+.pv-sgrid{display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-top:1rem}
+.pv-scard{aspect-ratio:3/4;background:#0e0e0e;position:relative;display:flex;align-items:flex-end;overflow:hidden}
+.pv-scard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pv-slabel{position:relative;width:100%;padding:.5rem;font-size:.7rem;font-weight:900;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.85));z-index:2}
+.pv-sph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:1.3rem;font-weight:900;color:#222}
+.pv-empty{color:#444;font-family:'Space Mono',monospace;font-size:.7rem;padding:1.5rem;text-align:center;border:1px dashed #1a1a1a}
+</style></head>
+<body>
+<div class="pv-hero pv-sec">
+  <div class="pv-logo">ADRSHITDESIGN</div>
+  <div class="pv-tag" style="margin-top:.8rem">Directeur Artistique · Paris</div>
+  <div class="pv-sub" id="pv-hero-sub"></div>
+</div>
+<div class="pv-sec">
+  <div class="pv-tag">01 — Portfolio</div>
+  <div class="pv-h">Les Créations</div>
+  <div id="pv-portfolio" style="margin-top:1rem"></div>
+</div>
+<div class="pv-sec pv-shirts">
+  <div class="pv-tag">02 — La marque</div>
+  <div class="pv-h">ADRSHIRTDESIGN</div>
+  <div class="pv-sub" id="pv-shirts-text" style="color:#444"></div>
+  <div class="pv-sgrid" id="pv-shirts"></div>
+</div>
+<scr`+`ipt>
+function __applyData(D){
+  document.getElementById('pv-hero-sub').innerHTML=(D.hero.sub||'').replace(/\\n/g,'<br>');
+  document.getElementById('pv-shirts-text').textContent=D.shirtsText||'';
+  var pf=(D.portfolio||[]);
+  document.getElementById('pv-portfolio').innerHTML=pf.length?pf.map(function(p,i){
+    var techs=(p.techs||'').split(',').map(function(t){return t.trim()}).filter(Boolean);
+    return '<div class="pv-item">'
+      +'<div class="pv-idx">'+String(i+1).padStart(2,'0')+'</div>'
+      +'<div class="pv-body"><div class="pv-cat">'+(p.label||'')+'</div><div class="pv-title">'+(p.title||'')+'</div>'
+      +(techs.length?'<div class="pv-techs">'+techs.map(function(t){return '<span class="pv-tech">'+t+'</span>'}).join('')+'</div>':'')+'</div>'
+      +'<div class="pv-vis">'+(p.img?'<img src="'+p.img+'"/>':'<span class="pv-ph">'+(p.label||'').substring(0,3)+'</span>')+'</div>'
+      +'</div>';
+  }).join(''):'<div class="pv-empty">Aucun projet</div>';
+  var sh=(D.shirts||[]);
+  document.getElementById('pv-shirts').innerHTML=sh.length?sh.map(function(s){
+    return '<div class="pv-scard">'+(s.img?'<img src="'+s.img+'"/>':'<span class="pv-sph">'+(s.label||'').substring(0,3)+'</span>')+'<div class="pv-slabel">'+(s.label||'')+'</div></div>';
+  }).join(''):'<div class="pv-empty" style="grid-column:span 2">Aucun drop</div>';
+}
+window.__applyData=__applyData;
+window.parent.postMessage('preview-ready','*');
+</scr`+`ipt>
+</body></html>`;
+}
+
+// Quand l'iframe signale qu'elle est prête, on pousse les données
+window.addEventListener('message',function(e){
+  if(e.data==='preview-ready')livePreview();
+});
 
 // ============ TOAST ============
 function toast(msg,icon='✅'){
@@ -633,21 +1011,42 @@ function toast(msg,icon='✅'){
 }
 
 // ============ LOGIN ============
-function tryLogin(){
+async function sha256(str){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(str));
+  return [...new Uint8Array(buf)].map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+async function tryLogin(){
   const v=document.getElementById('lpwd').value;
   const att=parseInt(sessionStorage.getItem('att')||'0');
   if(att>=5){document.getElementById('lerr').textContent='Trop de tentatives.';document.getElementById('lerr').style.display='block';return}
-  if(v===PWD){sessionStorage.setItem('att','0');enterEdit()}
+  const h=await sha256(v);
+  if(h===PWD_HASH){sessionStorage.setItem('att','0');enterEdit()}
   else{sessionStorage.setItem('att',String(att+1));document.getElementById('lerr').style.display='block';document.getElementById('lpwd').value=''}
 }
 if(location.search.includes('admin'))window.addEventListener('load',()=>document.getElementById('login-modal').classList.add('open'));
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeProject();closeAdmin()}});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){closeLightbox();closeProject();closeAdmin()}
+  if(document.getElementById('lightbox').classList.contains('open')){
+    if(e.key==='ArrowLeft')lbNav(-1);
+    if(e.key==='ArrowRight')lbNav(1);
+  }
+});
+
+// Scroll-spy nav
+(function(){
+  const links=[...document.querySelectorAll('.nav-links a')];
+  const map={};links.forEach(l=>{const id=l.getAttribute('href').slice(1);const sec=document.getElementById(id);if(sec)map[id]=l;});
+  const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=map[e.target.id];if(a)a.classList.add('active');}})},{rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(map).forEach(id=>spy.observe(document.getElementById(id)));
+})();
 
 // Sync temps réel Firebase → tous les onglets
-db.ref('sitedata').on('value',snap=>{
-  const val=snap.val();
-  if(val&&val.portfolio){D=val;render();}
-});
+if(_fbOk&&db){
+  db.ref('sitedata').on('value',snap=>{
+    const val=snap.val();
+    if(val&&val.portfolio){D=val;render();}
+  });
+}
 </script>
 </body>
 </html>
