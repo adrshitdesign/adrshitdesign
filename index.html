@@ -44,11 +44,11 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-links a.active::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--white)}
 
 #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 2.5rem 5rem;position:relative;overflow:hidden}
-canvas#hero-canvas{position:absolute;inset:0;z-index:0;opacity:.5}
+canvas#hero-canvas{position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none;mask-image:radial-gradient(ellipse 100% 95% at 50% 50%,#000 70%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 100% 95% at 50% 50%,#000 70%,transparent 100%)}
 .hero-grid-overlay{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 75% 75% at 50% 45%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 75% 75% at 50% 45%,#000 30%,transparent 80%);animation:gridDrift 24s linear infinite}
 @keyframes gridDrift{from{background-position:0 0,0 0}to{background-position:64px 64px,64px 64px}}
 .hero-marquee{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%) rotate(-2.5deg);z-index:0;pointer-events:none;overflow:hidden;width:120%;margin-left:-10%;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.hero-marquee-track{display:inline-flex;white-space:nowrap;font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(4rem,13vw,11rem);line-height:1;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.06);animation:marquee 32s linear infinite;will-change:transform}
+.hero-marquee-track{display:inline-flex;white-space:nowrap;font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(4rem,13vw,11rem);line-height:1;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.12);animation:marquee 32s linear infinite;will-change:transform}
 .hero-marquee-track span{padding:0 1.5rem}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .hero-content{position:relative;z-index:1}
@@ -125,6 +125,10 @@ h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6
 .pm-link{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.4rem;border:1px solid #333;text-decoration:none;color:var(--light);font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;transition:all .2s}
 .pm-link:hover{border-color:#888;color:var(--white)}
 .pm-music{display:flex;flex-wrap:wrap;gap:.7rem;margin-bottom:1rem}
+.pm-players{display:flex;flex-direction:column;gap:.9rem;margin-bottom:1.2rem}
+.pm-player iframe{width:100%;border:none;border-radius:12px;display:block;background:#1a1a1a}
+.pm-player-sp iframe{height:152px}
+.pm-player-am iframe{height:175px}
 .pm-stream{display:inline-flex;align-items:center;gap:.6rem;padding:.75rem 1.3rem;text-decoration:none;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;border-radius:2px;transition:transform .15s,box-shadow .2s;will-change:transform}
 .pm-stream svg{flex-shrink:0}
 .pm-stream:hover{transform:translateY(-2px)}
@@ -136,12 +140,23 @@ h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6
 .pm-type-label{font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gray);margin-bottom:.8rem}
 .pm-type-input{width:100%;background:#080808;border:1px solid #222;color:var(--white);font-family:'Space Mono',monospace;font-size:.85rem;padding:.6rem .8rem;outline:none;transition:border-color .2s;margin-bottom:1rem}
 .pm-type-input:focus{border-color:#555}
-.pm-type-preview{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.2rem,7vw,4.5rem);line-height:1;text-transform:uppercase;word-break:break-word;color:var(--white);margin-bottom:1.2rem;min-height:1em}
-.pm-type-actions{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center}
-.pm-dl-zip{background:var(--white);color:#000;border:none;cursor:pointer}
-.pm-dl-zip:hover{box-shadow:0 6px 18px rgba(255,255,255,.2)}
-.pm-dl-woff{cursor:pointer;font-size:.6rem;padding:.6rem 1rem}
-.pm-type-note{font-family:'Space Mono',monospace;font-size:.55rem;color:#444;margin-top:.9rem;line-height:1.5}
+.pm-type-stage{background:#0a0a0a;border:1px solid #1a1a1a;padding:2rem 1rem;margin-bottom:1.1rem;display:flex;align-items:center;justify-content:center;min-height:140px;overflow:hidden;transition:background .25s}
+.pm-type-preview{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:4.5rem;line-height:1;text-transform:uppercase;word-break:break-word;text-align:center;color:#f5f5f0;transition:color .25s;will-change:transform}
+.pm-type-controls{display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.1rem}
+.tc-row{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem}
+.tc-lbl{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.15em;text-transform:uppercase;color:#666;min-width:62px}
+.tc-btns{display:flex;flex-wrap:wrap;gap:.3rem}
+.tc-chip{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .7rem;background:#080808;border:1px solid #222;color:#888;cursor:pointer;transition:all .15s}
+.tc-chip:hover{border-color:#444;color:#ccc}
+.tc-chip.active{background:#f5f5f0;color:#0a0a0a;border-color:#f5f5f0}
+.tc-range{flex:1;min-width:90px;max-width:180px;accent-color:#f5f5f0;cursor:pointer}
+.pm-type-actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
+.tc-sep{width:1px;height:22px;background:#222;margin:0 .3rem}
+.pm-dl-png,.pm-dl-svg{background:var(--white);color:#000;border:none;cursor:pointer}
+.pm-dl-png:hover,.pm-dl-svg:hover{box-shadow:0 6px 18px rgba(255,255,255,.2)}
+.pm-dl-zip{background:#222;color:var(--white);border:none;cursor:pointer;font-size:.6rem}
+.pm-dl-zip:hover{background:#333}
+.pm-dl-woff{cursor:pointer;font-size:.58rem;padding:.55rem .9rem}
 .pm-gallery img{cursor:zoom-in}
 #lightbox{display:none;position:fixed;inset:0;z-index:999;background:rgba(0,0,0,.97);backdrop-filter:blur(6px);align-items:center;justify-content:center;flex-direction:column}
 #lightbox.open{display:flex}
@@ -194,21 +209,21 @@ h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6
 .tape-1{top:-6px;left:30px;transform:rotate(-7deg)}
 .tape-2{bottom:60px;left:-10px;transform:rotate(84deg);width:50px}
 @media(max-width:760px){.shirts-graphic{min-height:280px;margin-top:1rem}}
-.shirts-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-top:2.5rem}
+.shirts-layout{display:grid;grid-template-columns:1fr 1.15fr;gap:3.5rem;align-items:center;margin-top:2.5rem}
 .shirts-text p{font-size:.9rem;line-height:1.85;color:#444;margin-bottom:1.4rem}
 .shirts-tag-list{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.8rem}
 .tag{display:inline-block;padding:.3rem .7rem;border:1px solid #ccc;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:#666}
-.shirts-gallery{display:grid;grid-template-columns:1fr 1fr;gap:3px}
-.shirt-card{background:#0e0e0e;aspect-ratio:3/4;display:block;position:relative;overflow:hidden;text-decoration:none}
+.shirts-gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:540px;margin-left:auto;justify-self:end}
+.shirt-card{background:#0e0e0e;aspect-ratio:1/1;display:block;position:relative;overflow:hidden;text-decoration:none;border:1px solid #e0ddd4}
 .shirt-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .shirt-card:hover img{transform:scale(1.04)}
 .shirt-card .s-overlay{position:absolute;inset:0;display:flex;align-items:flex-end;transition:background .3s}
 .shirt-card:hover .s-overlay{background:rgba(0,0,0,.3)}
 .shirt-card .s-label{width:100%;padding:.7rem;font-family:'ADRSHITTypo',sans-serif;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.85));transform:translateY(100%);transition:transform .3s}
 .shirt-card:hover .s-label{transform:translateY(0)}
-.shirt-ph{font-family:'ADRSHITTypo',sans-serif;font-size:2rem;color:#1a1a1a;letter-spacing:.1em;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.shirt-ph{font-family:'ADRSHITTypo',sans-serif;font-size:1.6rem;color:#2a2a2a;letter-spacing:.06em;text-transform:uppercase;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;width:100%;padding:0 .5rem}
+.shirt-card.is-soon{cursor:default;background:repeating-linear-gradient(45deg,#0e0e0e,#0e0e0e 10px,#111 10px,#111 20px)}
 .s-soon{position:absolute;top:.7rem;right:.7rem;z-index:3;font-family:'Space Mono',monospace;font-size:.5rem;letter-spacing:.15em;text-transform:uppercase;color:#fff;background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.25);padding:.25rem .55rem;backdrop-filter:blur(4px)}
-.shirt-card.is-soon{cursor:default}
 
 #about{background:var(--black)}
 .about-layout{display:grid;grid-template-columns:250px 1fr;gap:5rem;align-items:start;margin-top:3rem}
@@ -633,20 +648,52 @@ try{
   }
 }catch(e){console.warn('Firebase indisponible, mode local:',e)}
 
-// ============ CANVAS ============
+// ============ CANVAS — GRAIN GRUNGE ============
 (function(){
-  const c=document.getElementById('hero-canvas'),ctx=c.getContext('2d');
-  let W,H,pts=[];
-  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight}
-  function mkPt(){return{x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.2+.3,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,o:Math.random()*.4+.1}}
-  function init(){resize();pts=Array.from({length:70},mkPt)}
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${p.o})`;ctx.fill()});
-    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(255,255,255,${.05*(1-d/110)})`;ctx.lineWidth=.4;ctx.stroke()}}
-    requestAnimationFrame(draw);
+  const c=document.getElementById('hero-canvas');
+  if(!c)return;
+  const ctx=c.getContext('2d',{alpha:true});
+  let W,H,DPR=Math.min(window.devicePixelRatio||1,2),frame=0,raf;
+  // calque de bruit pré-rendu, recyclé pour la perf
+  let noiseCanvas=document.createElement('canvas'),nctx=noiseCanvas.getContext('2d');
+  const NOISE_SIZE=160;
+  function resize(){
+    W=c.width=Math.floor(c.offsetWidth*DPR);
+    H=c.height=Math.floor(c.offsetHeight*DPR);
   }
-  window.addEventListener('resize',init);init();draw();
+  function makeNoiseTile(intensity){
+    noiseCanvas.width=NOISE_SIZE;noiseCanvas.height=NOISE_SIZE;
+    const img=nctx.createImageData(NOISE_SIZE,NOISE_SIZE),d=img.data;
+    for(let i=0;i<d.length;i+=4){
+      const v=Math.random()*255;
+      d[i]=d[i+1]=d[i+2]=v;
+      d[i+3]=Math.random()<intensity?Math.random()*70:0; // grain clairsemé
+    }
+    nctx.putImageData(img,0,0);
+  }
+  function draw(){
+    frame++;
+    ctx.clearRect(0,0,W,H);
+    // 1) grain animé : on régénère le bruit toutes les ~2 frames pour un effet "film"
+    if(frame%2===0)makeNoiseTile(0.5);
+    ctx.globalAlpha=0.5;
+    const tile=NOISE_SIZE;
+    // décalage aléatoire léger pour faire vibrer le grain
+    const ox=(Math.random()*tile)|0, oy=(Math.random()*tile)|0;
+    for(let x=-ox;x<W;x+=tile)for(let y=-oy;y<H;y+=tile)ctx.drawImage(noiseCanvas,x,y);
+    // 2) bande de balayage verticale douce qui descend lentement
+    ctx.globalAlpha=1;
+    const sweepY=((frame*0.6)%(H+300))-150;
+    const grad=ctx.createLinearGradient(0,sweepY-120,0,sweepY+120);
+    grad.addColorStop(0,'rgba(255,255,255,0)');
+    grad.addColorStop(.5,'rgba(255,255,255,0.035)');
+    grad.addColorStop(1,'rgba(255,255,255,0)');
+    ctx.fillStyle=grad;ctx.fillRect(0,sweepY-120,W,240);
+    raf=requestAnimationFrame(draw);
+  }
+  function start(){resize();makeNoiseTile(0.5);cancelAnimationFrame(raf);draw()}
+  window.addEventListener('resize',start);
+  start();
 })();
 
 // ============ RENDER ============
@@ -701,7 +748,7 @@ function render(){
     const badge=(!editMode&&!hasLink)?`<div class="s-soon">Bientôt</div>`:'';
     return `
     <${tag} class="shirt-card${editMode?' edit-img-zone':''}${(!editMode&&!hasLink)?' is-soon':''}" id="sh-${i}" ${attrs}>
-      ${s.img?`<img src="${s.img}" alt="${s.label}"/>`:`<span class="shirt-ph">${(s.label||'').substring(0,3)}</span>`}
+      ${s.img?`<img src="${s.img}" alt="${s.label}"/>`:`<span class="shirt-ph">${s.label||'DROP'}</span>`}
       ${badge}
       <div class="s-overlay"><div class="s-label">${s.label||''}${hasLink&&!editMode?' →':''}</div></div>
     </${tag}>`;
@@ -760,6 +807,26 @@ function saveAll(){
 
 // ============ PROJECT MODAL ============
 let _lbImgs=[],_lbIdx=0;
+
+// Génère les players audio intégrés (Spotify / Apple Music) à partir des URLs
+function buildPlayers(p){
+  let html='';
+  // Spotify : open.spotify.com/[intl-xx/]album|track|playlist/ID -> /embed/...
+  if(p.spotify){
+    const m=p.spotify.match(/spotify\.com\/(?:intl-[a-z]+\/)?(album|track|playlist|artist)\/([A-Za-z0-9]+)/);
+    if(m){
+      const src=`https://open.spotify.com/embed/${m[1]}/${m[2]}?theme=0`;
+      html+=`<div class="pm-player pm-player-sp"><iframe src="${src}" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe></div>`;
+    }
+  }
+  // Apple Music : music.apple.com/xx/album/.../ID -> embed.music.apple.com/...
+  if(p.appleMusic){
+    const am=p.appleMusic.replace('music.apple.com','embed.music.apple.com');
+    html+=`<div class="pm-player pm-player-am"><iframe src="${am}" loading="lazy" allow="autoplay *; encrypted-media *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"></iframe></div>`;
+  }
+  return html?`<div class="pm-players">${html}</div>`:'';
+}
+
 function openProject(i){
   const p=D.portfolio[i];
   _lbImgs=(p.gallery&&p.gallery.length)?p.gallery:(p.img?[p.img]:[]);
@@ -771,14 +838,47 @@ function openProject(i){
     ${yt}
     ${_lbImgs.length?`<div class="pm-gallery">${_lbImgs.map((s,j)=>`<img src="${s}" alt="${p.title}" onclick="openLightbox(${j})" style="cursor:zoom-in"/>`).join('')}</div>`:''}
     <div class="pm-meta">${p.techs?`<div class="pm-meta-block"><label>Outils</label><span>${p.techs}</span></div>`:''}</div>
+    ${buildPlayers(p)}
     ${(p.spotify||p.appleMusic)?`<div class="pm-music">${p.spotify?`<a href="${p.spotify}" target="_blank" rel="noopener" class="pm-stream pm-spotify"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.5 17.32c-.22.36-.68.46-1.04.24-2.86-1.74-6.46-2.14-10.7-1.18-.4.1-.82-.16-.92-.58-.1-.42.16-.82.58-.92 4.64-1.06 8.62-.6 11.84 1.36.36.22.46.68.24 1.08zm1.46-3.26c-.28.44-.86.6-1.3.32-3.28-2.02-8.28-2.6-12.16-1.42-.5.14-1.04-.14-1.18-.64-.14-.5.14-1.04.64-1.18 4.42-1.34 9.94-.7 13.7 1.62.42.26.58.86.3 1.3zm.12-3.4C15.24 8.34 8.82 8.12 5.16 9.24c-.6.18-1.24-.16-1.42-.76-.18-.6.16-1.24.76-1.42 4.2-1.28 11.3-1.02 15.74 1.62.54.32.72 1.02.4 1.56-.32.52-1.02.7-1.56.38z"/></svg>Spotify</a>`:''}${p.appleMusic?`<a href="${p.appleMusic}" target="_blank" rel="noopener" class="pm-stream pm-apple"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.99 6.12c0-.5-.05-1-.16-1.49a4.9 4.9 0 0 0-.46-1.27 4.62 4.62 0 0 0-2.02-2.02 4.9 4.9 0 0 0-1.27-.46A8.4 8.4 0 0 0 18.6.72H5.4c-.5 0-1 .04-1.49.15-.44.1-.86.25-1.27.46A4.62 4.62 0 0 0 .62 3.35a4.9 4.9 0 0 0-.46 1.27A8.4 8.4 0 0 0 0 6.12v11.76c0 .5.05 1 .16 1.49.1.44.25.86.46 1.27a4.62 4.62 0 0 0 2.02 2.02c.4.21.83.36 1.27.46.49.1.99.16 1.49.16h13.2c.5 0 1-.05 1.49-.16.44-.1.86-.25 1.27-.46a4.62 4.62 0 0 0 2.02-2.02c.21-.4.36-.83.46-1.27.1-.49.16-.99.16-1.49V6.12zm-6.27 2.5v6.59c0 .43-.05.85-.27 1.24-.34.6-.87.95-1.55 1.07-.38.07-.76.1-1.13.02-.66-.15-1.1-.7-1.16-1.38-.07-.85.42-1.6 1.24-1.83.3-.08.62-.1.93-.16.27-.05.4-.2.4-.48V9.36c0-.27-.13-.36-.38-.31-.5.1-1 .22-1.5.33l-2.3.52c-.27.07-.36.18-.36.46v6.7c0 .42-.04.83-.25 1.2-.33.6-.86.96-1.53 1.1-.39.07-.78.1-1.16.01-.65-.16-1.08-.7-1.14-1.38-.06-.83.43-1.58 1.24-1.81.3-.09.62-.11.93-.17.26-.05.4-.2.4-.47V7.39c0-.37.17-.58.53-.66l6.1-1.38c.39-.09.77.16.86.55.02.08.02.16.02.24l.01 2.48z"/></svg>Apple Music</a>`:''}</div>`:''}
     ${p.fontDownload?`
     <div class="pm-type">
-      <div class="pm-type-label">Essaie la fonte</div>
-      <input id="type-tester" class="pm-type-input" value="ADRSHITDESIGN" maxlength="30" oninput="document.getElementById('type-preview').textContent=this.value||'ADRSHITDESIGN'"/>
-      <div id="type-preview" class="pm-type-preview">ADRSHITDESIGN</div>
+      <div class="pm-type-label">Studio — teste & exporte la fonte</div>
+      <input id="type-tester" class="pm-type-input" value="ADRSHITDESIGN" maxlength="40" oninput="updateTypePreview()"/>
+      <div id="type-stage" class="pm-type-stage">
+        <div id="type-preview" class="pm-type-preview">ADRSHITDESIGN</div>
+      </div>
+      <div class="pm-type-controls">
+        <div class="tc-row">
+          <label class="tc-lbl">Effet</label>
+          <div class="tc-btns" id="tc-effect">
+            <button class="tc-chip active" data-effect="none" onclick="setTypeEffect('none',this)">Net</button>
+            <button class="tc-chip" data-effect="outline" onclick="setTypeEffect('outline',this)">Contour</button>
+            <button class="tc-chip" data-effect="echo" onclick="setTypeEffect('echo',this)">Écho</button>
+            <button class="tc-chip" data-effect="glitch" onclick="setTypeEffect('glitch',this)">Glitch</button>
+            <button class="tc-chip" data-effect="stack" onclick="setTypeEffect('stack',this)">Empilé</button>
+          </div>
+        </div>
+        <div class="tc-row">
+          <label class="tc-lbl">Thème</label>
+          <div class="tc-btns" id="tc-theme">
+            <button class="tc-chip active" data-bg="#0a0a0a" data-fg="#f5f5f0" onclick="setTypeTheme('#0a0a0a','#f5f5f0',this)">Noir</button>
+            <button class="tc-chip" data-bg="#f5f5f0" data-fg="#0a0a0a" onclick="setTypeTheme('#f5f5f0','#0a0a0a',this)">Blanc</button>
+            <button class="tc-chip" data-bg="#1DB954" data-fg="#0a0a0a" onclick="setTypeTheme('#1DB954','#0a0a0a',this)">Vert</button>
+            <button class="tc-chip" data-bg="#fa233b" data-fg="#fff" onclick="setTypeTheme('#fa233b','#ffffff',this)">Rouge</button>
+          </div>
+        </div>
+        <div class="tc-row">
+          <label class="tc-lbl">Taille</label>
+          <input type="range" id="tc-size" min="2.5" max="9" step="0.1" value="4.5" oninput="updateTypePreview()" class="tc-range"/>
+          <label class="tc-lbl" style="margin-left:1rem">Inclinaison</label>
+          <input type="range" id="tc-skew" min="-20" max="20" step="1" value="0" oninput="updateTypePreview()" class="tc-range"/>
+        </div>
+      </div>
       <div class="pm-type-actions">
-        <button class="pm-stream pm-dl-zip" onclick="downloadFontZip()">⬇ Télécharger le pack (.zip)</button>
+        <button class="pm-stream pm-dl-png" onclick="exportTypePNG()">⬇ Export PNG</button>
+        <button class="pm-stream pm-dl-svg" onclick="exportTypeSVG()">⬇ Export SVG</button>
+        <span class="tc-sep"></span>
+        <button class="pm-stream pm-dl-zip" onclick="downloadFontZip()">Pack fonte (.zip)</button>
         <button class="pm-link pm-dl-woff" onclick="downloadFontFile('otf')">.otf</button>
         <button class="pm-link pm-dl-woff" onclick="downloadFontFile('woff2')">.woff2</button>
       </div>
@@ -788,6 +888,142 @@ function openProject(i){
   document.body.style.overflow='hidden';
 }
 function closeProject(){document.getElementById('project-modal').classList.remove('open');document.body.style.overflow=''}
+
+// ============ STUDIO TYPO ============
+var _typeState={effect:'none',bg:'#0a0a0a',fg:'#f5f5f0'};
+function setTypeEffect(eff,btn){
+  _typeState.effect=eff;
+  document.querySelectorAll('#tc-effect .tc-chip').forEach(c=>c.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  updateTypePreview();
+}
+function setTypeTheme(bg,fg,btn){
+  _typeState.bg=bg;_typeState.fg=fg;
+  document.querySelectorAll('#tc-theme .tc-chip').forEach(c=>c.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  updateTypePreview();
+}
+function updateTypePreview(){
+  const el=document.getElementById('type-preview'),stage=document.getElementById('type-stage');
+  if(!el)return;
+  const inp=document.getElementById('type-tester');
+  const txt=(inp&&inp.value)||'ADRSHITDESIGN';
+  const size=document.getElementById('tc-size')?.value||4.5;
+  const skew=document.getElementById('tc-skew')?.value||0;
+  el.textContent=txt;
+  el.style.fontSize=size+'rem';
+  el.style.color=_typeState.fg;
+  el.style.transform=`skewX(${-skew}deg)`;
+  stage.style.background=_typeState.bg;
+  // Effets via text-shadow / -webkit-text-stroke
+  el.style.webkitTextStroke='';el.style.textShadow='';el.style.webkitTextFillColor='';
+  const fg=_typeState.fg;
+  if(_typeState.effect==='outline'){
+    el.style.webkitTextFillColor='transparent';
+    el.style.webkitTextStroke='2px '+fg;
+  } else if(_typeState.effect==='echo'){
+    el.style.textShadow=`6px 6px 0 ${hexA(fg,.5)}, 12px 12px 0 ${hexA(fg,.25)}, 18px 18px 0 ${hexA(fg,.12)}`;
+  } else if(_typeState.effect==='glitch'){
+    el.style.textShadow=`3px 0 0 #ff003c, -3px 0 0 #00e5ff`;
+  } else if(_typeState.effect==='stack'){
+    el.style.textShadow=`0 4px 0 ${hexA(fg,.6)}, 0 8px 0 ${hexA(fg,.35)}, 0 12px 0 ${hexA(fg,.18)}`;
+  }
+}
+// hex -> rgba string
+function hexA(hex,a){
+  let h=hex.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');
+  const r=parseInt(h.substr(0,2),16),g=parseInt(h.substr(2,2),16),b=parseInt(h.substr(4,2),16);
+  return `rgba(${r},${g},${b},${a})`;
+}
+
+// Export PNG via canvas haute résolution
+function exportTypePNG(){
+  try{
+    const inp=document.getElementById('type-tester');
+    const txt=(inp&&inp.value)||'ADRSHITDESIGN';
+    const sizeRem=parseFloat(document.getElementById('tc-size')?.value||4.5);
+    const skew=parseFloat(document.getElementById('tc-skew')?.value||0);
+    const scale=4, fontPx=sizeRem*16*scale;
+    const pad=fontPx*0.4;
+    const cv=document.createElement('canvas'),ctx=cv.getContext('2d');
+    ctx.font=`${fontPx}px ADRSHITTypo, sans-serif`;
+    const m=ctx.measureText(txt.toUpperCase());
+    const tw=Math.max(m.width,fontPx);
+    cv.width=Math.ceil(tw+pad*2);
+    cv.height=Math.ceil(fontPx*1.4+pad*2);
+    const ctx2=cv.getContext('2d');
+    ctx2.fillStyle=_typeState.bg;ctx2.fillRect(0,0,cv.width,cv.height);
+    ctx2.font=`${fontPx}px ADRSHITTypo, sans-serif`;
+    ctx2.textAlign='center';ctx2.textBaseline='middle';
+    ctx2.translate(cv.width/2,cv.height/2);
+    if(skew)ctx2.transform(1,0,Math.tan(-skew*Math.PI/180),1,0,0);
+    const T=txt.toUpperCase(),fg=_typeState.fg;
+    function drawShadow(dx,dy,col){ctx2.fillStyle=col;ctx2.fillText(T,dx,dy)}
+    if(_typeState.effect==='echo'){
+      drawShadow(18*scale,18*scale,hexA(fg,.12));drawShadow(12*scale,12*scale,hexA(fg,.25));drawShadow(6*scale,6*scale,hexA(fg,.5));
+      ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
+    } else if(_typeState.effect==='stack'){
+      drawShadow(0,12*scale,hexA(fg,.18));drawShadow(0,8*scale,hexA(fg,.35));drawShadow(0,4*scale,hexA(fg,.6));
+      ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
+    } else if(_typeState.effect==='glitch'){
+      drawShadow(3*scale,0,'#ff003c');drawShadow(-3*scale,0,'#00e5ff');
+      ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
+    } else if(_typeState.effect==='outline'){
+      ctx2.lineWidth=2*scale;ctx2.strokeStyle=fg;ctx2.strokeText(T,0,0);
+    } else {
+      ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
+    }
+    cv.toBlob(blob=>{
+      const url=URL.createObjectURL(blob),a=document.createElement('a');
+      a.href=url;a.download='adrshittypo.png';document.body.appendChild(a);a.click();a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),1000);
+      toast('PNG exporté ✓');
+    },'image/png');
+  }catch(e){toast('Erreur export PNG','⚠️')}
+}
+
+// Export SVG autonome (fonte embarquée en base64 dans le SVG)
+function exportTypeSVG(){
+  try{
+    const inp=document.getElementById('type-tester');
+    const txt=((inp&&inp.value)||'ADRSHITDESIGN').toUpperCase();
+    const sizeRem=parseFloat(document.getElementById('tc-size')?.value||4.5);
+    const skew=parseFloat(document.getElementById('tc-skew')?.value||0);
+    const fontPx=sizeRem*16;
+    const woff2=getFontWoff2B64();
+    if(!woff2){toast('Fonte introuvable','⚠️');return}
+    // mesure approximative via canvas pour dimensionner le SVG
+    const cv=document.createElement('canvas'),ctx=cv.getContext('2d');
+    ctx.font=`${fontPx}px ADRSHITTypo, sans-serif`;
+    const tw=Math.max(ctx.measureText(txt).width,fontPx);
+    const pad=fontPx*0.4, W=Math.ceil(tw+pad*2), H=Math.ceil(fontPx*1.4+pad*2);
+    const fg=_typeState.fg,bg=_typeState.bg;
+    const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    // effets en SVG
+    let shadows='';
+    const cx=W/2, cy=H/2;
+    const txtEl=(dx,dy,fill,extra='')=>`<text x="${cx+dx}" y="${cy+dy}" text-anchor="middle" dominant-baseline="central" font-family="ADRSHITTypo" font-size="${fontPx}" fill="${fill}" ${extra}>${esc(txt)}</text>`;
+    if(_typeState.effect==='echo'){shadows=txtEl(18,18,hexA(fg,.12))+txtEl(12,12,hexA(fg,.25))+txtEl(6,6,hexA(fg,.5))}
+    else if(_typeState.effect==='stack'){shadows=txtEl(0,12,hexA(fg,.18))+txtEl(0,8,hexA(fg,.35))+txtEl(0,4,hexA(fg,.6))}
+    else if(_typeState.effect==='glitch'){shadows=txtEl(3,0,'#ff003c')+txtEl(-3,0,'#00e5ff')}
+    let main;
+    if(_typeState.effect==='outline')main=txtEl(0,0,'none',`stroke="${fg}" stroke-width="2"`);
+    else main=txtEl(0,0,fg);
+    const skewT=skew?` transform="skewX(${-skew}) translate(${cx*(Math.tan(skew*Math.PI/180))},0)"`:'';
+    const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
+<defs><style>
+@font-face{font-family:'ADRSHITTypo';src:url('data:font/woff2;base64,${woff2}') format('woff2');}
+</style></defs>
+<rect width="${W}" height="${H}" fill="${bg}"/>
+<g${skewT}>${shadows}${main}</g>
+</svg>`;
+    const blob=new Blob([svg],{type:'image/svg+xml'});
+    const url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='adrshittypo.svg';document.body.appendChild(a);a.click();a.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+    toast('SVG exporté ✓');
+  }catch(e){toast('Erreur export SVG','⚠️')}
+}
 
 // Téléchargement de la fonte ADRSHITTypo (extraite du @font-face base64)
 function downloadFont(){
