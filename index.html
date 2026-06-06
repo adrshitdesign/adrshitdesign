@@ -44,12 +44,15 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content
 .nav-links a.active::after{content:'';position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--white)}
 
 #hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:8rem 2.5rem 5rem;position:relative;overflow:hidden}
-canvas#hero-canvas{position:absolute;inset:0;z-index:0;opacity:.5;pointer-events:none;mask-image:radial-gradient(ellipse 100% 95% at 50% 50%,#000 70%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 100% 95% at 50% 50%,#000 70%,transparent 100%)}
+canvas#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.85;pointer-events:none}
 .hero-grid-overlay{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 75% 75% at 50% 45%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 75% 75% at 50% 45%,#000 30%,transparent 80%);animation:gridDrift 24s linear infinite}
 @keyframes gridDrift{from{background-position:0 0,0 0}to{background-position:64px 64px,64px 64px}}
-.hero-marquee{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%) rotate(-2.5deg);z-index:0;pointer-events:none;overflow:hidden;width:120%;margin-left:-10%;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
-.hero-marquee-track{display:inline-flex;white-space:nowrap;font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(4rem,13vw,11rem);line-height:1;text-transform:uppercase;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.12);animation:marquee 32s linear infinite;will-change:transform}
-.hero-marquee-track span{padding:0 1.5rem}
+.hero-marquee{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%) rotate(-4deg);z-index:0;pointer-events:none;overflow:hidden;width:130%;margin-left:-15%;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.hero-marquee-track{display:inline-flex;align-items:center;white-space:nowrap;font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(4.5rem,14vw,12rem);line-height:.9;text-transform:uppercase;animation:marquee 38s linear infinite;will-change:transform}
+.hero-marquee-track .hm-w{padding:0 1.2rem;transform:rotate(var(--r,0deg));display:inline-block}
+.hero-marquee-track .hm-fill{color:rgba(255,255,255,.07)}
+.hero-marquee-track .hm-out{color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.13)}
+.hero-marquee-track .hm-sl{color:rgba(255,255,255,.05);padding:0 .2rem;font-family:'Space Grotesk',sans-serif;font-weight:300}
 @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .hero-content{position:relative;z-index:1}
 .hero-logo-wrap{margin-bottom:2.5rem;position:relative;display:inline-block}
@@ -175,10 +178,15 @@ h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6
 #shirts .section-tag{color:#666}
 #shirts .section-tag::after{background:#ccc}
 #shirts h2{color:var(--black)}
-.shirts-logo-wrap{margin-bottom:2rem}
-.shirts-logo-wrap svg{width:min(360px,65vw);height:auto;display:block}
-.shirts-head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:1rem}
-.shirts-graphic{position:relative;flex:1;min-width:300px;max-width:440px;min-height:300px;padding-top:.5rem}
+.shirts-logo-wrap{margin-bottom:1.8rem}
+.shirts-logo-wrap svg{width:min(300px,60vw);height:auto;display:block}
+.shirts-layout{display:grid;grid-template-columns:1fr 1.05fr;gap:4rem;align-items:start;margin-top:2.5rem}
+.shirts-right{display:flex;flex-direction:column;gap:2.5rem}
+.shirts-stats{display:flex;gap:2rem;margin:1.8rem 0;flex-wrap:wrap}
+.ss-item{display:flex;flex-direction:column;gap:.2rem}
+.ss-num{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:2rem;line-height:1;color:var(--black)}
+.ss-lbl{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;color:#888}
+.shirts-graphic{position:relative;min-height:300px;display:flex;justify-content:center;padding:1rem 0}
 /* Ticket de caisse façon reçu froissé */
 .receipt{position:relative;width:210px;background:#faf8f2;color:#0a0a0a;padding:1rem .9rem 1.2rem;font-family:'Space Mono',monospace;font-size:.6rem;line-height:1.5;transform:rotate(-3deg);box-shadow:6px 8px 0 rgba(10,10,10,.12),0 2px 14px rgba(0,0,0,.25);filter:contrast(1.05);clip-path:polygon(0 0,100% 0,100% 97%,96% 100%,88% 97%,80% 100%,72% 97%,64% 100%,56% 97%,48% 100%,40% 97%,32% 100%,24% 97%,16% 100%,8% 97%,0 100%);animation:receiptSway 6s ease-in-out infinite}
 @keyframes receiptSway{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(-1.5deg) translateY(-3px)}}
@@ -213,7 +221,7 @@ h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6
 .shirts-text p{font-size:.9rem;line-height:1.85;color:#444;margin-bottom:1.4rem}
 .shirts-tag-list{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:1.8rem}
 .tag{display:inline-block;padding:.3rem .7rem;border:1px solid #ccc;font-family:'Space Mono',monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:#666}
-.shirts-gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;max-width:540px;margin-left:auto;justify-self:end}
+.shirts-gallery{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
 .shirt-card{background:#0e0e0e;aspect-ratio:1/1;display:block;position:relative;overflow:hidden;text-decoration:none;border:1px solid #e0ddd4}
 .shirt-card img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .shirt-card:hover img{transform:scale(1.04)}
@@ -475,10 +483,23 @@ let editMode=false,_imgCb=null;
 <div class="divider"></div>
 
 <section id="shirts">
-  <div class="reveal shirts-head">
+  <div class="reveal">
     <div class="section-tag" data-num="02">La marque</div>
-    <div class="shirts-head-row">
+  </div>
+  <div class="shirts-layout reveal reveal-d1">
+    <div class="shirts-text">
       <div class="shirts-logo-wrap" id="shirts-logo"></div>
+      <p id="shirts-p1-el"></p>
+      <p>Disponible sur Vinted. Stock limité, designs exclusifs.</p>
+      <div class="shirts-tag-list"><span class="tag">Streetwear</span><span class="tag">Édition limitée</span><span class="tag">Paris</span><span class="tag">Upcycling</span></div>
+      <div class="shirts-stats">
+        <div class="ss-item"><span class="ss-num">1/1</span><span class="ss-lbl">Pièces uniques</span></div>
+        <div class="ss-item"><span class="ss-num">100%</span><span class="ss-lbl">Upcyclé</span></div>
+        <div class="ss-item"><span class="ss-num">∞</span><span class="ss-lbl">Heures main</span></div>
+      </div>
+      <a id="vinted-btn" href="#" target="_blank" class="btn btn-dark">Voir sur Vinted →</a>
+    </div>
+    <div class="shirts-right">
       <div class="shirts-graphic" aria-hidden="true">
         <div class="receipt">
           <div class="receipt-top">
@@ -503,16 +524,8 @@ let editMode=false,_imgCb=null;
         <div class="tape tape-1"></div>
         <div class="tape tape-2"></div>
       </div>
+      <div class="shirts-gallery" id="shirts-gallery"></div>
     </div>
-  </div>
-  <div class="shirts-layout reveal reveal-d1">
-    <div class="shirts-text">
-      <p id="shirts-p1-el"></p>
-      <p>Disponible sur Vinted. Stock limité, designs exclusifs.</p>
-      <div class="shirts-tag-list"><span class="tag">Streetwear</span><span class="tag">Édition limitée</span><span class="tag">Paris</span><span class="tag">Fait avec intention</span></div>
-      <a id="vinted-btn" href="#" target="_blank" class="btn btn-dark">Voir sur Vinted →</a>
-    </div>
-    <div class="shirts-gallery" id="shirts-gallery"></div>
   </div>
 </section>
 
@@ -654,44 +667,37 @@ try{
   if(!c)return;
   const ctx=c.getContext('2d',{alpha:true});
   let W,H,DPR=Math.min(window.devicePixelRatio||1,2),frame=0,raf;
-  // calque de bruit pré-rendu, recyclé pour la perf
   let noiseCanvas=document.createElement('canvas'),nctx=noiseCanvas.getContext('2d');
-  const NOISE_SIZE=160;
+  const NOISE_SIZE=200;
   function resize(){
     W=c.width=Math.floor(c.offsetWidth*DPR);
     H=c.height=Math.floor(c.offsetHeight*DPR);
   }
-  function makeNoiseTile(intensity){
+  function makeNoiseTile(){
     noiseCanvas.width=NOISE_SIZE;noiseCanvas.height=NOISE_SIZE;
     const img=nctx.createImageData(NOISE_SIZE,NOISE_SIZE),d=img.data;
     for(let i=0;i<d.length;i+=4){
       const v=Math.random()*255;
       d[i]=d[i+1]=d[i+2]=v;
-      d[i+3]=Math.random()<intensity?Math.random()*70:0; // grain clairsemé
+      // grain plus dense pour qu'il soit visible partout
+      d[i+3]=Math.random()<0.85?Math.random()*60:0;
     }
     nctx.putImageData(img,0,0);
   }
   function draw(){
     frame++;
-    ctx.clearRect(0,0,W,H);
-    // 1) grain animé : on régénère le bruit toutes les ~2 frames pour un effet "film"
-    if(frame%2===0)makeNoiseTile(0.5);
-    ctx.globalAlpha=0.5;
-    const tile=NOISE_SIZE;
-    // décalage aléatoire léger pour faire vibrer le grain
-    const ox=(Math.random()*tile)|0, oy=(Math.random()*tile)|0;
-    for(let x=-ox;x<W;x+=tile)for(let y=-oy;y<H;y+=tile)ctx.drawImage(noiseCanvas,x,y);
-    // 2) bande de balayage verticale douce qui descend lentement
-    ctx.globalAlpha=1;
-    const sweepY=((frame*0.6)%(H+300))-150;
-    const grad=ctx.createLinearGradient(0,sweepY-120,0,sweepY+120);
-    grad.addColorStop(0,'rgba(255,255,255,0)');
-    grad.addColorStop(.5,'rgba(255,255,255,0.035)');
-    grad.addColorStop(1,'rgba(255,255,255,0)');
-    ctx.fillStyle=grad;ctx.fillRect(0,sweepY-120,W,240);
+    // régénère le bruit ~30fps pour effet "film" sans surcharge
+    if(frame%2===0){
+      ctx.clearRect(0,0,W,H);
+      makeNoiseTile();
+      const tile=NOISE_SIZE;
+      const ox=(Math.random()*tile)|0, oy=(Math.random()*tile)|0;
+      ctx.globalAlpha=1;
+      for(let x=-ox;x<W;x+=tile)for(let y=-oy;y<H;y+=tile)ctx.drawImage(noiseCanvas,x,y);
+    }
     raf=requestAnimationFrame(draw);
   }
-  function start(){resize();makeNoiseTile(0.5);cancelAnimationFrame(raf);draw()}
+  function start(){resize();cancelAnimationFrame(raf);draw()}
   window.addEventListener('resize',start);
   start();
 })();
@@ -707,7 +713,12 @@ function render(){
   document.getElementById('hero-sub-el').innerHTML=(D.hero.sub||'').replace(/\n/g,'<br>');
   // Marquee hero
   const mq=document.getElementById('hero-marquee-track');
-  if(mq){const words=['ADRSHITDESIGN','◆','VIDÉO','◆','MOTION','◆','BRANDING','◆','PHOTO','◆'];const seq=words.map(w=>`<span>${w}</span>`).join('');mq.innerHTML=seq+seq;}
+  if(mq){
+    const words=['VIDÉO','MOTION','PHOTO','BRANDING','DIRECTION','GRAPHISME'];
+    // alternance plein / contour + légères rotations pour casser l'alignement
+    const seq=words.map((w,k)=>`<span class="hm-w ${k%2?'hm-fill':'hm-out'}" style="--r:${(k%3-1)*1.5}deg">${w}</span><span class="hm-sl">/</span>`).join('');
+    mq.innerHTML=seq+seq;
+  }
   document.getElementById('about-p1-el').textContent=D.about.text1||'';
   document.getElementById('about-p2-el').textContent=D.about.text2||'';
   document.getElementById('shirts-p1-el').textContent=D.shirtsText||D.about.text2||'';
@@ -856,6 +867,9 @@ function openProject(i){
             <button class="tc-chip" data-effect="echo" onclick="setTypeEffect('echo',this)">Écho</button>
             <button class="tc-chip" data-effect="glitch" onclick="setTypeEffect('glitch',this)">Glitch</button>
             <button class="tc-chip" data-effect="stack" onclick="setTypeEffect('stack',this)">Empilé</button>
+            <button class="tc-chip" data-effect="grain" onclick="setTypeEffect('grain',this)">Grain</button>
+            <button class="tc-chip" data-effect="spray" onclick="setTypeEffect('spray',this)">Spray</button>
+            <button class="tc-chip" data-effect="chrome" onclick="setTypeEffect('chrome',this)">Chrome</button>
           </div>
         </div>
         <div class="tc-row">
@@ -917,6 +931,7 @@ function updateTypePreview(){
   stage.style.background=_typeState.bg;
   // Effets via text-shadow / -webkit-text-stroke
   el.style.webkitTextStroke='';el.style.textShadow='';el.style.webkitTextFillColor='';
+  el.style.background='';el.style.webkitBackgroundClip='';el.style.backgroundClip='';el.style.filter='';
   const fg=_typeState.fg;
   if(_typeState.effect==='outline'){
     el.style.webkitTextFillColor='transparent';
@@ -927,6 +942,27 @@ function updateTypePreview(){
     el.style.textShadow=`3px 0 0 #ff003c, -3px 0 0 #00e5ff`;
   } else if(_typeState.effect==='stack'){
     el.style.textShadow=`0 4px 0 ${hexA(fg,.6)}, 0 8px 0 ${hexA(fg,.35)}, 0 12px 0 ${hexA(fg,.18)}`;
+  } else if(_typeState.effect==='grain'){
+    // texture bruitée appliquée au texte via background-clip
+    const noise="url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E\")";
+    el.style.background=fg+' '+noise;
+    el.style.backgroundBlendMode='multiply';
+    el.style.webkitBackgroundClip='text';el.style.backgroundClip='text';
+    el.style.webkitTextFillColor='transparent';
+  } else if(_typeState.effect==='spray'){
+    // halo de "spray" : multiples ombres floues décalées
+    let parts=[];
+    for(let k=0;k<22;k++){
+      const a=(Math.random()*Math.PI*2),d=Math.random()*10+3;
+      parts.push(`${(Math.cos(a)*d).toFixed(1)}px ${(Math.sin(a)*d).toFixed(1)}px ${(Math.random()*3+1).toFixed(1)}px ${hexA(fg,Math.random()*.4+.15)}`);
+    }
+    el.style.textShadow=parts.join(', ');
+  } else if(_typeState.effect==='chrome'){
+    // dégradé métallique
+    el.style.background=`linear-gradient(180deg, #fff 0%, #b8b8b8 38%, #6a6a6a 50%, #d8d8d8 62%, #8a8a8a 100%)`;
+    el.style.webkitBackgroundClip='text';el.style.backgroundClip='text';
+    el.style.webkitTextFillColor='transparent';
+    el.style.textShadow=`0 2px 3px ${hexA('#000000',.4)}`;
   }
 }
 // hex -> rgba string
@@ -970,6 +1006,27 @@ function exportTypePNG(){
       ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
     } else if(_typeState.effect==='outline'){
       ctx2.lineWidth=2*scale;ctx2.strokeStyle=fg;ctx2.strokeText(T,0,0);
+    } else if(_typeState.effect==='spray'){
+      for(let k=0;k<40;k++){
+        const a=Math.random()*Math.PI*2,dd=(Math.random()*10+3)*scale;
+        ctx2.fillStyle=hexA(fg,Math.random()*.4+.15);
+        ctx2.fillText(T,Math.cos(a)*dd,Math.sin(a)*dd);
+      }
+      ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
+    } else if(_typeState.effect==='chrome'){
+      const g=ctx2.createLinearGradient(0,-fontPx/2,0,fontPx/2);
+      g.addColorStop(0,'#ffffff');g.addColorStop(.38,'#b8b8b8');g.addColorStop(.5,'#6a6a6a');g.addColorStop(.62,'#d8d8d8');g.addColorStop(1,'#8a8a8a');
+      ctx2.fillStyle=g;ctx2.fillText(T,0,0);
+    } else if(_typeState.effect==='grain'){
+      // texte plein puis on "ronge" avec du bruit en destination-out
+      ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
+      ctx2.save();ctx2.globalCompositeOperation='destination-out';
+      const area=tw+pad*2;
+      for(let k=0;k<area*2;k++){
+        ctx2.fillStyle=`rgba(0,0,0,${Math.random()*.5})`;
+        ctx2.fillRect((Math.random()-.5)*tw, (Math.random()-.5)*fontPx*1.1, scale, scale);
+      }
+      ctx2.restore();
     } else {
       ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
     }
@@ -1000,20 +1057,31 @@ function exportTypeSVG(){
     const fg=_typeState.fg,bg=_typeState.bg;
     const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     // effets en SVG
-    let shadows='';
+    let shadows='',defsExtra='',mainAttr='',mainFill=fg;
     const cx=W/2, cy=H/2;
     const txtEl=(dx,dy,fill,extra='')=>`<text x="${cx+dx}" y="${cy+dy}" text-anchor="middle" dominant-baseline="central" font-family="ADRSHITTypo" font-size="${fontPx}" fill="${fill}" ${extra}>${esc(txt)}</text>`;
     if(_typeState.effect==='echo'){shadows=txtEl(18,18,hexA(fg,.12))+txtEl(12,12,hexA(fg,.25))+txtEl(6,6,hexA(fg,.5))}
     else if(_typeState.effect==='stack'){shadows=txtEl(0,12,hexA(fg,.18))+txtEl(0,8,hexA(fg,.35))+txtEl(0,4,hexA(fg,.6))}
     else if(_typeState.effect==='glitch'){shadows=txtEl(3,0,'#ff003c')+txtEl(-3,0,'#00e5ff')}
+    else if(_typeState.effect==='spray'){
+      for(let k=0;k<22;k++){const a=Math.random()*Math.PI*2,d=Math.random()*10+3;shadows+=txtEl((Math.cos(a)*d),(Math.sin(a)*d),hexA(fg,Math.random()*.4+.15))}
+    }
+    else if(_typeState.effect==='chrome'){
+      defsExtra=`<linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="0.38" stop-color="#b8b8b8"/><stop offset="0.5" stop-color="#6a6a6a"/><stop offset="0.62" stop-color="#d8d8d8"/><stop offset="1" stop-color="#8a8a8a"/></linearGradient>`;
+      mainFill='url(#chrome)';
+    }
+    else if(_typeState.effect==='grain'){
+      defsExtra=`<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="discrete" tableValues="0 1 0 1 0 0 1 0 1"/></feComponentTransfer><feComposite operator="in" in2="SourceGraphic"/></filter>`;
+      mainAttr=`filter="url(#grain)"`;
+    }
     let main;
     if(_typeState.effect==='outline')main=txtEl(0,0,'none',`stroke="${fg}" stroke-width="2"`);
-    else main=txtEl(0,0,fg);
+    else main=txtEl(0,0,mainFill,mainAttr);
     const skewT=skew?` transform="skewX(${-skew}) translate(${cx*(Math.tan(skew*Math.PI/180))},0)"`:'';
     const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}">
 <defs><style>
 @font-face{font-family:'ADRSHITTypo';src:url('data:font/woff2;base64,${woff2}') format('woff2');}
-</style></defs>
+</style>${defsExtra}</defs>
 <rect width="${W}" height="${H}" fill="${bg}"/>
 <g${skewT}>${shadows}${main}</g>
 </svg>`;
