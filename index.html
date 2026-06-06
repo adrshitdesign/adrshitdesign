@@ -82,12 +82,16 @@ section{padding:6rem 2.5rem}
 .section-tag::after{content:'';flex:0 0 32px;height:1px;background:#333}
 h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6vw,5rem);font-weight:normal;letter-spacing:.03em;line-height:.95;text-transform:uppercase;margin-bottom:1rem}
 .divider{width:100%;height:1px;background:#1a1a1a}
+#reorderable>section+section{border-top:1px solid #1a1a1a}
 
 #portfolio{background:var(--black)}
 .portfolio-intro{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem}
 .portfolio-sub{color:var(--light);font-size:.85rem;max-width:280px;line-height:1.7}
 .portfolio-grid{display:flex;flex-direction:column;gap:1px;background:#161616;border:1px solid #161616}
 .portfolio-item{background:var(--black);position:relative;overflow:hidden;cursor:pointer;display:grid;grid-template-columns:90px 1.1fr 1fr;align-items:stretch;min-height:230px;transition:background .4s}
+.pf-size-small .portfolio-item{min-height:160px}
+.pf-size-medium .portfolio-item{min-height:230px}
+.pf-size-large .portfolio-item{min-height:330px}
 .portfolio-item:hover{background:#0d0d0d}
 .pf-index{display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:1.4rem .6rem;border-right:1px solid #161616}
 .pf-num{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em;color:#444;transition:color .4s}
@@ -153,6 +157,15 @@ h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6
 .tc-chip:hover{border-color:#444;color:#ccc}
 .tc-chip.active{background:#f5f5f0;color:#0a0a0a;border-color:#f5f5f0}
 .tc-range{flex:1;min-width:90px;max-width:180px;accent-color:#f5f5f0;cursor:pointer}
+.tc-val{font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.05em;color:#888;min-width:38px}
+.ap-hint-block{font-family:'Space Mono',monospace;font-size:.6rem;line-height:1.6;color:#666;margin-bottom:1rem}
+.ap-sec-item{display:flex;align-items:center;gap:.8rem;background:#0c0c0c;border:1px solid #1a1a1a;padding:.9rem 1.1rem;margin-bottom:.6rem;cursor:grab;transition:border-color .2s}
+.ap-sec-item:active{cursor:grabbing}
+.ap-sec-item.dragging{opacity:.4;border-color:#63b3ed}
+.ap-sec-item.drag-over{border-top:2px solid #63b3ed}
+.ap-sec-handle{color:#444;font-size:1.1rem}
+.ap-sec-name{font-family:'Space Grotesk',sans-serif;font-size:.95rem;color:var(--white)}
+.ap-sec-num{font-family:'Space Mono',monospace;font-size:.6rem;color:#555;margin-left:auto}
 .pm-type-actions{display:flex;flex-wrap:wrap;gap:.6rem;align-items:center}
 .tc-sep{width:1px;height:22px;background:#222;margin:0 .3rem}
 .pm-dl-png,.pm-dl-svg{background:var(--white);color:#000;border:none;cursor:pointer}
@@ -421,6 +434,7 @@ const DD={
   ],
   about:{text1:"Je travaille dans l'image sous toutes ses formes — vidéo, photo, graphisme, motion design. Chaque projet est une exploration de ce qu'on peut faire avec une idée et les bons outils.",text2:"ADRSHITDESIGN c'est mon nom, ma signature, mon terrain de jeu. ADRSHIRTDESIGN c'est le prolongement physique de cet univers — des vêtements conçus comme des objets graphiques."},
   shirtsText:"ADRSHIRTDESIGN, c'est le prolongement physique de mon univers graphique. Des pièces pensées comme des objets de direction artistique — pas juste des t-shirts imprimés.",
+  sectionOrder:['portfolio','shirts','about'],
   contact:{email:'adrshitdesign@gmail.com',instagram:'https://www.instagram.com/adrshitdesign/',vinted:'https://www.vinted.fr'}
 };
 
@@ -472,7 +486,8 @@ let editMode=false,_imgCb=null;
 
 <div class="divider"></div>
 
-<section id="portfolio">
+<div id="reorderable">
+<section id="portfolio" data-section="portfolio">
   <div class="reveal">
     <div class="section-tag" data-num="01">Portfolio</div>
     <div class="portfolio-intro"><h2>LES<br>CRÉATIONS</h2><p class="portfolio-sub">Vidéo, photo, motion, identité visuelle.</p></div>
@@ -480,9 +495,7 @@ let editMode=false,_imgCb=null;
   <div class="portfolio-grid reveal reveal-d1" id="portfolio-grid"></div>
 </section>
 
-<div class="divider"></div>
-
-<section id="shirts">
+<section id="shirts" data-section="shirts">
   <div class="reveal">
     <div class="section-tag" data-num="02">La marque</div>
   </div>
@@ -529,9 +542,7 @@ let editMode=false,_imgCb=null;
   </div>
 </section>
 
-<div class="divider"></div>
-
-<section id="about">
+<section id="about" data-section="about">
   <div class="reveal">
     <div class="section-tag" data-num="03">À propos</div>
     <div class="about-layout">
@@ -543,6 +554,7 @@ let editMode=false,_imgCb=null;
     </div>
   </div>
 </section>
+</div>
 
 <div class="divider"></div>
 
@@ -585,6 +597,7 @@ let editMode=false,_imgCb=null;
       <button class="ap-tab active" onclick="showTab('portfolio')">📁 Portfolio</button>
       <button class="ap-tab" onclick="showTab('shirts')">👕 Vêtements</button>
       <button class="ap-tab" onclick="showTab('texts')">✏️ Textes</button>
+      <button class="ap-tab" onclick="showTab('layout')">🧩 Mise en page</button>
       <button class="ap-tab" onclick="showTab('contact')">📧 Contact</button>
     </div>
     <div class="ap-nav-actions">
@@ -612,6 +625,17 @@ let editMode=false,_imgCb=null;
         <div class="ap-card expanded"><div class="ap-card-head" onclick="toggleCard(this)"><span class="ap-card-meta"><span class="ap-card-name">Hero</span><span class="ap-card-cat">Accroche page d'accueil</span></span><span class="ap-chevron">▶</span></div><div class="ap-card-body"><div class="ap-field"><label>Texte accroche</label><textarea id="a-hero-sub" oninput="livePreview()"></textarea></div></div></div>
         <div class="ap-card expanded"><div class="ap-card-head" onclick="toggleCard(this)"><span class="ap-card-meta"><span class="ap-card-name">À propos</span><span class="ap-card-cat">Section bio</span></span><span class="ap-chevron">▶</span></div><div class="ap-card-body"><div class="ap-grid"><div class="ap-field ap-full"><label>Paragraphe 1</label><textarea id="a-about1" oninput="livePreview()"></textarea></div><div class="ap-field ap-full"><label>Paragraphe 2</label><textarea id="a-about2" oninput="livePreview()"></textarea></div></div></div></div>
         <div class="ap-card expanded"><div class="ap-card-head" onclick="toggleCard(this)"><span class="ap-card-meta"><span class="ap-card-name">Vêtements</span><span class="ap-card-cat">Présentation de la marque</span></span><span class="ap-chevron">▶</span></div><div class="ap-card-body"><div class="ap-field"><label>Texte présentation marque</label><textarea id="a-shirts-text" oninput="livePreview()"></textarea></div></div></div>
+      </div>
+      <div class="ap-page" id="tab-layout">
+        <div class="ap-section-head"><div class="ap-section-title">Ordre des sections</div></div>
+        <p class="ap-hint-block">Glisse pour changer l'ordre d'apparition des sections sur la page (le hero reste en haut, le contact en bas).</p>
+        <div id="ap-section-order"></div>
+        <div class="ap-section-head" style="margin-top:2rem"><div class="ap-section-title">Taille des images portfolio</div></div>
+        <div class="tc-btns" id="ap-pf-size" style="gap:.4rem">
+          <button class="tc-chip" data-size="small" onclick="setPortfolioSize('small',this)">Petite</button>
+          <button class="tc-chip" data-size="medium" onclick="setPortfolioSize('medium',this)">Moyenne</button>
+          <button class="tc-chip" data-size="large" onclick="setPortfolioSize('large',this)">Grande</button>
+        </div>
       </div>
       <div class="ap-page" id="tab-contact">
         <div class="ap-card expanded"><div class="ap-card-head" onclick="toggleCard(this)"><span class="ap-card-meta"><span class="ap-card-name">Contact</span><span class="ap-card-cat">Liens & coordonnées</span></span><span class="ap-chevron">▶</span></div><div class="ap-card-body">
@@ -703,7 +727,26 @@ try{
 })();
 
 // ============ RENDER ============
+// Réordonne les sections selon D.sectionOrder
+function applySectionOrder(){
+  const wrap=document.getElementById('reorderable');
+  if(!wrap)return;
+  const order=(D.sectionOrder&&D.sectionOrder.length)?D.sectionOrder:['portfolio','shirts','about'];
+  order.forEach(name=>{
+    const sec=wrap.querySelector(`section[data-section="${name}"]`);
+    if(sec)wrap.appendChild(sec); // ré-append dans l'ordre voulu
+  });
+}
+// Applique la taille des cartes portfolio
+function applyPortfolioSize(){
+  const grid=document.getElementById('portfolio-grid');
+  if(!grid)return;
+  grid.classList.remove('pf-size-small','pf-size-medium','pf-size-large');
+  grid.classList.add('pf-size-'+(D.portfolioSize||'medium'));
+}
+
 function render(){
+  applySectionOrder();
   document.getElementById('nav-logo').innerHTML=SVG_SQ_W;
   document.getElementById('hero-logo').innerHTML=SVG_SQ_W;
   document.getElementById('shirts-logo').innerHTML=SVG_SHIRT;
@@ -750,6 +793,7 @@ function render(){
       </div>
     </div>`;
   }).join('');
+  applyPortfolioSize();
 
   // Shirts
   document.getElementById('shirts-gallery').innerHTML=(D.shirts||[]).map((s,i)=>{
@@ -887,6 +931,11 @@ function openProject(i){
           <label class="tc-lbl" style="margin-left:1rem">Inclinaison</label>
           <input type="range" id="tc-skew" min="-20" max="20" step="1" value="0" oninput="updateTypePreview()" class="tc-range"/>
         </div>
+        <div class="tc-row">
+          <label class="tc-lbl">Intensité</label>
+          <input type="range" id="tc-intensity" min="0" max="100" step="1" value="100" oninput="updateTypePreview()" class="tc-range"/>
+          <span id="tc-intensity-val" class="tc-val">100%</span>
+        </div>
       </div>
       <div class="pm-type-actions">
         <button class="pm-stream pm-dl-png" onclick="exportTypePNG()">⬇ Export PNG</button>
@@ -924,6 +973,8 @@ function updateTypePreview(){
   const txt=(inp&&inp.value)||'ADRSHITDESIGN';
   const size=document.getElementById('tc-size')?.value||4.5;
   const skew=document.getElementById('tc-skew')?.value||0;
+  const I=(parseFloat(document.getElementById('tc-intensity')?.value)||100)/100; // 0..1
+  const iv=document.getElementById('tc-intensity-val');if(iv)iv.textContent=Math.round(I*100)+'%';
   el.textContent=txt;
   el.style.fontSize=size+'rem';
   el.style.color=_typeState.fg;
@@ -931,35 +982,41 @@ function updateTypePreview(){
   stage.style.background=_typeState.bg;
   // Effets via text-shadow / -webkit-text-stroke
   el.style.webkitTextStroke='';el.style.textShadow='';el.style.webkitTextFillColor='';
-  el.style.background='';el.style.webkitBackgroundClip='';el.style.backgroundClip='';el.style.filter='';
+  el.style.background='';el.style.webkitBackgroundClip='';el.style.backgroundClip='';el.style.filter='';el.style.opacity='';
   const fg=_typeState.fg;
   if(_typeState.effect==='outline'){
     el.style.webkitTextFillColor='transparent';
-    el.style.webkitTextStroke='2px '+fg;
+    el.style.webkitTextStroke=(0.5+I*3).toFixed(1)+'px '+fg;
   } else if(_typeState.effect==='echo'){
-    el.style.textShadow=`6px 6px 0 ${hexA(fg,.5)}, 12px 12px 0 ${hexA(fg,.25)}, 18px 18px 0 ${hexA(fg,.12)}`;
+    const o=6*I;
+    el.style.textShadow=`${o}px ${o}px 0 ${hexA(fg,.5)}, ${o*2}px ${o*2}px 0 ${hexA(fg,.25)}, ${o*3}px ${o*3}px 0 ${hexA(fg,.12)}`;
   } else if(_typeState.effect==='glitch'){
-    el.style.textShadow=`3px 0 0 #ff003c, -3px 0 0 #00e5ff`;
+    const o=(I*6).toFixed(1);
+    el.style.textShadow=`${o}px 0 0 #ff003c, -${o}px 0 0 #00e5ff`;
   } else if(_typeState.effect==='stack'){
-    el.style.textShadow=`0 4px 0 ${hexA(fg,.6)}, 0 8px 0 ${hexA(fg,.35)}, 0 12px 0 ${hexA(fg,.18)}`;
+    const o=4*I;
+    el.style.textShadow=`0 ${o}px 0 ${hexA(fg,.6)}, 0 ${o*2}px 0 ${hexA(fg,.35)}, 0 ${o*3}px 0 ${hexA(fg,.18)}`;
   } else if(_typeState.effect==='grain'){
-    // texture bruitée appliquée au texte via background-clip
-    const noise="url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.9'/%3E%3C/svg%3E\")";
+    // texture bruitée ; l'intensité module la fréquence + l'opacité du grain
+    const freq=(0.3+I*0.7).toFixed(2);
+    const noise="url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='"+freq+"' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='"+(0.4+I*0.55).toFixed(2)+"'/%3E%3C/svg%3E\")";
     el.style.background=fg+' '+noise;
     el.style.backgroundBlendMode='multiply';
     el.style.webkitBackgroundClip='text';el.style.backgroundClip='text';
     el.style.webkitTextFillColor='transparent';
   } else if(_typeState.effect==='spray'){
-    // halo de "spray" : multiples ombres floues décalées
-    let parts=[];
-    for(let k=0;k<22;k++){
-      const a=(Math.random()*Math.PI*2),d=Math.random()*10+3;
+    // densité et dispersion modulées par l'intensité
+    let parts=[];const n=Math.round(6+I*26);const spread=4+I*14;
+    for(let k=0;k<n;k++){
+      const a=(Math.random()*Math.PI*2),d=Math.random()*spread+2;
       parts.push(`${(Math.cos(a)*d).toFixed(1)}px ${(Math.sin(a)*d).toFixed(1)}px ${(Math.random()*3+1).toFixed(1)}px ${hexA(fg,Math.random()*.4+.15)}`);
     }
     el.style.textShadow=parts.join(', ');
   } else if(_typeState.effect==='chrome'){
-    // dégradé métallique
-    el.style.background=`linear-gradient(180deg, #fff 0%, #b8b8b8 38%, #6a6a6a 50%, #d8d8d8 62%, #8a8a8a 100%)`;
+    // l'intensité contrôle le contraste du métal
+    const lo=Math.round(106-I*60), hi=Math.round(200+I*55);
+    const cl=v=>`rgb(${v},${v},${v})`;
+    el.style.background=`linear-gradient(180deg, ${cl(Math.min(255,hi+30))} 0%, ${cl(hi)} 38%, ${cl(lo)} 50%, ${cl(Math.min(255,hi+20))} 62%, ${cl(lo+30)} 100%)`;
     el.style.webkitBackgroundClip='text';el.style.backgroundClip='text';
     el.style.webkitTextFillColor='transparent';
     el.style.textShadow=`0 2px 3px ${hexA('#000000',.4)}`;
@@ -994,35 +1051,42 @@ function exportTypePNG(){
     ctx2.translate(cv.width/2,cv.height/2);
     if(skew)ctx2.transform(1,0,Math.tan(-skew*Math.PI/180),1,0,0);
     const T=txt.toUpperCase(),fg=_typeState.fg;
+    const I=(parseFloat(document.getElementById('tc-intensity')?.value)||100)/100;
     function drawShadow(dx,dy,col){ctx2.fillStyle=col;ctx2.fillText(T,dx,dy)}
     if(_typeState.effect==='echo'){
-      drawShadow(18*scale,18*scale,hexA(fg,.12));drawShadow(12*scale,12*scale,hexA(fg,.25));drawShadow(6*scale,6*scale,hexA(fg,.5));
+      const o=6*I*scale;
+      drawShadow(o*3,o*3,hexA(fg,.12));drawShadow(o*2,o*2,hexA(fg,.25));drawShadow(o,o,hexA(fg,.5));
       ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
     } else if(_typeState.effect==='stack'){
-      drawShadow(0,12*scale,hexA(fg,.18));drawShadow(0,8*scale,hexA(fg,.35));drawShadow(0,4*scale,hexA(fg,.6));
+      const o=4*I*scale;
+      drawShadow(0,o*3,hexA(fg,.18));drawShadow(0,o*2,hexA(fg,.35));drawShadow(0,o,hexA(fg,.6));
       ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
     } else if(_typeState.effect==='glitch'){
-      drawShadow(3*scale,0,'#ff003c');drawShadow(-3*scale,0,'#00e5ff');
+      const o=6*I*scale;
+      drawShadow(o,0,'#ff003c');drawShadow(-o,0,'#00e5ff');
       ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
     } else if(_typeState.effect==='outline'){
-      ctx2.lineWidth=2*scale;ctx2.strokeStyle=fg;ctx2.strokeText(T,0,0);
+      ctx2.lineWidth=(0.5+I*3)*scale;ctx2.strokeStyle=fg;ctx2.strokeText(T,0,0);
     } else if(_typeState.effect==='spray'){
-      for(let k=0;k<40;k++){
-        const a=Math.random()*Math.PI*2,dd=(Math.random()*10+3)*scale;
+      const n=Math.round(10+I*55),spread=(4+I*14)*scale;
+      for(let k=0;k<n;k++){
+        const a=Math.random()*Math.PI*2,dd=Math.random()*spread+2*scale;
         ctx2.fillStyle=hexA(fg,Math.random()*.4+.15);
         ctx2.fillText(T,Math.cos(a)*dd,Math.sin(a)*dd);
       }
       ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
     } else if(_typeState.effect==='chrome'){
+      const lo=Math.round(106-I*60), hi=Math.round(200+I*55);
+      const cl=v=>`rgb(${Math.min(255,v)},${Math.min(255,v)},${Math.min(255,v)})`;
       const g=ctx2.createLinearGradient(0,-fontPx/2,0,fontPx/2);
-      g.addColorStop(0,'#ffffff');g.addColorStop(.38,'#b8b8b8');g.addColorStop(.5,'#6a6a6a');g.addColorStop(.62,'#d8d8d8');g.addColorStop(1,'#8a8a8a');
+      g.addColorStop(0,cl(hi+30));g.addColorStop(.38,cl(hi));g.addColorStop(.5,cl(lo));g.addColorStop(.62,cl(hi+20));g.addColorStop(1,cl(lo+30));
       ctx2.fillStyle=g;ctx2.fillText(T,0,0);
     } else if(_typeState.effect==='grain'){
       // texte plein puis on "ronge" avec du bruit en destination-out
       ctx2.fillStyle=fg;ctx2.fillText(T,0,0);
       ctx2.save();ctx2.globalCompositeOperation='destination-out';
-      const area=tw+pad*2;
-      for(let k=0;k<area*2;k++){
+      const dots=Math.round((tw+pad*2)*2*I);
+      for(let k=0;k<dots;k++){
         ctx2.fillStyle=`rgba(0,0,0,${Math.random()*.5})`;
         ctx2.fillRect((Math.random()-.5)*tw, (Math.random()-.5)*fontPx*1.1, scale, scale);
       }
@@ -1055,23 +1119,27 @@ function exportTypeSVG(){
     const tw=Math.max(ctx.measureText(txt).width,fontPx);
     const pad=fontPx*0.4, W=Math.ceil(tw+pad*2), H=Math.ceil(fontPx*1.4+pad*2);
     const fg=_typeState.fg,bg=_typeState.bg;
+    const I=(parseFloat(document.getElementById('tc-intensity')?.value)||100)/100;
     const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
     // effets en SVG
     let shadows='',defsExtra='',mainAttr='',mainFill=fg;
     const cx=W/2, cy=H/2;
     const txtEl=(dx,dy,fill,extra='')=>`<text x="${cx+dx}" y="${cy+dy}" text-anchor="middle" dominant-baseline="central" font-family="ADRSHITTypo" font-size="${fontPx}" fill="${fill}" ${extra}>${esc(txt)}</text>`;
-    if(_typeState.effect==='echo'){shadows=txtEl(18,18,hexA(fg,.12))+txtEl(12,12,hexA(fg,.25))+txtEl(6,6,hexA(fg,.5))}
-    else if(_typeState.effect==='stack'){shadows=txtEl(0,12,hexA(fg,.18))+txtEl(0,8,hexA(fg,.35))+txtEl(0,4,hexA(fg,.6))}
-    else if(_typeState.effect==='glitch'){shadows=txtEl(3,0,'#ff003c')+txtEl(-3,0,'#00e5ff')}
+    if(_typeState.effect==='echo'){const o=6*I;shadows=txtEl(o*3,o*3,hexA(fg,.12))+txtEl(o*2,o*2,hexA(fg,.25))+txtEl(o,o,hexA(fg,.5))}
+    else if(_typeState.effect==='stack'){const o=4*I;shadows=txtEl(0,o*3,hexA(fg,.18))+txtEl(0,o*2,hexA(fg,.35))+txtEl(0,o,hexA(fg,.6))}
+    else if(_typeState.effect==='glitch'){const o=6*I;shadows=txtEl(o,0,'#ff003c')+txtEl(-o,0,'#00e5ff')}
     else if(_typeState.effect==='spray'){
-      for(let k=0;k<22;k++){const a=Math.random()*Math.PI*2,d=Math.random()*10+3;shadows+=txtEl((Math.cos(a)*d),(Math.sin(a)*d),hexA(fg,Math.random()*.4+.15))}
+      const n=Math.round(6+I*26),spread=4+I*14;
+      for(let k=0;k<n;k++){const a=Math.random()*Math.PI*2,d=Math.random()*spread+2;shadows+=txtEl((Math.cos(a)*d),(Math.sin(a)*d),hexA(fg,Math.random()*.4+.15))}
     }
     else if(_typeState.effect==='chrome'){
-      defsExtra=`<linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="0.38" stop-color="#b8b8b8"/><stop offset="0.5" stop-color="#6a6a6a"/><stop offset="0.62" stop-color="#d8d8d8"/><stop offset="1" stop-color="#8a8a8a"/></linearGradient>`;
+      const lo=Math.round(106-I*60), hi=Math.round(200+I*55);const cl=v=>`rgb(${Math.min(255,v)},${Math.min(255,v)},${Math.min(255,v)})`;
+      defsExtra=`<linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${cl(hi+30)}"/><stop offset="0.38" stop-color="${cl(hi)}"/><stop offset="0.5" stop-color="${cl(lo)}"/><stop offset="0.62" stop-color="${cl(hi+20)}"/><stop offset="1" stop-color="${cl(lo+30)}"/></linearGradient>`;
       mainFill='url(#chrome)';
     }
     else if(_typeState.effect==='grain'){
-      defsExtra=`<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="discrete" tableValues="0 1 0 1 0 0 1 0 1"/></feComponentTransfer><feComposite operator="in" in2="SourceGraphic"/></filter>`;
+      const freq=(0.3+I*0.7).toFixed(2);
+      defsExtra=`<filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="${freq}" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/><feComponentTransfer><feFuncA type="discrete" tableValues="0 1 0 1 0 0 1 0 1"/></feComponentTransfer><feComposite operator="in" in2="SourceGraphic"/></filter>`;
       mainAttr=`filter="url(#grain)"`;
     }
     let main;
@@ -1330,11 +1398,51 @@ function pickFontFile(i){
 
 // ============ ADMIN ============
 function showTab(name){
-  document.querySelectorAll('.ap-tab').forEach((t,i)=>{const tabs=['portfolio','shirts','texts','contact'];t.classList.toggle('active',tabs[i]===name)});
+  document.querySelectorAll('.ap-tab').forEach((t,i)=>{const tabs=['portfolio','shirts','texts','layout','contact'];t.classList.toggle('active',tabs[i]===name)});
   document.querySelectorAll('.ap-page').forEach(p=>p.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
 }
 function toggleCard(head){head.closest('.ap-card').classList.toggle('expanded')}
+
+// ----- Mise en page : ordre des sections -----
+var SECTION_LABELS={portfolio:'Portfolio',shirts:'Vêtements',about:'À propos'};
+var _secDrag=null;
+function renderSectionOrder(){
+  const c=document.getElementById('ap-section-order');
+  if(!c)return;
+  const order=(D.sectionOrder&&D.sectionOrder.length)?D.sectionOrder.slice():['portfolio','shirts','about'];
+  c.innerHTML=order.map((name,i)=>`
+    <div class="ap-sec-item" draggable="true" data-sec="${name}">
+      <span class="ap-sec-handle">⠿</span>
+      <span class="ap-sec-name">${SECTION_LABELS[name]||name}</span>
+      <span class="ap-sec-num">${String(i+1).padStart(2,'0')}</span>
+    </div>`).join('');
+  // drag & drop
+  c.querySelectorAll('.ap-sec-item').forEach(item=>{
+    item.addEventListener('dragstart',()=>{_secDrag=item.dataset.sec;item.classList.add('dragging')});
+    item.addEventListener('dragend',()=>{item.classList.remove('dragging');c.querySelectorAll('.ap-sec-item').forEach(x=>x.classList.remove('drag-over'))});
+    item.addEventListener('dragover',e=>{e.preventDefault();item.classList.add('drag-over')});
+    item.addEventListener('dragleave',()=>item.classList.remove('drag-over'));
+    item.addEventListener('drop',e=>{
+      e.preventDefault();
+      const to=item.dataset.sec;
+      if(!_secDrag||_secDrag===to)return;
+      // retirer l'élément déplacé puis l'insérer avant la cible
+      const clean=D.sectionOrder.filter(s=>s!==_secDrag);
+      const idx=clean.indexOf(to);
+      clean.splice(idx,0,_secDrag);
+      D.sectionOrder=clean;
+      _secDrag=null;
+      renderSectionOrder();applySectionOrder();livePreview();toast('Ordre mis à jour ✓');
+    });
+  });
+}
+function setPortfolioSize(size,btn){
+  D.portfolioSize=size;
+  document.querySelectorAll('#ap-pf-size .tc-chip').forEach(c=>c.classList.remove('active'));
+  if(btn)btn.classList.add('active');
+  applyPortfolioSize();livePreview();
+}
 
 // Échappe pour les value="" des inputs
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
@@ -1528,8 +1636,13 @@ function livePreview(){
 }
 
 function openAdmin(){
+  // garantir les valeurs par défaut pour les anciennes données Firebase
+  if(!Array.isArray(D.sectionOrder)||!D.sectionOrder.length)D.sectionOrder=['portfolio','shirts','about'];
+  if(!D.portfolioSize)D.portfolioSize='medium';
   renderAdminPortfolio();
   renderAdminShirts();
+  renderSectionOrder();
+  document.querySelectorAll('#ap-pf-size .tc-chip').forEach(c=>c.classList.toggle('active',c.dataset.size===D.portfolioSize));
   document.getElementById('a-hero-sub').value=D.hero.sub||'';
   document.getElementById('a-about1').value=D.about.text1||'';
   document.getElementById('a-about2').value=D.about.text2||'';
