@@ -55,13 +55,6 @@ canvas#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;op
 #egg-hint{position:relative;margin-top:2rem;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:#555;z-index:2;pointer-events:none;text-align:center;padding:0 1rem}
 .hero-grid-overlay{position:absolute;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:64px 64px;mask-image:radial-gradient(ellipse 75% 75% at 50% 45%,#000 30%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 75% 75% at 50% 45%,#000 30%,transparent 80%);animation:gridDrift 24s linear infinite}
 @keyframes gridDrift{from{background-position:0 0,0 0}to{background-position:64px 64px,64px 64px}}
-.hero-marquee{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%) rotate(-4deg);z-index:0;pointer-events:none;overflow:hidden;width:130%;margin-left:-15%;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
-.hero-marquee-track{display:inline-flex;align-items:center;white-space:nowrap;font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(4.5rem,14vw,12rem);line-height:.9;text-transform:uppercase;animation:marquee 38s linear infinite;will-change:transform}
-.hero-marquee-track .hm-w{padding:0 1.2rem;transform:rotate(var(--r,0deg));display:inline-block}
-.hero-marquee-track .hm-fill{color:rgba(255,255,255,.07)}
-.hero-marquee-track .hm-out{color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,.13)}
-.hero-marquee-track .hm-sl{color:rgba(255,255,255,.05);padding:0 .2rem;font-family:'Space Grotesk',sans-serif;font-weight:300}
-@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .hero-content{position:relative;z-index:1}
 .hero-logo-wrap{margin-bottom:2.5rem;position:relative;display:inline-block}
 .hero-logo-wrap svg{width:min(500px,78vw);height:auto;display:block;filter:drop-shadow(0 0 30px rgba(255,255,255,.07))}
@@ -74,10 +67,6 @@ canvas#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;op
 .hero-scroll{position:absolute;bottom:2.5rem;right:2.5rem;z-index:1;font-family:'Space Mono',monospace;font-size:.56rem;letter-spacing:.25em;text-transform:uppercase;color:#444;writing-mode:vertical-rl;display:flex;align-items:center;gap:1rem}
 .hero-scroll::after{content:'';display:block;width:1px;height:40px;background:#1a1a1a}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.hero-logo-wrap{animation:fadeUp .8s .1s both}
-.hero-tag{animation:fadeUp .8s .3s both}
-.hero-sub{animation:fadeUp .8s .45s both}
-.hero-ctas{animation:fadeUp .8s .6s both}
 
 .btn{display:inline-block;padding:.85rem 1.8rem;font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:none;transition:all .2s}
 .btn-primary{background:var(--white);color:var(--black)}.btn-primary:hover{background:#ddd}
@@ -443,9 +432,117 @@ body.edit-mode .edit-img-zone::after{content:'📷 Changer';position:absolute;to
   footer{flex-direction:column;text-align:center}
   #edit-bar{padding:.6rem 1rem;flex-wrap:wrap}
 }
+
+/* ============ XEROX — identité photocopie animée ============ */
+@property --xrp{syntax:'<percentage>';inherits:false;initial-value:100%}
+@keyframes xrSweep{0%{left:0;opacity:1}92%{opacity:1}100%{left:100%;opacity:0}}
+@keyframes xrWipe{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes xrPrint{from{clip-path:inset(-60px -60px 100% -60px)}to{clip-path:inset(-60px -60px -60px -60px)}}
+@keyframes xrScanLine{from{top:0;opacity:1}99%{opacity:1}to{top:100%;opacity:0}}
+@keyframes xrErode{0%{filter:url(#xr-e1);translate:-6px 2px}20%{filter:url(#xr-e2);translate:4px -1px}45%{filter:url(#xr-e3);translate:-2px 1px}70%{filter:url(#xr-e4);translate:1px 0}100%{filter:none;translate:0 0}}
+@keyframes xrBoil{0%{filter:url(#xr-r1)}33%{filter:url(#xr-r2)}66%{filter:url(#xr-r3)}}
+@keyframes xrMisreg{0%,88%,100%{filter:none;translate:0 0}90%{filter:drop-shadow(7px 0 0 rgba(245,245,240,.35));translate:-3px 1px}93%{filter:drop-shadow(-5px 2px 0 rgba(245,245,240,.25));translate:2px 0}96%{filter:url(#xr-e3);translate:0 -1px}}
+@keyframes xrJitter{0%{translate:0 0}33%{translate:-2px 1px}66%{translate:2px -1px}100%{translate:0 0}}
+@keyframes xrStamp{from{scale:2.6;opacity:0}}
+@keyframes xrReceipt{from{--xrp:0%;translate:0 -24px}to{--xrp:100%;translate:0 0}}
+@keyframes xrToner{0%{transform:translate(0,0)}25%{transform:translate(-37px,21px)}50%{transform:translate(18px,-44px)}75%{transform:translate(-12px,-9px)}}
+
+/* grain de toner sur toute la page (difference : clair sur noir, sombre sur blanc) */
+body::after{content:'';position:fixed;inset:-80px;z-index:998;pointer-events:none;mix-blend-mode:difference;opacity:.3;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 14 0 0 0 -9.6'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:xrToner .5s steps(1) infinite}
+body.edit-mode::after{display:none}
+
+/* HERO — la vitre du copieur */
+.xr-word{position:absolute;right:-1vw;top:15%;z-index:0;pointer-events:none;transform:rotate(-6deg);transform-origin:right top;font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(5rem,19vw,17rem);line-height:.85;text-transform:uppercase;color:#f5f5f0;opacity:.12;white-space:nowrap}
+#xr-word-txt{display:inline-block;filter:url(#xr-tone)}
+#xr-word-txt.xr-in{animation:xrErode .6s steps(1) backwards}
+.xr-scanbar{position:absolute;top:0;bottom:0;left:0;width:3px;z-index:3;pointer-events:none;opacity:0;background:#f5f5f0;box-shadow:0 0 24px 6px rgba(245,245,240,.35),0 0 140px 50px rgba(245,245,240,.07);animation:xrSweep 1.3s cubic-bezier(.55,0,.45,1) .15s both}
+.hero-content{animation:xrWipe 1.3s cubic-bezier(.55,0,.45,1) .15s backwards}
+#hero-logo{animation:xrErode .8s steps(1) 1.1s backwards,xrMisreg 7s steps(1) 2.4s infinite}
+.hero-tag{display:flex;width:fit-content;position:relative;background:var(--white);color:var(--black);padding:.45rem .8rem;transform:rotate(-1.5deg)}
+.hero-tag::before{display:none}
+.hero-tag::after{content:'';position:absolute;top:-9px;right:14px;width:46px;height:17px;background:rgba(245,245,240,.28);border:1px solid rgba(245,245,240,.12);transform:rotate(8deg)}
+.xr-counter{position:absolute;top:6.5rem;right:2.5rem;z-index:2;font-family:'Space Mono',monospace;font-size:.6rem;letter-spacing:.18em;line-height:1.7;text-transform:uppercase;color:var(--gray);border:1px solid #333;padding:.5rem .7rem;transform:rotate(3deg);animation:xrStamp .24s steps(3) 1.5s backwards}
+.xr-counter b{color:var(--white);font-weight:700}
+
+/* RÉVÉLATIONS — impression ligne à ligne + barre de scan */
+.reveal{position:relative;opacity:0;transform:none;transition:none}
+.reveal.visible{opacity:1;transform:none;animation:xrPrint .9s steps(10) backwards}
+.reveal.visible.reveal-d1{animation-delay:.15s}
+.reveal::after{content:'';position:absolute;left:-2.5rem;right:-2.5rem;height:2px;top:0;opacity:0;pointer-events:none;background:#f5f5f0;box-shadow:0 0 18px 4px rgba(245,245,240,.3)}
+.reveal.visible::after{animation:xrScanLine .9s steps(10) backwards}
+.reveal.visible.reveal-d1::after{animation-delay:.15s}
+#shirts .reveal::after,#contact .reveal::after{background:#0a0a0a;box-shadow:0 0 18px 4px rgba(10,10,10,.25)}
+
+/* TITRES — toner qui bave + apparition par seuil de bruit */
+h2{filter:url(#xr-r1)}
+.reveal.visible h2{animation:xrErode .7s steps(1) .25s backwards,xrBoil .6s steps(1) 1s infinite}
+.section-tag::before{display:inline-block;border:1px solid currentColor;padding:.15rem .4rem;transform:rotate(-4deg)}
+.reveal.visible .section-tag::before{animation:xrStamp .24s steps(3) .5s backwards}
+.footer-sig,.apps-sig,.about-title{filter:url(#xr-r2)}
+
+/* NAV */
+.nav-links a{padding:.3rem .45rem;z-index:0}
+.nav-links a::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--white);transform:scaleX(0);transform-origin:left;transition:transform .18s steps(3);filter:url(#xr-r1)}
+.nav-links a:hover{color:var(--black)}
+.nav-links a:hover::before{transform:scaleX(1)}
+.nav-links a.active::after{bottom:-4px;height:2px;filter:url(#xr-r2)}
+.nav-logo:hover svg{animation:xrMisreg .5s steps(1) infinite;animation-delay:-.45s}
+
+/* BOUTONS — contre-copie décalée */
+.btn{transition:all .2s steps(2)}
+.btn:hover{animation:xrJitter .24s steps(1)}
+.btn-primary:hover{box-shadow:-5px 4px 0 rgba(245,245,240,.28)}
+.btn-outline:hover,.btn-dark:hover{box-shadow:-5px 4px 0 rgba(245,245,240,.12)}
+#shirts .btn-dark:hover{box-shadow:-5px 4px 0 rgba(10,10,10,.25)}
+.contact-link{transition:all .2s steps(3)}
+.contact-link:hover{transform:rotate(-2deg);box-shadow:-5px 4px 0 rgba(10,10,10,.25)}
+
+/* IMAGES — tramées façon photocopie, nettes au survol */
+.portfolio-item{transform:translateX(-26px);transition:opacity .45s steps(3),transform .45s steps(3),background .4s}
+.pf-visual img{filter:grayscale(1) contrast(2.3) brightness(1.12);opacity:.5;transition:opacity .4s steps(4),filter .4s steps(4),transform .7s}
+.portfolio-item:hover .pf-visual img{filter:grayscale(0) contrast(1.05);opacity:.9;animation:xrJitter .24s steps(1)}
+.pf-visual::before,.shirt-card::after,.app-cover::after{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(circle,#0a0a0a 0 .9px,transparent 1.5px) 0 0/4px 4px;opacity:.75;transition:opacity .4s steps(4)}
+.portfolio-item:hover .pf-visual::before,.shirt-card:hover::after,.app-card:hover .app-cover::after{opacity:0}
+.shirt-card img,.app-cover img{filter:grayscale(1) contrast(2) brightness(1.08);transition:transform .4s,filter .4s steps(4)}
+.shirt-card:hover img,.app-card:hover .app-cover img{filter:none;animation:xrJitter .24s steps(1)}
+.shirt-card .s-overlay{z-index:2}
+
+/* SCOTCH sur les cartes */
+.shirt-card::before,.app-card::before{content:'';position:absolute;top:-7px;left:50%;z-index:4;width:72px;height:22px;transform:translateX(-50%) rotate(var(--tr,-4deg));pointer-events:none}
+.shirt-card::before{background:rgba(180,175,160,.55);border:1px solid rgba(120,115,100,.25)}
+.app-card::before{background:rgba(245,245,240,.16);border:1px solid rgba(245,245,240,.08)}
+.shirt-card:nth-child(2n)::before,.app-card:nth-child(2n)::before{--tr:5deg;left:68%}
+.shirt-card:nth-child(3n)::before,.app-card:nth-child(3n)::before{--tr:-2deg;left:30%}
+.app-card:hover{box-shadow:-6px 6px 0 rgba(245,245,240,.07)}
+
+/* UPCYCLING DEPT — le ticket s'imprime, les tampons tombent */
+.receipt{-webkit-mask-image:linear-gradient(to bottom,#000 var(--xrp),transparent var(--xrp));mask-image:linear-gradient(to bottom,#000 var(--xrp),transparent var(--xrp))}
+.reveal.visible .receipt{animation:xrReceipt 1.5s steps(15) .4s backwards,receiptSway 6s ease-in-out 1.9s infinite}
+.reveal.visible .stamp-1{animation:xrStamp .24s steps(3) 2s backwards}
+.reveal.visible .stamp-2{animation:xrStamp .24s steps(3) 2.25s backwards}
+.reveal.visible .scrawl-2{animation:xrErode .6s steps(1) 2.5s backwards}
+
+@media(max-width:900px){.xr-counter{top:5rem;right:1.5rem}.xr-word{top:20%}}
+@media(prefers-reduced-motion:reduce){
+  body::after,.xr-scanbar{animation:none;display:none}
+  .hero-content,#hero-logo,#xr-word-txt,.xr-counter,.reveal.visible,.reveal.visible::after,.reveal.visible h2,.reveal.visible .section-tag::before,.reveal.visible .receipt,.reveal.visible .stamp,.reveal.visible .scrawl-2{animation:none!important}
+  .receipt{--xrp:100%}
+}
 </style>
 </head>
 <body>
+
+<!-- XEROX — filtres toner (érosion par seuil de bruit + bords qui bavent) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <filter id="xr-tone"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="2" seed="11" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0" result="a"/><feComponentTransfer in="a" result="m"><feFuncA type="linear" slope="10" intercept="-3.9"/></feComponentTransfer><feComposite in="SourceGraphic" in2="m" operator="in" result="c"/><feTurbulence type="fractalNoise" baseFrequency=".7" numOctaves="1" seed="4" result="d"/><feDisplacementMap in="c" in2="d" scale="4" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <filter id="xr-e1"><feTurbulence type="fractalNoise" baseFrequency=".5" numOctaves="2" seed="7" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0" result="a"/><feComponentTransfer in="a" result="m"><feFuncA type="linear" slope="12" intercept="-6.4"/></feComponentTransfer><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>
+  <filter id="xr-e2"><feTurbulence type="fractalNoise" baseFrequency=".5" numOctaves="2" seed="8" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0" result="a"/><feComponentTransfer in="a" result="m"><feFuncA type="linear" slope="12" intercept="-5.2"/></feComponentTransfer><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>
+  <filter id="xr-e3"><feTurbulence type="fractalNoise" baseFrequency=".5" numOctaves="2" seed="9" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0" result="a"/><feComponentTransfer in="a" result="m"><feFuncA type="linear" slope="12" intercept="-4.1"/></feComponentTransfer><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>
+  <filter id="xr-e4"><feTurbulence type="fractalNoise" baseFrequency=".5" numOctaves="2" seed="10" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0" result="a"/><feComponentTransfer in="a" result="m"><feFuncA type="linear" slope="12" intercept="-2.8"/></feComponentTransfer><feComposite in="SourceGraphic" in2="m" operator="in"/></filter>
+  <filter id="xr-r1"><feTurbulence type="fractalNoise" baseFrequency=".45" numOctaves="2" seed="1" result="d"/><feDisplacementMap in="SourceGraphic" in2="d" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <filter id="xr-r2"><feTurbulence type="fractalNoise" baseFrequency=".45" numOctaves="2" seed="2" result="d"/><feDisplacementMap in="SourceGraphic" in2="d" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <filter id="xr-r3"><feTurbulence type="fractalNoise" baseFrequency=".45" numOctaves="2" seed="3" result="d"/><feDisplacementMap in="SourceGraphic" in2="d" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter>
+</defs></svg>
 
 <!-- LIGHTBOX -->
 <div id="lightbox">
@@ -536,7 +633,8 @@ let editMode=false,_imgCb=null;
 <section id="hero">
   <canvas id="hero-canvas"></canvas>
   <div class="hero-grid-overlay" aria-hidden="true"></div>
-  <div class="hero-marquee" aria-hidden="true"><div class="hero-marquee-track" id="hero-marquee-track"></div></div>
+  <div class="xr-word" aria-hidden="true"><span id="xr-word-txt"></span></div>
+  <div class="xr-scanbar" aria-hidden="true"></div>
   <div class="hero-content">
     <div class="hero-logo-wrap"><div class="hero-logo-glow"></div><div id="hero-logo"></div></div>
     <div class="hero-tag">Directeur Artistique · Paris</div>
@@ -546,6 +644,7 @@ let editMode=false,_imgCb=null;
       <a href="#shirts" class="btn btn-outline">ADRSHIRTDESIGN →</a>
     </div>
   </div>
+  <div class="xr-counter" aria-hidden="true">Copie n° <b id="xr-count">0000</b><br><span id="xr-date"></span></div>
   <div class="hero-scroll">scroll</div>
 </section>
 
@@ -840,14 +939,6 @@ function render(){
   document.getElementById('footer-logo').innerHTML=SVG_SQ_W;
 
   document.getElementById('hero-sub-el').innerHTML=(D.hero.sub||'').replace(/\n/g,'<br>');
-  // Marquee hero
-  const mq=document.getElementById('hero-marquee-track');
-  if(mq){
-    const words=(D.heroMarquee||'VIDÉO, MOTION, PHOTO, BRANDING').split(',').map(w=>w.trim()).filter(Boolean);
-    // alternance plein / contour + légères rotations pour casser l'alignement
-    const seq=words.map((w,k)=>`<span class="hm-w ${k%2?'hm-fill':'hm-out'}" style="--r:${(k%3-1)*1.5}deg">${w}</span><span class="hm-sl">/</span>`).join('');
-    mq.innerHTML=seq+seq;
-  }
   // Le lab (apps)
   const ag=document.getElementById('apps-grid');
   if(ag){
@@ -2288,6 +2379,30 @@ if(_fbOk&&db){
     if(val&&val.portfolio){D=val;render();}
   });
 }
+// ============ XEROX — mot photocopié du hero + compteur de copies ============
+(function(){
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const el=document.getElementById('xr-word-txt');
+  const words=()=>(D.heroMarquee||'VIDÉO, MOTION, PHOTO, BRANDING').split(',').map(w=>w.trim()).filter(Boolean);
+  let k=0;
+  function show(){
+    const w=words();if(!w.length)return;
+    k%=w.length;
+    el.classList.remove('xr-in');void el.offsetWidth;
+    el.textContent=w[k++];el.classList.add('xr-in');
+  }
+  if(el){show();if(!reduce)setInterval(show,3200)}
+  // chaque visite = une copie de plus
+  const c=document.getElementById('xr-count'),d=document.getElementById('xr-date');
+  let n=1;
+  try{n=(parseInt(localStorage.getItem('adr-copies'),10)||0)+1;localStorage.setItem('adr-copies',n)}catch(e){}
+  if(d){const t=new Date();d.textContent=[t.getDate(),t.getMonth()+1,t.getFullYear()%100].map(v=>String(v).padStart(2,'0')).join('.')}
+  if(c){
+    const pad=v=>String(v).padStart(4,'0');
+    if(reduce){c.textContent=pad(n)}
+    else{let i=0;const tick=()=>{i=Math.min(n,i+Math.ceil(n/10));c.textContent=pad(i);if(i<n)setTimeout(tick,70)};setTimeout(tick,1500)}
+  }
+})();
 </script>
 </body>
 </html>
