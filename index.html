@@ -263,6 +263,8 @@ h2{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:clamp(2.5rem,6
 .app-card:hover .app-cover img{transform:scale(1.04)}
 .app-initials{font-family:'ADRSHITTypo','Space Grotesk',sans-serif;font-size:4.5rem;line-height:1;color:transparent;-webkit-text-stroke:1.5px #3a3a3a;transform:rotate(-6deg);transition:-webkit-text-stroke-color .25s}
 .app-card:hover .app-initials{-webkit-text-stroke-color:#f5f5f0}
+.app-cover img.app-icon{width:96px;height:96px;object-fit:contain;border-radius:22%;transform:rotate(-6deg);image-rendering:pixelated;box-shadow:-6px 6px 0 rgba(245,245,240,.08)}
+.app-card:hover .app-cover img.app-icon{transform:rotate(0deg) scale(1.08)}
 .app-num{position:absolute;top:.7rem;left:.8rem;font-family:'Space Mono',monospace;font-size:.55rem;letter-spacing:.15em;color:#666}
 .app-body{padding:1.2rem 1.2rem 1.1rem;display:flex;flex-direction:column;gap:.5rem;flex:1}
 .app-tag{font-family:'Space Mono',monospace;font-size:.52rem;letter-spacing:.2em;text-transform:uppercase;color:#666}
@@ -589,9 +591,9 @@ const DD={
   shirtsText:"ADRSHIRTDESIGN, c'est le prolongement physique de mon univers graphique. Des pièces pensées comme des objets de direction artistique — pas juste des t-shirts imprimés.",
   sectionOrder:['portfolio','shirts','apps','about'],
   apps:[
-    {name:'Loup-Garou',tag:'Jeu de soirée',desc:"Le classique des soirées en version web : rôles secrets, nuits, votes. Sans cartes, sans maître du jeu.",url:'https://loup-garou-adr.netlify.app',img:'',status:'live'},
-    {name:'VodyCount',tag:'Jeu / PWA',desc:"Carte collaborative des spots, en crew : classements, 21 badges à débloquer, avis sur les spots.",url:'https://adrshitdesign.github.io/vodycount/',img:'',status:'beta'},
-    {name:'Diggerz',tag:'Jeu de collection',desc:"Creuse, découvre des extraits, collectionne des cartes musicales. Le digging version jeu de cartes.",url:'https://diggerz.adrshit.workers.dev',img:'',status:'live'},
+    {name:'Loup-Garou',tag:'Jeu de soirée',desc:"Le classique des soirées en version web : rôles secrets, nuits, votes. Sans cartes, sans maître du jeu.",url:'https://loup-garou-adr.netlify.app',img:'',icon:'https://loup-garou-adr.netlify.app/favicon.ico',status:'live'},
+    {name:'VodyCount',tag:'Jeu / PWA',desc:"Carte collaborative des spots, en crew : classements, 21 badges à débloquer, avis sur les spots.",url:'https://adrshitdesign.github.io/vodycount/',img:'',icon:'https://adrshitdesign.github.io/vodycount/apple-touch-icon.png',status:'beta'},
+    {name:'Diggerz',tag:'Jeu de collection',desc:"Creuse, découvre des extraits, collectionne des cartes musicales. Le digging version jeu de cartes.",url:'https://diggerz.adrshit.workers.dev',img:'',icon:'https://diggerz.adrshit.workers.dev/icones/apple-touch-icon.png',status:'live'},
     {name:'Planning',tag:'Outil pro',desc:"App de planning & tickets pour studio : frise par personne, vues jour/semaine/mois, rôles, temps réel.",url:'',img:'',status:'private'}
   ],
   heroMarquee:'VIDÉO, MOTION, PHOTO, BRANDING, DIRECTION, GRAPHISME',
@@ -954,9 +956,15 @@ function render(){
       const tagName=link&&!editMode?'a':'div';
       const attrs=link&&!editMode?`href="${esc(link)}"${ext?' target="_blank" rel="noopener"':''}`:'';
       const initials=(a.name||'?').split(/[\s-]+/).filter(Boolean).map(w=>w[0]).join('').slice(0,3).toUpperCase()||'?';
+      // icône : celle renseignée, sinon le favicon du site de l'app ; initiales si rien ne charge
+      let icon=(a.icon||'').trim();
+      if(!icon&&url){try{icon=new URL(url).origin+'/favicon.ico'}catch(e){}}
+      const cover=a.img?`<img src="${esc(a.img)}" alt="${esc(a.name)}" loading="lazy"/>`
+        :icon?`<img class="app-icon" src="${esc(icon)}" alt="${esc(a.name)}" loading="lazy" onerror="this.nextElementSibling.hidden=false;this.remove()"/><span class="app-initials" hidden>${esc(initials)}</span>`
+        :`<span class="app-initials">${esc(initials)}</span>`;
       const cta=url&&st!=='private'?'Lancer →':(st==='private'?'Démo sur demande →':'Lien à venir');
       return `<${tagName} class="app-card${link?' has-link':''}" ${attrs} style="--r:${rot[i%rot.length]}deg">
-        <div class="app-cover">${a.img?`<img src="${esc(a.img)}" alt="${esc(a.name)}" loading="lazy"/>`:`<span class="app-initials">${esc(initials)}</span>`}<span class="app-num">${String(i+1).padStart(2,'0')}</span></div>
+        <div class="app-cover">${cover}<span class="app-num">${String(i+1).padStart(2,'0')}</span></div>
         <div class="app-body">
           <div class="app-tag">${esc(a.tag||'')}</div>
           <div class="app-name">${esc(a.name||'Sans nom')}</div>
@@ -2037,9 +2045,10 @@ function renderAdminApps(){
           <div class="ap-field"><label>Statut</label><select onchange="upd('apps',${i},'status',this.value)">${opt('live',a.status,'En ligne')}${opt('beta',a.status,'Bêta')}${opt('soon',a.status,'Bientôt')}${opt('private',a.status,'Sur demande (lien masqué)')}</select></div>
         </div>
         <div class="ap-imgrow">
-          <div class="ap-field"><label>Image de couverture (optionnel)</label><input value="${esc(a.img)}" oninput="upd('apps',${i},'img',this.value)" placeholder="Sinon : initiales en contour"/></div>
+          <div class="ap-field"><label>Image de couverture (optionnel)</label><input value="${esc(a.img)}" oninput="upd('apps',${i},'img',this.value)" placeholder="Sinon : icône de l'app"/></div>
           <button class="ap-upload-btn" onclick="pickImg(${i},'apps')">📷 Upload</button>
         </div>
+        <div class="ap-field"><label>Icône (optionnel)</label><input value="${esc(a.icon||'')}" oninput="upd('apps',${i},'icon',this.value)" placeholder="Sinon : favicon du lien de l'app, puis initiales"/></div>
       </div>
     </div>`).join('');
   bindDrag('apps');
